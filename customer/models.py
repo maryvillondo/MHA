@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from datetime import datetime, date
 
 # Create your models here.
 class Person(models.Model):
@@ -12,7 +12,7 @@ class Person(models.Model):
     province = models.CharField(max_length = 100)
     zip_code = models.CharField(max_length = 100)
     country = models.CharField(max_length = 100)
-    birthdate = models.DateField(default = datetime.now())
+    birthdate = models.DateField()
     status = models.CharField(max_length = 25)
     gender = models.CharField(max_length = 15)
     spouse_fname = models.CharField(max_length = 100)
@@ -25,8 +25,8 @@ class Person(models.Model):
         db_table = "Person"
 
 class Customer(Person):
-    date_registered = models.DateField(default = datetime.now())
-    customer_picture = models.BinaryField()
+    date_registered = models.DateField(auto_now_add=True)
+    # customer_picture = models.BinaryField()
 
     class Meta:
         db_table = "Customer"

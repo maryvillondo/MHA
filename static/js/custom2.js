@@ -213,6 +213,7 @@ $(document).ready(function() {
   //Birthday datepicker customer registration
   $('#datepickerBdayCustReg').datepicker({
     uiLibrary: 'bootstrap4',
+    format: "yyyy-mm-dd  "
   });
 } );
 

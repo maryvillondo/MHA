@@ -42,8 +42,8 @@ class CustomerRegView(View):
             spouse_lname = request.POST.get("s_lname")
             spouse_occupation = request.POST.get("s_occupation")
             no_children = request.POST.get("numchildren")
-            customer_picture = request.POST.get("c_picture")
-            form = Customer(firstname = fname, middlename = mname, lastname = lname, street = street, barangay = barangay, city = city, province = province, zip_code = zip_code, country = country, birthdate = birthdate, status = status, gender = gender, spouse_fname = spouse_fname, spouse_mname = spouse_mname, spouse_lname = spouse_lname, spouse_occupation = spouse_occupation, no_children = no_children, customer_picture = customer_picture)
+            # c_picture = request.POST.get("customer_picture" , customer_picture = c_picture)
+            form = Customer(firstname = fname, middlename = mname, lastname = lname, street = street, barangay = barangay, city = city, province = province, zip_code = zip_code, country = country, birthdate = birthdate, status = status, gender = gender, spouse_fname = spouse_fname, spouse_mname = spouse_mname, spouse_lname = spouse_lname, spouse_occupation = spouse_occupation, no_children = no_children)
             form.save()
             return HttpResponse('Customer recorded!')
         else:
