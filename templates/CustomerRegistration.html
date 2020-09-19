@@ -1,0 +1,198 @@
+{% load static %}
+
+{% block headerinclude %}
+        <meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    	<title>Customer Registration</title> 
+
+    	<!-- Bootstrap -->
+    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    	<!-- Font Awesome -->
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    	<!-- Font Alata -->
+    	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alata&display=swap">
+    	<!-- Custom Datepicker -->
+    	<link rel="stylesheet" href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css">
+    	<!-- Datatables -->
+    	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+    	<!-- Bootstrap Buttons for Datatables Styling-->
+    	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.bootstrap4.min.css">
+    	<!-- Local -->
+    	<link rel="stylesheet" href="{% static 'css/MHAStyleSheet.css' %}">
+    	<link rel="stylesheet" href="{% static 'css/MHAStyleSheet2.css' %}">
+    	<link rel="stylesheet" href="{% static 'css/reponsive.css' %}">
+{% endblock headerinclude %} 
+   
+{% block footerinclude %}
+		<!-- JQuery -->
+    	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    	<!-- Popper -->
+   		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    	<!-- Bootstrap -->
+    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    	<!-- Custom Datepicker -->
+    	<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    	<!-- Datatables -->
+    	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    	<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    	<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    	<!-- Bootstrap Buttons for Datatables Styling-->
+    	<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.bootstrap4.min.js"></script> 
+   	 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    	<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+    	<!-- Moment for Datatables Configuration -->
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    	<!-- Local -->
+    	<script src="{% static 'js/custom.js' %}"></script>
+    	<script src="{% static 'js/custom2.js' %}"></script>
+{% endblock footerinclude %}    
+
+{% block content %}
+	<body class="reg-bg">
+		<div class="container register">
+			<div class="nav nav-pills justify-content-end">
+				<div class="nav-item cust-btn-active">
+					<a class="nav-link nav-link-active" href="CustomerRegistration.html">CUSTOMER</a>
+				</div>
+				<div class="nav-item dvd-btn-inactive">
+					<a class="nav-link nav-link-inactive" href="DVDRegistration.html">DVD</a>
+				</div>
+			</div>
+			<br>
+			<form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="row">
+					<div class="col-3">
+						<div class="row">
+							<div class="col">
+								<img id="imgPreviewCustReg" class="img-prev"/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="custom-file">
+								<label class="btn btn-default up-img"> Upload Image
+									<!-- loadImgPreviewCustReg() is for loading image preview upon uploading -->
+									<input type="file" class="custom-file-input  form-input" id="imgUploadCustReg" name="c_picture" accept="image/*" onchange="loadImgPreviewCustReg(event)" hidden required>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="row">
+							<div class="col">
+								<label for="fullName" class="form-label">Full Name</label>
+								<div class="form-row name" id="fullName">
+									<div class="col">
+										<input type="text" class="form-control form-input" name="firstname" placeholder="First name" required>
+									</div>
+									<div class="col">
+										<input type="text" class="form-control form-input" name="middlename" placeholder="Middle name" required>
+									</div>
+									<div class="col">
+										<input type="text" class="form-control form-input" name="lastname" placeholder="Last name" required>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col">
+								<label for="address" class="form-label">Address</label>
+								<div class="form-row" id="address">
+									<div class="col">
+										<input type="text" class="form-control form-input" name="astreet" placeholder="Street" required>
+									</div>
+									<div class="col">
+										<input type="text" class="form-control form-input" name="abarangay" placeholder="Barangay" required>
+									</div>
+									<div class="col">
+										<input type="text" class="form-control form-input" name="acity" placeholder="City" required>
+									</div>
+									<div class="col">
+										<input type="text" class="form-control form-input" name="aprovince" placeholder="Province" required>
+									</div>
+									<div class="col">
+										<input type="text" class="form-control form-input" name="azip_code" placeholder="Zip" required>
+									</div>
+									<div class="col">
+										<input type="text" class="form-control form-input" name="acountry" placeholder="Country" required>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col">
+								<label for="datepickerBdayCustReg" class="form-label">Birthday</label>
+								<input id="datepickerBdayCustReg" class="form-input" width="225" name="bdate" placeholder="mm/dd/yyyy" required />
+							</div>
+							<div class="col">
+								<label for="status" class="form-label">Status</label>
+								<div class="form-group">
+									<select required class="form-control  form-input" name="cstatus" id="status">
+										<option disabled selected value="">Select</option>
+										<option value="single">Single</option>
+										<option value="married">Married</option>
+										<option value="widow/er">Widow/er</option>
+										<option value="divorced">Divorced</option>
+									</select>
+								</div>
+							</div>
+							<div class="col">
+								<label for="gender" class="form-label">Gender</label>
+								<div class="form-group" id="gender">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="cgender" id="inlineRadio1" value="Male" required>
+										<label class="form-check-label form-label" for="inlineRadio1">Male</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="cgender" id="inlineRadio2" value="Female" required>
+										<label class="form-check-label form-label" for="inlineRadio2">Female</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col">
+								<label for="spouseFullName" class="form-label">Spouse's Full Name</label>
+								<div class="form-row name" id="spouseFullName">
+									<div class="col">
+										<input type="text" class="form-control form-input" name="s_fname" placeholder="First name" required>
+									</div>
+									<div class="col">
+										<input type="text" class="form-control form-input" name="s_mname" placeholder="Middle name" required>
+									</div>
+									<div class="col">
+										<input type="text" class="form-control form-input" name="s_lname" placeholder="Last name" required>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col">
+								<input type="text" class="form-control  form-input" name="s_occupation"placeholder="Spouse's Occupation">
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col form-group">
+								<label for="numberOfChildren" class="form-label">Number of Children</label>
+								<input type="number" min="0" class="form-control  form-input" id="numberOfChildren" name="numchildren" placeholder="0">
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col">
+								<button type="submit" class="btn btn-primary btn-register" >REGISTER</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+{% endblock content %}

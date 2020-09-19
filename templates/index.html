@@ -1,0 +1,849 @@
+<!-- 
+  Authors: Ma. Lezly Grace Degamo and Mary Catherine Villondo
+  Description: This html file is the dashboard of the Movie House Automate (MHA). This uses bootstrap and local codes made by authors.
+-->
+
+{% load static %}
+
+  {% block headerinclude %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>
+      {% block title %}
+      {{ page_title|default:"Movie House Automate" }}
+      {% endblock %}
+    </title> 
+    
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <!-- Font Alata -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alata&display=swap">
+    <!-- Custom Datepicker -->
+    <link rel="stylesheet" href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css">
+    <!-- Datatables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+    <!-- Bootstrap Buttons for Datatables Styling-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.bootstrap4.min.css">
+    <!-- Local -->
+    <link rel="stylesheet" href="{% static 'css/MHAStyleSheet.css' %}">
+    <link rel="stylesheet" href="{% static 'css/MHAStyleSheet2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reponsive.css' %}">
+  {% endblock headerinclude %}
+
+  {% block footerinclude %}
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom Datepicker -->
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <!-- Datatables -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <!-- Bootstrap Buttons for Datatables Styling-->
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.bootstrap4.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+    <!-- Moment for Datatables Configuration -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <!-- Local -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/custom2.js' %}"></script>
+  {% endblock footerinclude %}   
+
+  {% block content %}
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark ">
+        <div class="container">
+            <a class="navbar-brand ml-n5" href=""><img src="{% static 'images/logoW.png' %}" id="navbarIcon" class="d-inline-block align-top" alt="Movie House Automate"> Movie House Automate</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>                        
+            </button>
+            <div class="collapse navbar-collapse justify-content-end mr-n5" id="navbarNav">
+                <div class="navbar-nav">
+                    <div class="nav-item active mr-n2">
+                        <a class="nav-link" href="/customer/landing">Home</a>
+                    </div>
+                    <div class="nav-item dropdown mr-n5 ">
+                      <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Summary Report
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="" onclick="showOverallSummary()"><i class="fas fa-list fa-1x mb-2 mr-2"></i>Overall Summary</a>
+                        <a class="dropdown-item" href="" onclick="showCustomerSummary()"><i class="fas fa-users fa-1x mb-2 mr-2"></i>Customer Summary</a>
+                        <a class="dropdown-item" href="" onclick="showDVDSummary()"><i class="fas fa-film fa-1x mb-2 mr-2"></i>DVDs Summary</a>
+                      </div>
+                    </div>
+                    <div class="ml-5 align-self-center mr-n5">
+                        <button class="btn btn-sm btn-outline-secondary" id="btnSignOut">Welcome <em>Admin</em>!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </nav>
+    </header>
+
+    <!--Site Options-->
+    <section id="siteOptions">            
+      <div class="container">
+          <div class="row section-title justify-content-center mt-1">
+              <h2 class="section-title-heading ">Dashboard</h2>
+          </div>
+      </div>
+    </section>
+
+    <!--All Summary-->
+    <section id="overallSummary" style="display:block">
+      <div class="container">
+        <!--All Summary: Customers-->
+        <div class="row mt-4 d-flex justify-content-between"> 
+          <h4 class="font-weight-bold mb-2">Customer Records</h4>
+          <form method="POST">
+            {% csrf_token %}
+            <button class="btn btn-primary mb-2 mt-n2" type="submit" window.location.href='CustomerRegistration.html'><i class="fas fa-plus fa-1x"></i></button>
+          </form>
+          <div class="col-sm-12"></div>
+          <div class="col p-0 pb-5">
+          <div class="input-group input-daterange">
+            <div class="input-group-prepend">
+                <span class="input-group-text">From</span>
+              </div>
+            <input type="text" id="min-date" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="516.5px">
+            <div class="input-group-prepend">
+                <span class="input-group-text">To</span>
+              </div>
+            <input type="text" id="max-date" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="516.5px">
+          </div>
+          <div class="row">
+            <div class="col-sm-12" style="font-size: 7px;"><br></div>
+          </div>
+          <table id="tableCustomer" class="table table-hover text-center mt-2" >
+            <caption> Customer Report Summary</caption>
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" data-sortable="true">CID</th>
+                <th scope="col" data-sortable="true">Date Registered</th>
+                <th scope="col" data-sortable="true">First Name</th>
+                <th scope="col" data-sortable="true">Last Name</th>
+                <th scope="col" data-sortable="true">Date of Birth</th>
+                <th scope="col" data-sortable="false">Address City</th>
+                <th scope="col" data-sortable="false"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>8/28/2020</td>
+                <td>Mary Catherine</td>
+                <td>Villondo</td>
+                <td>11/4/1998</td>
+                <td>Tokyo</td>
+                <td class="d-inline-block">
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#customer-modal"><i class="fas fa-eye fa-1x"></i></button>
+                  <button type="button" class="btn btn-danger" id="btnDelete" data-toggle="modal" data-target="#delete-modal" onclick=""><i class="far fa-trash-alt fa-1x "></i></button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>8/28/2020</td>
+                <td>Ma. Lezly Grace</td>
+                <td>Degamo</td>
+                <td>9/4/1999</td>
+                <td>Korea</td>
+                <td class="d-inline-block">
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#customer-modal"><i class="fas fa-eye fa-1x"></i></button>
+                  <button type="button" class="btn btn-danger" id="btnDelete" data-toggle="modal" data-target="#delete-modal" onclick=""><i class="far fa-trash-alt fa-1x "></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <!--All Summary: DVDs-->
+        <div class="row mt-5 d-flex justify-content-between"> 
+          <h4 class="font-weight-bold mb-2">DVD Records</h4>
+          <form method="POST">
+            {% csrf_token %}
+            <button class="btn btn-primary mb-2 mt-n2" type="submit"><i class="fas fa-plus fa-1x"></i></button>
+          </form> 
+          <div class="col-sm-12"></div>
+          <div class="col p-0 pb-5">
+          <div class="input-group input-daterange">
+            <div class="input-group-prepend">
+                <span class="input-group-text">From</span>
+              </div>
+            <input type="text" id="min-date" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="516.5px">
+            <div class="input-group-prepend">
+                <span class="input-group-text">To</span>
+              </div>
+            <input type="text" id="max-date" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="516.5px">
+          </div>
+          <div class="row">
+            <div class="col-sm-12" style="font-size: 7px;"><br></div>
+          </div>
+          <table id="dvdReportSummary" class="table table-hover text-center mt-5">
+                <caption> DVD Report Summary</caption>
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">SKU</th>
+                    <th scope="col">Date Registered</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Release Date</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">No. of Items</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>08/28/2020</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>02/01/2010</td>
+                    <td>100.00</td>
+                    <td>84</td>
+                    <td class="d-inline-block">
+                      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dvds-modal"><i class="fas fa-eye fa-1x"></i></button>
+                      <button type="button" class="btn btn-danger" id="btnDelete" data-toggle="modal" data-target="#delete-modal" onclick=""><i class="far fa-trash-alt fa-1x "></i></button>
+                    </td>                      
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>05/15/2020</td>
+                    <td>Test2</td>
+                    <td>Test2</td>
+                    <td>01/23/1995</td>
+                    <td>250.00</td>
+                    <td>26</td>
+                    <td class="d-inline-block">
+                      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dvds-modal"><i class="fas fa-eye fa-1x"></i></button>
+                      <button type="button" class="btn btn-danger" id="btnDelete" data-toggle="modal" data-target="#delete-modal" onclick=""><i class="far fa-trash-alt fa-1x "></i></button>
+                    </td>                      
+                  </tr>
+                </tbody>
+              </table>
+          </div>  
+        </div>
+      </div>
+    </section>
+
+    <!--Customer Summary-->
+    <section id="customerSummary" style="display:none">
+      <div class="container">
+        <div class="row mt-4 d-flex justify-content-between"> 
+          <h4 class="font-weight-bold mb-2">Customers</h4>
+          <form method="POST">
+            {% csrf_token %}
+            <button class="btn btn-primary mb-2 mt-n2" type="submit" window.location.href='CustomerRegistration.html'><i class="fas fa-plus fa-1x"></i></button>
+          </form>
+          <div class="col-sm-12"></div>
+          <div class="col p-0 pb-5">
+          <div class="input-group input-daterange">
+            <div class="input-group-prepend">
+                <span class="input-group-text">From</span>
+              </div>
+            <input type="text" id="min-date" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="516.5px">
+            <div class="input-group-prepend">
+                <span class="input-group-text">To</span>
+              </div>
+            <input type="text" id="max-date" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="516.5px">
+          </div>
+          <div class="row">
+            <div class="col-sm-12" style="font-size: 7px;"><br></div>
+          </div>
+          <table id="tableCustomer" class="table table-hover text-center mt-2" >
+            <caption> Customer Report Summary</caption>
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" data-sortable="true">CID</th>
+                <th scope="col" data-sortable="true">Date Registered</th>
+                <th scope="col" data-sortable="true">First Name</th>
+                <th scope="col" data-sortable="true">Last Name</th>
+                <th scope="col" data-sortable="true">Date of Birth</th>
+                <th scope="col" data-sortable="false">Address City</th>
+                <th scope="col" data-sortable="false"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>8/28/2020</td>
+                <td>Mary Catherine</td>
+                <td>Villondo</td>
+                <td>11/4/1998</td>
+                <td>Tokyo</td>
+                <td class="d-inline-block">
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#customer-modal"><i class="fas fa-eye fa-1x mb-1"></i></button>
+                  <button type="button" class="btn btn-danger" id="btnDelete" data-toggle="modal" data-target="#delete-modal" onclick=""><i class="far fa-trash-alt fa-1x "></i></button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>8/28/2020</td>
+                <td>Ma. Lezly Grace</td>
+                <td>Degamo</td>
+                <td>9/4/1999</td>
+                <td>Korea</td>
+                <td class="d-inline-block">
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#customer-modal"><i class="fas fa-eye fa-1x mb-1"></i></button>
+                  <button type="button" class="btn btn-danger" id="btnDelete" data-toggle="modal" data-target="#delete-modal" onclick=""><i class="far fa-trash-alt fa-1x "></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!--DVDs Summary-->
+    <section id="dvdSummary" style="display:none">
+        <div class="container">
+          <div class="row mt-5 d-flex justify-content-between"> 
+            <h4 class="font-weight-bold mb-2">DVD Records</h4>
+            <form method="POST">
+              {% csrf_token %}
+              <button class="btn btn-primary mb-2 mt-n2" type="submit"><i class="fas fa-plus fa-1x"></i></button>
+            </form> 
+            <div class="col-sm-12"></div>
+            <div class="col p-0 pb-5">
+            <div class="input-group input-daterange">
+              <div class="input-group-prepend">
+                  <span class="input-group-text">From</span>
+                </div>
+              <input type="text" id="min-date" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="516.5px">
+              <div class="input-group-prepend">
+                  <span class="input-group-text">To</span>
+                </div>
+              <input type="text" id="max-date" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="516.5px">
+            </div>
+            <div class="row">
+              <div class="col-sm-12" style="font-size: 7px;"><br></div>
+            </div>
+            <table id="dvdReportSummary" class="table table-hover text-center mt-5">
+                  <caption> DVD Report Summary</caption>
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">SKU</th>
+                      <th scope="col">Date Registered</th>
+                      <th scope="col">Genre</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Release Date</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">No. of Items</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>08/28/2020</td>
+                      <td>Test</td>
+                      <td>Test</td>
+                      <td>02/01/2010</td>
+                      <td>100.00</td>
+                      <td>84</td>
+                      <td class="d-inline-block">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dvds-modal"><i class="fas fa-eye fa-1x"></i></button>
+                        <button type="button" class="btn btn-danger" id="btnDelete" data-toggle="modal" data-target="#delete-modal" onclick=""><i class="far fa-trash-alt fa-1x "></i></button>
+                      </td>                      
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>05/15/2020</td>
+                      <td>Test2</td>
+                      <td>Test2</td>
+                      <td>01/23/1995</td>
+                      <td>250.00</td>
+                      <td>26</td>
+                      <td class="d-inline-block">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dvds-modal"><i class="fas fa-eye fa-1x"></i></button>
+                        <button type="button" class="btn btn-danger" id="btnDelete" data-toggle="modal" data-target="#delete-modal" onclick=""><i class="far fa-trash-alt fa-1x "></i></button>
+                      </td>                      
+                    </tr>
+                  </tbody>
+                </table>
+            </div>  
+          </div>
+        </div>
+    </section>
+
+    <!--View and Update Modal: Customer-->
+    <div class="modal fade" id="customer-modal" tabindex="-1" role="dialog" aria-labelledby="customermodal"  aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold text-white">Customer Record</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-3">
+                  <div class="row">
+                    <div class="col">
+                      <img id="output" class="img-prev"/>
+                      <script>
+                        var loadFile = function(event) {
+                          var reader = new FileReader();
+                          reader.onload = function(){
+                            var output = document.getElementById('output');
+                            output.src = reader.result;
+                          };
+                          reader.readAsDataURL(event.target.files[0]);
+                        };
+                      </script>
+                      <script>
+                        $(".custom-file-input").on("change", function() {
+                          var fileName = $(this).val().split("\\").pop();
+                          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                        });
+                      </script>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="custom-file">
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="col">
+                      <label for="fullName" class="form-label">Full Name</label>
+                      <div class="form-row name" id="fullName">
+                        <div class="col">
+                          <input type="text" class="form-control form-input" placeholder="First name" required> 
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control form-input" placeholder="Middle name" required>
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control form-input" placeholder="Last name" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col">
+                      <label for="address" class="form-label">Address</label>
+                      <div class="form-row" id="address">
+                        <div class="col">
+                          <input type="text" class="form-control form-input" placeholder="Street" required>
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control form-input" placeholder="Barangay" required>
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control form-input" placeholder="City" required>
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control form-input" placeholder="Province" required>
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control form-input" placeholder="Zip" required>
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control form-input" placeholder="Country" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col">
+                      <label for="datepicker" class="form-label">Birthday</label>
+                      <input id="datepicker" class="form-input" width="225" placeholder="mm/dd/yyyy" required />
+                      <script>
+                        $('#datepicker').datepicker({
+                          uiLibrary: 'bootstrap4'
+                        });
+                      </script>
+                    </div>
+                    
+                    
+                    <div class="col">
+                      <label for="status" class="form-label">Status</label>
+                      <div class="form-group">
+                        <select required class="form-control  form-input" id="status">
+                          <option disabled selected value="">Select</option>
+                          <option value="single">Single</option>
+                          <option value="married">Married</option>
+                          <option value="widow/er">Widow/er</option>
+                          <option value="divorced">Divorced</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <label for="gender" class="form-label">Gender</label>
+                      <div class="form-group" id="gender">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" required>
+                          <label class="form-check-label form-label" for="inlineRadio1">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" required>
+                          <label class="form-check-label form-label" for="inlineRadio2">Female</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col">
+                      <label for="spouseFullName" class="form-label">Spouse's Full Name</label>
+                      <div class="form-row name" id="spouseFullName">
+                        <div class="col">
+                          <input type="text" class="form-control form-input" placeholder="First name" required>
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control form-input" placeholder="Middle name" required>
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control form-input" placeholder="Last name" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col">
+                      <input type="text" class="form-control  form-input" placeholder="Spouse's Occupation">
+                    </div>
+                  </div>
+                  <br>
+                  
+                  <div class="row">
+                    <div class="col form-group">
+                      <label for="numberOfChildren" class="form-label">Number of Children</label>
+                      <input type="number" min="0" class="form-control  form-input" id="numberOfChildren" placeholder="0">
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col">
+                      <button class="btn btn-primary btn-register" type="submit">UPDATE</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>          
+        </div>
+      </div>
+    </div>
+
+    <!--View and Update Modal: DVDs-->
+    <div class="modal fade" id="dvds-modal" tabindex="-1" role="dialog" aria-labelledby="dvdmodal"  aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">DVD RECORD</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col">
+                  <label for="movieTitle" class="form-label">Movie Title</label>
+                  <input required type="text" class="form-control  form-input" id="movieTitle" placeholder="Title">
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <div class="row">
+                    <div class="col">
+                      <label for="datepicker" class="form-label">Release Date</label>
+                      <input id="datepicker" class="form-input" width="505" placeholder="mm/dd/yyyy" required />
+                      <script>
+                        $('#datepicker').datepicker({
+                          uiLibrary: 'bootstrap4'
+                        });
+                      </script>	
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col form-group">
+                      <br>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text prepend-txt">₱</span>
+                        </div>
+                        <input required type="number" min="0.00" step="0.01"  class="form-control  form-input" id="numberOfChildren" placeholder="0.00">
+                      </div>
+                    </div>
+                    <div class="col form-group">
+                      <br>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text prepend-txt">Quantity</span>
+                        </div>
+                        <input required type="number" min="0" class="form-control  form-input" id="numberOfChildren" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                
+                
+                <div class="col">
+                  <label for="movieGenre" class="form-label">Genre</label>
+                  <div class="form-group">
+                    <select required multiple class="form-control form-input" id="movieGenre">
+                      <option disabled value="">Select</option>
+                      <option value="action">Action</option>
+                      <option value="adventure">Adventure</option>
+                      <option value="animation">Animation</option>
+                      <option value="biographical">Biographical</option>
+                      <option value="comedy">Comedy</option>
+                      <option value="crime">Crime</option>
+                      <option value="documentary">Documentary</option>
+                      <option value="drama">Drama</option>
+                      <option value="epic">Epic</option>
+                      <option value="fantasy">Fantasy</option>
+                      <option value="fiction">Fiction</option>
+                      <option value="horror">Horror</option>
+                      <option value="historical">Historical</option>
+                      <option value="musical">Musical</option>
+                      <option value="mystery">Mystery</option>
+                      <option value="noir">Noir</option>
+                      <option value="psychological">Psychological</option>
+                      <option value="romance">Romance</option>
+                      <option value="satire">Satire</option>
+                      <option value="scifi">Science Fiction</option>
+                      <option value="thriller">Thriller</option>
+                      <option value="western">Western</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label for="directorFullName" class="form-label">Director</label>
+                  <div class="form-row name" id="directorFullName">
+                    <div class="col">
+                      <input type="text" class="form-control form-input" placeholder="First name" required>
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control form-input" placeholder="Last name" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <label for="addCast" class="form-label">Add Cast</label>
+                  <div class="input-group" id="addCast">
+                    <input type="text" class="form-control form-input" id="myInput" placeholder="Cast's Full Name">
+                    <div class="input-group-append">
+                      <button onclick="newElement()" class="btn btn-default addBtn" type="button">Add</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <ul id="myUL">
+                  </ul>
+                </div>
+              </div>
+              <script>
+              // Create a "close" button and append it to each list item
+              var myNodelist = document.getElementsByTagName("LI");
+              var i;
+              for (i = 0; i < myNodelist.length; i++) {
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close";
+                span.appendChild(txt);
+                myNodelist[i].appendChild(span);
+              }
+      
+              // Click on a close button to hide the current list item
+              var close = document.getElementsByClassName("close");
+              var i;
+              for (i = 0; i < close.length; i++) {
+                close[i].onclick = function() {
+                var div = this.parentElement;
+                div.style.display = "none";
+                }
+              }
+      
+              // Add a "checked" symbol when clicking on a list item
+              var list = document.querySelector('ul');
+              list.addEventListener('click', function(ev) {
+                if (ev.target.tagName === 'LI') {
+                ev.target.classList.toggle('checked');
+                }
+              }, false);
+      
+              // Create a new list item when clicking on the "Add" button
+              function newElement() {
+                var li = document.createElement("li");
+                var inputValue = document.getElementById("myInput").value;
+                var t = document.createTextNode(inputValue);
+                li.appendChild(t);
+                if (inputValue === '') {
+                alert("You must write something!");
+                } else {
+                document.getElementById("myUL").appendChild(li);
+                }
+                document.getElementById("myInput").value = "";
+      
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close";
+                span.appendChild(txt);
+                li.appendChild(span);
+      
+                for (i = 0; i < close.length; i++) {
+                close[i].onclick = function() {
+                  var div = this.parentElement;
+                  div.style.display = "none";
+                }
+                }
+              }
+              </script>
+              <br>
+              <label for="addImg" class="form-label">Add Images</label>
+              <div class="row add-img id="addImg">
+                <div class="col-1"></div>
+                <div class="col">
+                  <div class="row">
+                    <div class="col">
+                      <img id="output1" class="img-prev"/>
+                      <script>
+                        var loadFile1 = function(event) {
+                          var reader1 = new FileReader();
+                          reader1.onload = function(){
+                            var output1 = document.getElementById('output1');
+                            output1.src = reader1.result;
+                          };
+                          reader1.readAsDataURL(event.target.files[0]);
+                        };
+                      </script>
+                      <script>
+                        $(".custom-file-input").on("change", function() {
+                          var fileName = $(this).val().split("\\").pop();
+                          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                        });
+                      </script>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="custom-file">
+                      <label class="btn btn-default up-img"> Upload Image
+                        <input type="file" class="custom-file-input  form-input" id="customFile1" accept="image/*" onchange="loadFile1(event)" hidden required>
+                      </label>
+                    </div>
+                  </div>	
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="col">
+                      <img id="output2" class="img-prev"/>
+                      <script>
+                        var loadFile2 = function(event) {
+                          var reader2 = new FileReader();
+                          reader2.onload = function(){
+                            var output2 = document.getElementById('output2');
+                            output2.src = reader2.result;
+                          };
+                          reader2.readAsDataURL(event.target.files[0]);
+                        };
+                      </script>
+                      <script>
+                        $(".custom-file-input").on("change", function() {
+                          var fileName = $(this).val().split("\\").pop();
+                          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                        });
+                      </script>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="custom-file">
+                      <label class="btn btn-default up-img"> Upload Image
+                        <input type="file" class="custom-file-input  form-input" id="customFile2" accept="image/*" onchange="loadFile2(event)" hidden required>
+                      </label>
+                    </div>
+                  </div>	
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="col">
+                      <img id="output3" class="img-prev"/>
+                      <script>
+                        var loadFile3 = function(event) {
+                          var reader3 = new FileReader();
+                          reader3.onload = function(){
+                            var output3 = document.getElementById('output3');
+                            output3.src = reader3.result;
+                          };
+                          reader3.readAsDataURL(event.target.files[0]);
+                        };
+                      </script>
+                      <script>
+                        $(".custom-file-input").on("change", function() {
+                          var fileName = $(this).val().split("\\").pop();
+                          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                        });
+                      </script>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="custom-file">
+                      <label class="btn btn-default up-img"> Upload Image
+                        <input type="file" class="custom-file-input  form-input" id="customFile" accept="image/*" onchange="loadFile3(event)" hidden required>
+                      </label>
+                    </div>
+                  </div>	
+                </div>
+                
+              </div>
+              <br>
+              <br>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <button class="btn btn-primary btn-register" type="submit">UPDATE</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
+                </div>
+              </div>
+            </form>  
+          </div>          
+        </div>
+      </div>
+    </div>
+
+    <!--Delete Modal -->
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="deletemodal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Confrim Deletion</h5>
+          </div>
+          <div class="modal-body">
+            Do you want to delete record?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    
+  {% endblock content %}

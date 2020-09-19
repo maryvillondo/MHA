@@ -1,0 +1,364 @@
+/* 
+Author: Mary Catherine Villondo
+Main Usages: Landing Page and some parts in Dashboard particularly Movie Summary related codes 
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,500;0,531;0,600;0,800;0,900;1,531&display=swap');
+
+:root{
+    --main--accent-color: #00ACD9 ;
+    --section-title-color-dark: #37474f;
+    --body-color: #495057;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Raleway',sans-serif;
+}
+
+h1{
+    font-family: 'Raleway', sans-serif;
+    font-size: 2.6rem;
+    line-height: 4rem;
+    font-weight: 800;
+}
+
+#navbarIcon{
+    width: 40px;
+    height: 35px;
+    margin-left: -30px;
+}
+
+
+.btn-white{
+    border: 2px solid #ffffff;
+    border-radius: 2rem;
+    color:#ffffff;
+    font-weight: 600;
+    text-transform: lowercase;
+    font-size: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.btn-white:hover{
+    background-color: #ffffff;
+    color: var(--main--accent-color);
+    border: 2px solid #ffffff
+}
+
+/* ============ SECTION TITLE ============ */
+.section-title {
+    position: relative;
+}
+
+h2.section-title-heading{
+    color:var(--section-title-color-dark);
+    padding-top: 2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.8rem;
+    
+}
+
+.section-title::after{
+    content: '';
+    position:   absolute;
+    border-bottom: 2px solid var(--main--accent-color);
+    width: 8%;
+    top: 80px;
+}
+
+.section-title:hover::after{
+    width: 12%;
+    transition: all 0.6s ease-out;
+    -webkit-transition: all 0.6s ease-out;
+    -moz-transition: all 0.6s ease-out;
+    -o-transition: all 0.6s ease-out;
+}
+
+/* ============ NAVIGATION ============ */
+
+.navbar {
+    padding-top: 1.2rem;
+    padding-left: 0.5rem;
+    /* max-width: 950px; */
+    
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: .85rem;
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+    color: #27778b;
+}
+
+/* ============ HERO ============ */
+
+#hero{
+    background-image: linear-gradient(to right, rgba(234, 84, 85,0.62), rgba(45, 64, 89,0.52)), url('../images/bg-01.png');
+    background-size: 100% 93%;
+    background-repeat: no-repeat;
+    padding-top: 8rem;
+    padding-bottom:  10rem;
+    padding-right: 10rem;
+    position: relative;
+}
+
+#hero::after{
+    content: '';
+    position: absolute;
+    background-color: #ffffff;
+    width: 100%;
+    height: 15%;
+    transform: skewY(-2deg);
+    transform-origin: bottom;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.main-hero-content h1{
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: .11rem;
+}
+
+.main-hero-content p{
+    color: #ffffff;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    line-height: 1.7rem; 
+    text-align: justify;
+    text-justify: auto;
+    font-size: 1.2rem;
+}
+
+/* ============ SIGN IN ============ */
+
+.card{
+    position: left;
+    top: .25rem;
+    left: 12rem;
+    bottom: 2rem;
+    color: #ffffff;
+    
+}
+
+.card-header{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.card-body img{
+    width: 6rem;
+    height: 5rem;
+}
+
+.card-body input{
+    text-align: center;
+}
+
+.card button{
+    border: 2px solid #ffffff;
+    background-color: transparent;
+    border-radius: 2rem;
+    color:#ffffff;
+    font-weight: 600;
+    text-transform: lowercase;
+    font-size: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+
+/* ============ REGISTRATION ============ */
+
+#registration i{
+    color: var(--main--accent-color);
+}
+
+#registration h3{
+    color: var(--section-title-color-dark);
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+#registration p{
+    color: var(--body-color);
+    font-size: 1rem;
+    line-height: 1.7rem;
+}
+
+#registration{
+    position: relative;
+    padding-bottom: 8rem;
+}
+
+/* ============ SUMMARY ============ */
+#summary{
+    background-image: linear-gradient(to right, rgba(234, 84, 85,0.62), rgba(45, 64, 89,0.52)), url('../images/bg-02.jpeg');
+    background-size: 100% 93%;
+    background-color:  #f0f1f3;
+    background-repeat: no-repeat;
+    padding-top: 8rem;
+    padding-bottom:  10rem;
+    padding-right: 10rem;
+    padding-left: 10rem;
+    position: relative;
+}
+
+#summary::before{
+    content: '';
+    position: absolute;
+    background-color: #ffffff;
+    width: 100%;
+    height: 15%;
+    transform: skewY(-2deg);
+    transform-origin: top right;
+    top: -5rem;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+#summary i{
+    color: #ebebeb;
+}
+
+#summary h3{
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+#summary p{
+    color: #ebebeb;
+    font-size: 1rem;
+    line-height: 1.7rem;
+}
+
+#sth2{
+    color:#ffffff;
+    padding-top: 2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+#sth2::after{
+    content: '';
+    position: absolute;
+    border-bottom: 2px solid var(--main--accent-color);
+    width: 3%;
+    top: 200px;
+    left: 56.5rem;
+}
+
+#sth2:hover::after{
+    width: 5%;
+    transition: all 0.6s ease-out;
+    -webkit-transition: all 0.6s ease-out;
+    -moz-transition: all 0.6s ease-out;
+    -o-transition: all 0.6s ease-out;
+}
+
+/* ============ Site Options ============ */
+#siteOptions{
+    background-image: linear-gradient(to right, rgba(234, 84, 85,0.75), rgba(45, 64, 89,0.89)), url('../images/bg-03.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding-top: 4rem;
+    padding-bottom:  2rem;
+    padding-right: 10rem;
+    padding-left: 10rem;
+    position: relative;
+}
+
+#siteOptions i{
+    color: #ffffff;
+}
+
+#siteOptions h2{
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+#siteOptions p{
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 1.7rem;
+}
+
+/* ============ Overall Summary ============ */
+#overallSummary h4{
+    text-transform: uppercase;
+    color:#343A40;
+    text-align: left;
+
+}
+
+.btn-warning{
+    color: #ffffff;
+}
+
+#btnDelete:hover{
+    color:#000000;
+}
+
+.btn-info:hover{
+    color: black;
+}
+
+
+/* ============ Contact ============ */
+#contact {
+    background-color: #f0f1f3;
+    padding-bottom: 5rem;
+    position: relative;
+}
+
+.btn-content{
+    background: linear-gradient(to right, rgba(0,172,217,0.62), rgba(105,240,174,0.52));
+    padding: .5rem 2.2rem;
+    color: #495057;
+    font-weight: 600;
+    border-radius: 2rem;
+    border: none;
+}
+
+.btn-content:hover {
+    background: #ffffff;
+    color: rgba(0,172,217,0.62);
+    border: 2px solid rgba(0,172,217,0.62);
+}
+
+#contact .contact-details ul li {
+    padding-bottom: .8rem;
+    margin-left: 3rem; 
+    
+}
+
+#contact .contact-details ul li i{
+    color: rgba(0,172,217,0.62);
+    margin-left: 3rem; 
+}
+
+#contact .contact-form{
+    margin-left: 5.5rem;
+}
+/* ============ Customer Modal ============ */
+#customer-modal{
+    background-color: #32425b;
+}
