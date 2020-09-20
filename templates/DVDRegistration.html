@@ -61,11 +61,12 @@
 				</div>
 			</div>
 			<br>
-			<form>
+			<form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+				{% csrf_token %}
 				<div class="row">
 					<div class="col">
 						<label for="movieTitle" class="form-label">Movie Title</label>
-						<input required type="text" class="form-control  form-input" id="movieTitle" placeholder="Title">
+						<input required type="text" class="form-control  form-input" id="movieTitle" placeholder="Title" name="title">
 					</div>
 				</div>
 				<br>
@@ -74,7 +75,7 @@
 						<div class="row">
 							<div class="col">
 								<label for="datepickerRelDateDvdReg" class="form-label">Release Date</label>
-								<input id="datepickerRelDateDvdReg" class="form-input" width="505" placeholder="mm/dd/yyyy" required />
+								<input id="datepickerRelDateDvdReg" class="form-input" width="505" placeholder="yyyy-mm-dd" name="release_date"/>
 							</div>
 						</div>
 						<div class="row">
@@ -84,7 +85,7 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text prepend-txt">₱</span>
 									</div>
-									<input required type="number" min="0.00" step="0.01"  class="form-control  form-input" id="numberOfChildren" placeholder="0.00">
+									<input required type="number" min="0.00" step="0.01"  class="form-control  form-input" id="price" placeholder="0.00" name="price">
 								</div>
 							</div>
 							<div class="col form-group">
@@ -93,7 +94,7 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text prepend-txt">Quantity</span>
 									</div>
-									<input required type="number" min="0" class="form-control  form-input" id="numberOfChildren" placeholder="0">
+									<input required type="number" min="0" class="form-control  form-input" id="quanity" placeholder="0" name="quantity">
 								</div>
 							</div>
 						</div>
@@ -101,7 +102,7 @@
 					<div class="col">
 						<label for="movieGenre" class="form-label">Genre</label>
 						<div class="form-group">
-							<select required multiple class="form-control form-input" id="movieGenre">
+							<select required multiple class="form-control form-input" id="movieGenre" name="genre">
 								<option disabled value="">Select</option>
 								<option value="action">Action</option>
 								<option value="adventure">Adventure</option>
@@ -134,10 +135,10 @@
 						<label for="directorFullName" class="form-label">Director</label>
 						<div class="form-row name" id="directorFullName">
 							<div class="col">
-								<input type="text" class="form-control form-input" placeholder="First name" required>
+								<input type="text" class="form-control form-input" placeholder="First name" name="director_firstname">
 							</div>
 							<div class="col">
-								<input type="text" class="form-control form-input" placeholder="Last name" required>
+								<input type="text" class="form-control form-input" placeholder="Last name" name="director_lastname">
 							</div>
 						</div>
 					</div>
@@ -160,6 +161,7 @@
 					<div class="col">
 						<ul id="myUL">
 						</ul>
+						<input type="text" id="castList" name="cast" hidden>
 					</div>
 				</div>
 				<br>
@@ -176,7 +178,7 @@
 							<div class="custom-file">
 								<label class="btn btn-default up-img"> Upload Image
 									<!-- loadImgPreviewDVDReg1() is for loading 1st image preview upon uploading -->
-									<input type="file" class="custom-file-input  form-input" id="imgUploadDvdReg1" accept="image/*" onchange="loadImgPreviewDvdReg1(event)" hidden required>
+									<input type="file" class="custom-file-input  form-input" id="imgUploadDvdReg1" accept="image/*" onchange="loadImgPreviewDvdReg1(event)" hidden name="dvd_cover1">
 								</label>
 							</div>
 						</div>	
@@ -191,7 +193,7 @@
 							<div class="custom-file">
 								<label class="btn btn-default up-img"> Upload Image
 									<!-- loadImgPreviewDVDReg2() is for loading 2nd image preview upon uploading -->
-									<input type="file" class="custom-file-input  form-input" id="imgUploadDvdReg2" accept="image/*" onchange="loadImgPreviewDvdReg2(event)" hidden required>
+									<input type="file" class="custom-file-input  form-input" id="imgUploadDvdReg2" accept="image/*" onchange="loadImgPreviewDvdReg2(event)" hidden name="dvd_cover2">
 								</label>
 							</div>
 						</div>	
@@ -206,7 +208,7 @@
 							<div class="custom-file">
 								<label class="btn btn-default up-img"> Upload Image
 									<!-- loadImgPreviewDVDReg3() is for loading 3rd image preview upon uploading -->
-									<input type="file" class="custom-file-input  form-input" id="imgUploadDvdReg3" accept="image/*" onchange="loadImgPreviewDvdReg3(event)" hidden required>
+									<input type="file" class="custom-file-input  form-input" id="imgUploadDvdReg3" accept="image/*" onchange="loadImgPreviewDvdReg3(event)" hidden name="dvd_cover3">
 								</label>
 							</div>
 						</div>	
