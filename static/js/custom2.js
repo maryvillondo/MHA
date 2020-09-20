@@ -2,37 +2,34 @@
 
 //DASHBOARD
 // Add Cast:
-// Create a "close" button and append it to each list item (cast)
-var myNodelist = document.getElementsByTagName("LI");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
-}
-// Click on a close button to hide the current list item (cast)
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
 // Create a new list item (cast) when clicking on the "Add" button
 function newElement() {
   var li = document.createElement("li");
   var inputValue = document.getElementById("castInput").value;
   var t = document.createTextNode(inputValue);
+
+  // Add cast input to list
+  var castArrList = document.getElementById("castList").value.split(",");
+  if(castArrList[0] == ''){
+    castArrList[0] = inputValue;
+  }
+  else{
+    castArrList.push(inputValue);
+  }
+  document.getElementById("castList").value = castArrList;
+  document.getElementById("castList").innerHTML = castArrList;
+
   li.appendChild(t);
+  li.setAttribute("value",inputValue);
   if (inputValue === '') {
     alert("You must write something!");
   } else {
     document.getElementById("myUL").appendChild(li);
   }
   document.getElementById("castInput").value = "";
+
+  // Create a "close" button and append it to each list item (cast)
+  var close = document.getElementsByClassName("close");
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
   span.className = "close";
@@ -41,7 +38,20 @@ function newElement() {
   for (i = 0; i < close.length; i++) {
     close[i].onclick = function() {
       var div = this.parentElement;
+
+      // Click on a close button to hide the current list item (cast)
       div.style.display = "none";
+
+      //Delete cast from list
+      var castArrList = document.getElementById("castList").value.split(",");
+      for(i = 0; i < castArrList.length; i++){ 
+        if ( castArrList[i] == this.parentElement.getAttribute("value")) { 
+          castArrList.splice(i, 1); 
+          i--; 
+        }
+      }
+      document.getElementById("castList").value = castArrList;
+      document.getElementById("castList").innerHTML = castArrList;
     }
   }
 }
@@ -144,6 +154,10 @@ var loadImgPreviewCustReg = function(event) {
 
 
 
+
+
+
+
 $(document).ready(function() {
   //DASHBOARD
   // Date range filter datepicker
@@ -174,7 +188,7 @@ $(document).ready(function() {
       'orderable': false, // set orderable false for vud
     }]
   } );
-  
+
   // Extend dataTables search
   $.fn.dataTable.ext.search.push(
     function(settings, data, dataIndex) {
@@ -193,27 +207,38 @@ $(document).ready(function() {
     table.draw();
   });
 
-  // Birthday datepicker customer modal
+  // Birthday   customer modal
   $('#datepickerBdayCustModal').datepicker({
-    uiLibrary: 'bootstrap4'
+    uiLibrary: 'bootstrap4',
+    format: 'yyyy-mm-dd'
   });
 
   // Release date datepicker
   $('#datepickerRelDateDvdModal').datepicker({
-    uiLibrary: 'bootstrap4'
+    uiLibrary: 'bootstrap4',
+    format: 'yyyy-mm-dd'
   });
+
+  
+
+
 
   //DVD REGISTRATION
   //Release date datepicker dvd registration
   $('#datepickerRelDateDvdReg').datepicker({
-    uiLibrary: 'bootstrap4'
+    uiLibrary: 'bootstrap4',
+    format: 'yyyy-mm-dd'
   });
+
+
+
+
 
   //CUSTOMER REGISTRATION
   //Birthday datepicker customer registration
   $('#datepickerBdayCustReg').datepicker({
     uiLibrary: 'bootstrap4',
-    format: "yyyy-mm-dd  "
+    format: 'yyyy-mm-dd'
   });
 } );
 
