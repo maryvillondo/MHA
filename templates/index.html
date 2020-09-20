@@ -380,9 +380,9 @@
     <!--View and Update Modal: Customer-->
     <div class="modal fade" id="customer-modal" tabindex="-1" role="dialog" aria-labelledby="customermodal"  aria-hidden="true">
       <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <div class="modal-content register">
           <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold text-white">Customer Record</h4>
+            <h4 class="modal-title w-100 font-weight-bold">Customer Record</h4>
           </div>
           <div class="modal-body">
             <form>
@@ -390,28 +390,15 @@
                 <div class="col-3">
                   <div class="row">
                     <div class="col">
-                      <img id="output" class="img-prev"/>
-                      <script>
-                        var loadFile = function(event) {
-                          var reader = new FileReader();
-                          reader.onload = function(){
-                            var output = document.getElementById('output');
-                            output.src = reader.result;
-                          };
-                          reader.readAsDataURL(event.target.files[0]);
-                        };
-                      </script>
-                      <script>
-                        $(".custom-file-input").on("change", function() {
-                          var fileName = $(this).val().split("\\").pop();
-                          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                        });
-                      </script>
+                      <img id="imgPreviewCustModal" class="img-prev"/>
                     </div>
                   </div>
                   <div class="row">
                     <div class="custom-file">
-                      
+                      <label class="btn btn-default up-img"> Upload Image
+                        <!-- loadImgPreviewCustModal() is for loading image preview upon uploading -->
+                        <input type="file" class="custom-file-input  form-input" id="imgUploadCustModal" accept="image/*" onchange="loadImgPreviewCustModal(event)" hidden required>
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -421,7 +408,7 @@
                       <label for="fullName" class="form-label">Full Name</label>
                       <div class="form-row name" id="fullName">
                         <div class="col">
-                          <input type="text" class="form-control form-input" placeholder="First name" required> 
+                          <input type="text" class="form-control form-input" placeholder="First name" required>
                         </div>
                         <div class="col">
                           <input type="text" class="form-control form-input" placeholder="Middle name" required>
@@ -461,16 +448,9 @@
                   <br>
                   <div class="row">
                     <div class="col">
-                      <label for="datepicker" class="form-label">Birthday</label>
-                      <input id="datepicker" class="form-input" width="225" placeholder="mm/dd/yyyy" required />
-                      <script>
-                        $('#datepicker').datepicker({
-                          uiLibrary: 'bootstrap4'
-                        });
-                      </script>
+                      <label for="datepickerBdayCustModal" class="form-label">Birthday</label>
+                      <input id="datepickerBdayCustModal" class="form-input" width="225" placeholder="mm/dd/yyyy" required />
                     </div>
-                    
-                    
                     <div class="col">
                       <label for="status" class="form-label">Status</label>
                       <div class="form-group">
@@ -521,7 +501,6 @@
                     </div>
                   </div>
                   <br>
-                  
                   <div class="row">
                     <div class="col form-group">
                       <label for="numberOfChildren" class="form-label">Number of Children</label>
@@ -546,9 +525,10 @@
     <!--View and Update Modal: DVDs-->
     <div class="modal fade" id="dvds-modal" tabindex="-1" role="dialog" aria-labelledby="dvdmodal"  aria-hidden="true">
       <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold">DVD RECORD</h4>
+        <div class="modal-content register">
+          <div class="modal-header">
+            <h4 class="modal-title w-100 font-weight-bold text-white">DVD RECORD</h4>
+            <button type="button" class="btn addBtn" data-dismiss="modal">Close</button>
           </div>
           <div class="modal-body">
             <form>
@@ -563,13 +543,8 @@
                 <div class="col">
                   <div class="row">
                     <div class="col">
-                      <label for="datepicker" class="form-label">Release Date</label>
-                      <input id="datepicker" class="form-input" width="505" placeholder="mm/dd/yyyy" required />
-                      <script>
-                        $('#datepicker').datepicker({
-                          uiLibrary: 'bootstrap4'
-                        });
-                      </script>	
+                      <label for="datepickerRelDateDvdModal" class="form-label">Release Date</label>
+                      <input id="datepickerRelDateDvdModal" class="form-input" width="505" placeholder="mm/dd/yyyy" required />	
                     </div>
                   </div>
                   <div class="row">
@@ -579,7 +554,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text prepend-txt">₱</span>
                         </div>
-                        <input required type="number" min="0.00" step="0.01"  class="form-control  form-input" id="numberOfChildren" placeholder="0.00">
+                        <input required type="number" min="0.00" step="0.01"  class="form-control  form-input" id="price" placeholder="0.00">
                       </div>
                     </div>
                     <div class="col form-group">
@@ -588,14 +563,11 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text prepend-txt">Quantity</span>
                         </div>
-                        <input required type="number" min="0" class="form-control  form-input" id="numberOfChildren" placeholder="0">
+                        <input required type="number" min="0" class="form-control  form-input" id="quantity" placeholder="0">
                       </div>
                     </div>
                   </div>
-                  
                 </div>
-                
-                
                 <div class="col">
                   <label for="movieGenre" class="form-label">Genre</label>
                   <div class="form-group">
@@ -645,8 +617,9 @@
                 <div class="col">
                   <label for="addCast" class="form-label">Add Cast</label>
                   <div class="input-group" id="addCast">
-                    <input type="text" class="form-control form-input" id="myInput" placeholder="Cast's Full Name">
+                    <input type="text" class="form-control form-input" id="castInput" placeholder="Cast's Full Name">
                     <div class="input-group-append">
+                      <!-- newElement() is for creating and adding cast to the cast list -->
                       <button onclick="newElement()" class="btn btn-default addBtn" type="button">Add</span>
                     </div>
                   </div>
@@ -659,93 +632,21 @@
                   </ul>
                 </div>
               </div>
-              <script>
-              // Create a "close" button and append it to each list item
-              var myNodelist = document.getElementsByTagName("LI");
-              var i;
-              for (i = 0; i < myNodelist.length; i++) {
-                var span = document.createElement("SPAN");
-                var txt = document.createTextNode("\u00D7");
-                span.className = "close";
-                span.appendChild(txt);
-                myNodelist[i].appendChild(span);
-              }
-      
-              // Click on a close button to hide the current list item
-              var close = document.getElementsByClassName("close");
-              var i;
-              for (i = 0; i < close.length; i++) {
-                close[i].onclick = function() {
-                var div = this.parentElement;
-                div.style.display = "none";
-                }
-              }
-      
-              // Add a "checked" symbol when clicking on a list item
-              var list = document.querySelector('ul');
-              list.addEventListener('click', function(ev) {
-                if (ev.target.tagName === 'LI') {
-                ev.target.classList.toggle('checked');
-                }
-              }, false);
-      
-              // Create a new list item when clicking on the "Add" button
-              function newElement() {
-                var li = document.createElement("li");
-                var inputValue = document.getElementById("myInput").value;
-                var t = document.createTextNode(inputValue);
-                li.appendChild(t);
-                if (inputValue === '') {
-                alert("You must write something!");
-                } else {
-                document.getElementById("myUL").appendChild(li);
-                }
-                document.getElementById("myInput").value = "";
-      
-                var span = document.createElement("SPAN");
-                var txt = document.createTextNode("\u00D7");
-                span.className = "close";
-                span.appendChild(txt);
-                li.appendChild(span);
-      
-                for (i = 0; i < close.length; i++) {
-                close[i].onclick = function() {
-                  var div = this.parentElement;
-                  div.style.display = "none";
-                }
-                }
-              }
-              </script>
               <br>
               <label for="addImg" class="form-label">Add Images</label>
-              <div class="row add-img id="addImg">
+              <div class="row add-img" id="addImg">
                 <div class="col-1"></div>
                 <div class="col">
                   <div class="row">
                     <div class="col">
-                      <img id="output1" class="img-prev"/>
-                      <script>
-                        var loadFile1 = function(event) {
-                          var reader1 = new FileReader();
-                          reader1.onload = function(){
-                            var output1 = document.getElementById('output1');
-                            output1.src = reader1.result;
-                          };
-                          reader1.readAsDataURL(event.target.files[0]);
-                        };
-                      </script>
-                      <script>
-                        $(".custom-file-input").on("change", function() {
-                          var fileName = $(this).val().split("\\").pop();
-                          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                        });
-                      </script>
+                      <img id="imgPreviewDvdModal1" class="img-prev"/>
                     </div>
                   </div>
                   <div class="row">
                     <div class="custom-file">
                       <label class="btn btn-default up-img"> Upload Image
-                        <input type="file" class="custom-file-input  form-input" id="customFile1" accept="image/*" onchange="loadFile1(event)" hidden required>
+                        <!-- loadImgPreviewDVDReg1() is for loading 1st image preview upon uploading -->
+                        <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal1" accept="image/*" onchange="loadImgPreviewDvdModal1(event)" hidden required>
                       </label>
                     </div>
                   </div>	
@@ -753,29 +654,14 @@
                 <div class="col">
                   <div class="row">
                     <div class="col">
-                      <img id="output2" class="img-prev"/>
-                      <script>
-                        var loadFile2 = function(event) {
-                          var reader2 = new FileReader();
-                          reader2.onload = function(){
-                            var output2 = document.getElementById('output2');
-                            output2.src = reader2.result;
-                          };
-                          reader2.readAsDataURL(event.target.files[0]);
-                        };
-                      </script>
-                      <script>
-                        $(".custom-file-input").on("change", function() {
-                          var fileName = $(this).val().split("\\").pop();
-                          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                        });
-                      </script>
+                      <img id="imgPreviewDvdModal2" class="img-prev"/>
                     </div>
                   </div>
                   <div class="row">
                     <div class="custom-file">
                       <label class="btn btn-default up-img"> Upload Image
-                        <input type="file" class="custom-file-input  form-input" id="customFile2" accept="image/*" onchange="loadFile2(event)" hidden required>
+                        <!-- loadImgPreviewDVDReg2() is for loading 2nd image preview upon uploading -->
+                        <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal2" accept="image/*" onchange="loadImgPreviewDvdModal2(event)" hidden required>
                       </label>
                     </div>
                   </div>	
@@ -784,33 +670,17 @@
                   <div class="row">
                     <div class="col">
                       <img id="output3" class="img-prev"/>
-                      <script>
-                        var loadFile3 = function(event) {
-                          var reader3 = new FileReader();
-                          reader3.onload = function(){
-                            var output3 = document.getElementById('output3');
-                            output3.src = reader3.result;
-                          };
-                          reader3.readAsDataURL(event.target.files[0]);
-                        };
-                      </script>
-                      <script>
-                        $(".custom-file-input").on("change", function() {
-                          var fileName = $(this).val().split("\\").pop();
-                          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                        });
-                      </script>
                     </div>
                   </div>
                   <div class="row">
                     <div class="custom-file">
                       <label class="btn btn-default up-img"> Upload Image
-                        <input type="file" class="custom-file-input  form-input" id="customFile" accept="image/*" onchange="loadFile3(event)" hidden required>
+                        <!-- loadImgPreviewDVDReg3() is for loading 3rd image preview upon uploading -->
+                        <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal3" accept="image/*" onchange="loadImgPreviewDvdModal3(event)" hidden required>
                       </label>
                     </div>
                   </div>	
                 </div>
-                
               </div>
               <br>
               <br>
@@ -818,7 +688,6 @@
               <div class="row">
                 <div class="col">
                   <button class="btn btn-primary btn-register" type="submit">UPDATE</button>
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
                 </div>
               </div>
             </form>  
