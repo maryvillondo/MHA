@@ -1,0 +1,1 @@
+This is where uploaded DVD images from moviehouseautomate database are stored.
