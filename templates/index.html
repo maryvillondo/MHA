@@ -108,7 +108,7 @@
           <h4 class="font-weight-bold mb-2">Customer Records</h4>
           <form method="POST">
             {% csrf_token %}
-            <button class="btn btn-primary mb-2 mt-n2" type="submit" href="/customer/registration"><i class="fas fa-plus fa-1x"></i></button>
+            <button class="btn btn-primary mb-2 mt-n2" type="submit" href="{% url 'customer:reg_view' %}"><i class="fas fa-plus fa-1x"></i></button>
           </form>
           <div class="col-sm-12"></div>
           <div class="col p-0 pb-5">
