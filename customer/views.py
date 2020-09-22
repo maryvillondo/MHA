@@ -9,8 +9,12 @@ from .models import *
 # Create your views here.Arrange in alphabetical order
 class CustomerIndexView(View):
     def get(self, request):
-        print('get')
-        return render(request, 'index.html')
+        qs_customer = Customer.objects.all();
+        print(qs_customer)
+        context = {
+            'customers' : qs_customer
+        }
+        return render(request,'index.html',context)
 
     def post(self, request):
         return render(request, 'CustomerRegistration.html')
