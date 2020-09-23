@@ -226,10 +226,10 @@
                             <br>
                             <div class="row">
                               <div class="col">
-                                <label for="datepicker" class="form-label">Birthday</label>
-                                <input id="datepicker" class="form-input" width="225" placeholder="yyyy/mm/dd" value="{{customer.birthdate}}"/>
+                                <label for="datepickerBdayCustomerModal-{{customer.id}}" class="form-label">Birthday</label>
+                                <input id="datepickerBdayCustomerModal-{{customer.id}}" class="form-input" width="225" placeholder="yyyy/mm/dd" value="{{customer.birthdate}}"/>
                                 <script>
-                                  $('#datepicker').datepicker({
+                                  $('#datepickerBdayCustomerModal-{{customer.id}}').datepicker({
                                     uiLibrary: 'bootstrap4'
                                   });
                                 </script>
