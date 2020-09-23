@@ -65,7 +65,7 @@ $(document).ready(function() {
 
   // Initializing datatable
   var table = $('#tableCustomer').DataTable( {
-    dom:  "<'row'<'col-sm-12 col-md-1'B><'col-sm-12 col-md-5'l><'col-sm-12 col-md-6'f>>" +
+    dom:  "<'row'<'col-sm-12 col-md-1'B><'col-sm-12 col-md-4'l><'col-sm-12 col-md-5'f>>" +
           "<'row'<'col-sm-12'tr>>" +
           "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
     buttons: ['excel'],
