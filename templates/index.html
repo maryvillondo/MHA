@@ -131,14 +131,14 @@
                 <th scope="col" data-sortable="true">First Name</th>
                 <th scope="col" data-sortable="true">Last Name</th>
                 <th scope="col" data-sortable="true">Date of Birth</th>
-                <th scope="col" data-sortable="false">Address City</th>
+                <th scope="col" data-sortable="true">Address City</th>
                 <th scope="col" data-sortable="false"></th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 {% for customer in customers %} 
-                <td>{{customer.id}}</td>
+                <th scope="row">{{customer.id}}</th>
                 <td>{{customer.date_registered}}</td>
                 <td>{{customer.firstname}}</td>
                 <td>{{customer.lastname}}</td>
@@ -230,12 +230,12 @@
                               <div class="col">
                                 <label for="status" class="form-label">Status</label>
                                 <div class="form-group">
-                                  <select class="form-control  form-input" id="status" value="{{customer.status}}">
+                                  <select class="form-control  form-input" id="status">
                                     <option disabled selected value="">Select</option>
-                                    <option value="single">Single</option>
-                                    <option value="married">Married</option>
-                                    <option value="widow/er">Widow/er</option>
-                                    <option value="divorced">Divorced</option>
+                                    <option value="single" {% if 'single' == customer.status %}selected{% endif %}>Single</option>
+                                    <option value="married" {% if 'married' == customer.status %}selected{% endif %}>Married</option>
+                                    <option value="widow/er" {% if 'widow/er' == customer.status %}selected{% endif %}>Widow/er</option>
+                                    <option value="divorced" {% if 'divorced' == customer.status %}selected{% endif %}>Divorced</option>
                                   </select>
                                 </div>
                               </div>
@@ -243,11 +243,11 @@
                                 <label for="gender" class="form-label">Gender</label>
                                 <div class="form-group" id="gender">
                                   <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" >
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Male" {% if 'Male' == customer.gender %}checked{% endif %}>
                                     <label class="form-check-label form-label" for="inlineRadio1">Male</label>
                                   </div>
                                   <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" >
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Female" {% if 'Female' == customer.gender %}checked{% endif %} >
                                     <label class="form-check-label form-label" for="inlineRadio2">Female</label>
                                   </div>
                                 </div>
@@ -259,13 +259,13 @@
                                 <label for="spouseFullName" class="form-label">Spouse's Full Name</label>
                                 <div class="form-row name" id="spouseFullName">
                                   <div class="col">
-                                    <input type="text" class="form-control form-input" placeholder="First name" required>
+                                    <input type="text" class="form-control form-input" placeholder="First Name" value="{{customer.spouse_fname}}">
                                   </div>
                                   <div class="col">
-                                    <input type="text" class="form-control form-input" placeholder="Middle name" required>
+                                    <input type="text" class="form-control form-input" placeholder="Middle Name" value="{{customer.spouse_mname}}">
                                   </div>
                                   <div class="col">
-                                    <input type="text" class="form-control form-input" placeholder="Last name" required>
+                                    <input type="text" class="form-control form-input" placeholder="Last Name" value="{{customer.spouse_lname}}">
                                   </div>
                                 </div>
                               </div>
@@ -273,7 +273,7 @@
                             <br>
                             <div class="row">
                               <div class="col">
-                                <input type="text" class="form-control  form-input" placeholder="Spouse's Occupation">
+                                <input type="text" class="form-control  form-input" placeholder="Spouse's Occupation" value="{{customer.spouse_occupation}}">
                               </div>
                             </div>
                             <br>
@@ -281,7 +281,7 @@
                             <div class="row">
                               <div class="col form-group">
                                 <label for="numberOfChildren" class="form-label">Number of Children</label>
-                                <input type="number" min="0" class="form-control  form-input" id="numberOfChildren" placeholder="0">
+                                <input type="number" min="0" class="form-control  form-input" id="numberOfChildren" placeholder="0" value="{{customer.no_children}}">
                               </div>
                             </div>
                             <br>
