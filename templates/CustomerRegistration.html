@@ -85,13 +85,13 @@
 								<label for="fullName" class="form-label">Full Name (Required)</label>
 								<div class="form-row name" id="fullName">
 									<div class="col">
-										<input type="text" class="form-control form-input" name="firstname" placeholder="First name" required>
+										<input type="text" class="form-control form-input" name="firstname" placeholder="First name" required minlength="1" maxlength="60">
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="middlename" placeholder="Middle name">
+										<input type="text" class="form-control form-input" name="middlename" placeholder="Middle name" minlength="1" maxlength="50">
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="lastname" placeholder="Last name" required>
+										<input type="text" class="form-control form-input" name="lastname" placeholder="Last name" required minlength="1" maxlength="50">
 									</div>
 								</div>
 							</div>
@@ -102,22 +102,22 @@
 								<label for="address" class="form-label">Address (Required)</label>
 								<div class="form-row" id="address">
 									<div class="col">
-										<input type="text" class="form-control form-input" name="astreet" placeholder="Street" required>
+										<input type="text" class="form-control form-input" name="astreet" placeholder="Street" required minlength="1" maxlength="45">
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="abarangay" placeholder="Barangay" required>
+										<input type="text" class="form-control form-input" name="abarangay" placeholder="Barangay" required minlength="1" maxlength="45">
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="acity" placeholder="City" required>
+										<input type="text" class="form-control form-input" name="acity" placeholder="City" required minlength="1" maxlength="45">
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="aprovince" placeholder="Province" required>
+										<input type="text" class="form-control form-input" name="aprovince" placeholder="Province" required  minlength="1" maxlength="45">
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="azip_code" placeholder="Zip" required>
+										<input type="text" class="form-control form-input" name="azip_code" placeholder="Zip" required minlength="5" maxlength="10">
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="acountry" placeholder="Country" required>
+										<input type="text" class="form-control form-input" name="acountry" placeholder="Country" required minlength="4" maxlength="40">
 									</div>
 								</div>
 							</div>
@@ -160,13 +160,13 @@
 								<label for="spouseFullName" class="form-label">Spouse's Full Name</label>
 								<div class="form-row name" id="spouseFullName">
 									<div class="col">
-										<input type="text" class="form-control form-input" name="s_fname" placeholder="First name">
+										<input type="text" class="form-control form-input" name="s_fname" placeholder="First name" minlength="1" maxlength="40">
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="s_mname" placeholder="Middle name">
+										<input type="text" class="form-control form-input" name="s_mname" placeholder="Middle name" minlength="1" maxlength="40">
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="s_lname" placeholder="Last name">
+										<input type="text" class="form-control form-input" name="s_lname" placeholder="Last name" minlength="1" maxlength="40">
 									</div>
 								</div>
 							</div>
@@ -174,20 +174,20 @@
 						<br>
 						<div class="row">
 							<div class="col">
-								<input type="text" class="form-control  form-input" name="s_occupation" placeholder="Spouse's Occupation">
+								<input type="text" class="form-control  form-input" name="s_occupation" placeholder="Spouse's Occupation" minlength="4" max="50">
 							</div>
 						</div>
 						<br>
 						<div class="row">
 							<div class="col form-group">
 								<label for="numberOfChildren" class="form-label">Number of Children</label>
-								<input type="number" min="0" class="form-control  form-input" id="numberOfChildren" name="numchildren" placeholder="0">
+								<input type="number" min="0" class="form-control  form-input" id="numberOfChildren" name="numchildren" placeholder="0" min="0" max="20">
 							</div>
 						</div>
 						<br>
 						<div class="row">
 							<div class="col">
-								<button type="submit" class="btn btn-primary btn-register" >REGISTER</button>
+								<button type="submit" class="btn btn-primary btn-register">REGISTER</button>
 							</div>
 						</div>
 					</div>
