@@ -26,7 +26,7 @@ class Person(models.Model):
 
 class Customer(Person):
     date_registered = models.DateField(auto_now_add=True)
-    # customer_picture = models.BinaryField()
+    customer_picture = models.ImageField(upload_to = 'customer', null = True)
 
     class Meta:
         db_table = "Customer"

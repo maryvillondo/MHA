@@ -165,11 +165,15 @@
                           <div class="col-3">
                             <div class="row">
                               <div class="col">
-                                <img id="output" class="img-prev"/>
+                                <img src="/media/{{customer.customer_picture}}" class="img-prev"/>
                               </div>
                             </div>
                             <div class="row">
-                              <div class="custom-file">                              
+                              <div class="custom-file"> 
+                                <label class="btn btn-default up-img"> Upload Image
+                                  <!-- loadImgPreviewCustReg() is for loading image preview upon uploading -->
+                                  <input type="file" class="custom-file-input  form-input" id="imgUploadCustReg" name="customer_picture" accept="image/*" onchange="loadImgPreviewCustReg(event)" hidden required>
+                                </label>                           
                               </div>
                             </div>
                           </div>
