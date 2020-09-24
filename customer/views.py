@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render
 from django.views.generic import View
-from django.http import HttpResponse 
+from django.http import HttpResponse, HttpResponseRedirect 
 from .forms import CustomerForm
 from .models import *
 
@@ -49,7 +49,7 @@ class CustomerRegView(View):
             c_picture = request.FILES.get("customer_picture")
             form = Customer(firstname = fname, middlename = mname, lastname = lname, street = street, barangay = barangay, city = city, province = province, zip_code = zip_code, country = country, birthdate = birthdate, status = status, gender = gender, spouse_fname = spouse_fname, spouse_mname = spouse_mname, spouse_lname = spouse_lname, spouse_occupation = spouse_occupation, no_children = no_children, customer_picture = c_picture)
             form.save()
-            return HttpResponse('Customer recorded!')
+            return HttpResponseRedirect("http://127.0.0.1:8000/customer/confirmation")
         else:
             print(form.errors)
             return HttpResponse('not valid')
