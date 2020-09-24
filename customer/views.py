@@ -59,3 +59,8 @@ class CustomerLandingView(View):
     def get(self, request):
         print('get')
         return render(request, 'LandingPage.html')
+
+class CustomerConfirmationView(View):
+    def get(self,request):
+        print('get')
+        return render(request, 'Confirmation.html')

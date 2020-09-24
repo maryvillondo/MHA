@@ -357,3 +357,14 @@ h2.section-title-heading{
 
 #contact .contact-form{
     margin-left: 5.5rem;
+}
+
+#btn-cancel {
+    background-color: #FF0000;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px;
+    border-radius: 50px;
+    position: static;
+    width:100%;
+}

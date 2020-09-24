@@ -10,4 +10,6 @@ urlpatterns = [
     path('index', views.CustomerIndexView.as_view(), name='index_view'),
     path('registration', views.CustomerRegView.as_view(), name='reg_view'),
     path('landing', views.CustomerLandingView.as_view(), name='landing_view'),
+    path('confirmation', views.CustomerConfirmationView.as_view(), name='confirmation_view'),
+    
 ]
