@@ -9,8 +9,11 @@ from datetime import datetime
 # Create your views here.
 class DVDIndexView(View):
 	def get(self, request):
-		print('get')
-		return render(request, 'dashboard.html')
+		qs_dvds = DVD.objects.all()	
+		context = {
+			'dvds' : qs_dvds
+		}
+		return render(request, 'index.html', context)
 	def post(self, request):
 		return render(request, 'DVDRegistration.html')
 

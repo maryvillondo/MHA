@@ -1,6 +1,164 @@
 // Functions:
 
 //DASHBOARD
+// Add Cast (modal):
+// Create a new list item (cast) when clicking on the "Add" button
+function newElementModal(castInputID,castListID,myULID) {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById(castInputID).value;
+  var t = document.createTextNode(inputValue);
+
+  li.style.listStyleType = "none";
+  li.style.border = "2px solid #919fb3";
+  li.style.background = "transparent";
+  li.style.color = "#919fb3";
+  li.style.height = "37px";
+  li.style.paddingLeft = "5px";
+  li.style.paddingTop = "3px";
+  li.style.marginBottom = "5px";
+
+  // Add cast input to list
+  var castArrList = document.getElementById(castListID).value.split(",");
+  if(castArrList[0] == ''){
+    castArrList[0] = inputValue;
+  }
+  else{
+    castArrList.push(inputValue);
+  }
+  document.getElementById(castListID).value = castArrList;
+  document.getElementById(castListID).innerHTML = castArrList;
+
+  li.appendChild(t);
+  li.setAttribute("value",inputValue);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById(myULID).appendChild(li);
+  }
+  document.getElementById(castInputID).value = "";
+
+  // Create a "close" button and append it to each list item (cast)
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  span.onclick = function() {
+    var div = this.parentElement;
+
+    // Click on a close button to hide the current list item (cast)
+    div.style.display = "none";
+
+    // Delete cast from list
+    var castArrList = document.getElementById(castListID).value.split(",");
+    for(i = 0; i < castArrList.length; i++){ 
+      if ( castArrList[i] == this.parentElement.getAttribute("value")) { 
+        castArrList.splice(i, 1); 
+        i--; 
+      }
+    }
+    document.getElementById(castListID).value = castArrList;
+    document.getElementById(castListID).innerHTML = castArrList;
+  }
+}
+
+
+function updateCastListModal(castListID,myULID) {
+  // Add cast input to list
+  var castArrList = document.getElementById(castListID).value.split(",");
+  for(i = 0; i < castArrList.length; i++){
+    var li = document.createElement("li");
+    var inputValue = castArrList[i];
+    var t = document.createTextNode(inputValue);
+
+    li.style.listStyleType = "none";
+    li.style.border = "2px solid #919fb3";
+    li.style.background = "transparent";
+    li.style.color = "#919fb3";
+    li.style.height = "37px";
+    li.style.paddingLeft = "5px";
+    li.style.paddingTop = "3px";
+    li.style.marginBottom = "5px";
+
+    li.appendChild(t);
+    li.setAttribute("value",inputValue);
+    document.getElementById(myULID).appendChild(li);
+
+    // Create a "close" button and append it to each list item (cast)
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    li.appendChild(span);
+
+    span.onclick = function() {
+      var div = this.parentElement;
+
+      // Click on a close button to hide the current list item (cast)
+      div.style.display = "none";
+
+      // Delete cast from list
+      var castArrList = document.getElementById(castListID).value.split(",");
+      for(i = 0; i < castArrList.length; i++){ 
+        if ( castArrList[i] == this.parentElement.getAttribute("value")) { 
+          castArrList.splice(i, 1); 
+          i--; 
+        }
+      }
+      document.getElementById(castListID).value = castArrList;
+      document.getElementById(castListID).innerHTML = castArrList;
+    } 
+  }
+}
+
+
+// Image Previews:
+// Image preview customer modal
+var loadImgPreviewCustModal = function(event) {
+  var readerImgPreviewCustModal = new FileReader();
+  readerImgPreviewCustModal.onload = function(){
+    var imgPreviewCustModal = document.getElementById('imgPreviewCustModal');
+    imgPreviewCustModal.src = readerImgPreviewCustModal.result;
+  };
+  readerImgPreviewCustModal.readAsDataURL(event.target.files[0]);
+};
+
+// Image preview dvd modal
+// img1
+var loadImgPreviewDvdModal1 = function(event,id) {
+  var readerImgPreviewDvdModal1 = new FileReader();
+  readerImgPreviewDvdModal1.onload = function(){
+    var imgPreviewDvdModal1 = document.getElementById(id);
+    imgPreviewDvdModal1.src = readerImgPreviewDvdModal1.result;
+  };
+  readerImgPreviewDvdModal1.readAsDataURL(event.target.files[0]);
+};
+// img2
+var loadImgPreviewDvdModal2 = function(event,id) {
+  var readerImgPreviewDvdModal2 = new FileReader();
+  readerImgPreviewDvdModal2.onload = function(){
+    var imgPreviewDvdModal2 = document.getElementById(id);
+    imgPreviewDvdModal2.src = readerImgPreviewDvdModal2.result;
+  };
+  readerImgPreviewDvdModal2.readAsDataURL(event.target.files[0]);
+};
+//img3
+var loadImgPreviewDvdModal3 = function(event,id) {
+  var readerImgPreviewDvdModal3 = new FileReader();
+  readerImgPreviewDvdModal3.onload = function(){
+    var imgPreviewDvdModal3 = document.getElementById(id);
+    imgPreviewDvdModal3.src = readerImgPreviewDvdModal3.result;
+  };
+  readerImgPreviewDvdModal3.readAsDataURL(event.target.files[0]);
+};
+
+
+
+
+
+
+//DVD REGISTRATION
 // Add Cast:
 // Create a new list item (cast) when clicking on the "Add" button
 function newElement() {
@@ -42,7 +200,7 @@ function newElement() {
       // Click on a close button to hide the current list item (cast)
       div.style.display = "none";
 
-      //Delete cast from list
+      // Delete cast from list
       var castArrList = document.getElementById("castList").value.split(",");
       for(i = 0; i < castArrList.length; i++){ 
         if ( castArrList[i] == this.parentElement.getAttribute("value")) { 
@@ -56,54 +214,9 @@ function newElement() {
   }
 }
 
+
 // Image Previews:
-// Image preview customer modal
-var loadImgPreviewCustModal = function(event) {
-  var readerImgPreviewCustModal = new FileReader();
-  readerImgPreviewCustModal.onload = function(){
-    var imgPreviewCustModal = document.getElementById('imgPreviewCustModal');
-    imgPreviewCustModal.src = readerImgPreviewCustModal.result;
-  };
-  readerImgPreviewCustModal.readAsDataURL(event.target.files[0]);
-};
-
-// Image preview dvd modal
-// img1
-var loadImgPreviewDvdModal1 = function(event) {
-  var readerImgPreviewDvdModal1 = new FileReader();
-  readerImgPreviewDvdModal1.onload = function(){
-    var imgPreviewDvdModal1 = document.getElementById('imgPreviewDvdModal1');
-    imgPreviewDvdModal1.src = readerImgPreviewDvdModal1.result;
-  };
-  readerImgPreviewDvdModal1.readAsDataURL(event.target.files[0]);
-};
-// img2
-var loadImgPreviewDvdModal2 = function(event) {
-  var readerImgPreviewDvdModal2 = new FileReader();
-  readerImgPreviewDvdModal2.onload = function(){
-    var imgPreviewDvdModal2 = document.getElementById('imgPreviewDvdModal2');
-    imgPreviewDvdModal2.src = readerImgPreviewDvdModal2.result;
-  };
-  readerImgPreviewDvdModal2.readAsDataURL(event.target.files[0]);
-};
-//img3
-var loadImgPreviewDvdModal3 = function(event) {
-  var readerImgPreviewDvdModal3 = new FileReader();
-  readerImgPreviewDvdModal3.onload = function(){
-    var imgPreviewDvdModal3 = document.getElementById('imgPreviewDvdModal3');
-    imgPreviewDvdModal3.src = readerImgPreviewDvdModal3.result;
-  };
-  readerImgPreviewDvdModal3.readAsDataURL(event.target.files[0]);
-};
-
-
-
-
-
-
-//DVD REGISTRATION
-//Image previews:
-// Image preview dvd modal
+// Image preview dvd registration
 // img1
 var loadImgPreviewDvdReg1 = function(event) {
   var readerImgPreviewDvdReg1 = new FileReader();
@@ -168,7 +281,7 @@ $(document).ready(function() {
    });
 
   // Initializing datatable
-  var table = $('#dvdReportSummary').DataTable( {
+  var tableDVD = $('#dvdReportSummary').DataTable( {
     dom:  "<'row'<'col-sm-12 col-md-1'B><'col-sm-12 col-md-5'l><'col-sm-12 col-md-6'f>>" +
           "<'row'<'col-sm-12'tr>>" +
           "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
@@ -186,34 +299,36 @@ $(document).ready(function() {
     'columnDefs': [ {
       'targets': [7], 
       'orderable': false, // set orderable false for vud
-    }]
+    }],
+
+    initComplete: function(){
+      // Extend dataTables search
+      $.fn.dataTable.ext.search.push(
+        function(settings, data, dataIndex) {
+          var min = $('#min-date-dvd').val();
+          var max = $('#max-date-dvd').val();
+          var createdAt = data[1] || 0; // The column containing the date to be filtered
+          if ((min == "" || max == "") || (moment(createdAt).isSameOrAfter(min) && moment(createdAt).isSameOrBefore(max))) {
+            return true;
+          }
+          return false;
+        }
+      );
+      // Re-draw the table when the a date range filter changes
+      $('.date-range-filter').change(function() {
+        tableDVD.draw();
+      });
+    }
+    
   } );
 
-  // Extend dataTables search
-  $.fn.dataTable.ext.search.push(
-    function(settings, data, dataIndex) {
-      var min = $('#min-date').val();
-      var max = $('#max-date').val();
-      var createdAt = data[1] || 0; // The column containing the date to be filtered
-      if ((min == "" || max == "") || (moment(createdAt).isSameOrAfter(min) && moment(createdAt).isSameOrBefore(max))) {
-        return true;
-      }
-      return false;
-    }
-  );
-
-  // Re-draw the table when the a date range filter changes
-  $('.date-range-filter').change(function() {
-    table.draw();
-  });
-
-  // Birthday   customer modal
+  // Birthday datepicker customer modal
   $('#datepickerBdayCustModal').datepicker({
     uiLibrary: 'bootstrap4',
     format: 'yyyy-mm-dd'
   });
 
-  // Release date datepicker
+  // Release date datepicker dvd modal
   $('#datepickerRelDateDvdModal').datepicker({
     uiLibrary: 'bootstrap4',
     format: 'yyyy-mm-dd'

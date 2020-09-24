@@ -19,7 +19,8 @@ Main Usages: Customer and Movie Registration, some parts in Dashboard particular
 	box-shadow: 0 0 10px;
 	border-radius: 50px;
 	position: static;
-	width:100%
+	width:100%;
+	font-family: 'Alata', sans-serif;
 }
 .cust-btn-active{
 	background-color: #1fd6ba;
@@ -111,7 +112,8 @@ Main Usages: Customer and Movie Registration, some parts in Dashboard particular
 .addBtn:focus{
 	box-shadow: none;
 }
-ul li{
+
+#myUL li{
 	list-style-type: none;
 	border: 2px solid #919fb3;
 	background-color: transparent;
@@ -121,7 +123,7 @@ ul li{
 	padding-top: 3px;
 	margin-bottom: 5px;
 }
-ul li:hover{
+#myUL li:hover{
 	list-style-type: none;
 	border: 2px solid #1fd6ba;
 	background-color: transparent;

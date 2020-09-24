@@ -316,14 +316,19 @@
             {% csrf_token %}
             <button class="btn btn-primary mb-2 mt-n2" type="submit"><i class="fas fa-plus fa-1x"></i></button>
           </form> 
+          <a href="{% url 'dvd:dvd_registration_view' %}"><button class="btn btn-primary mb-2 mt-n2"><i class="fas fa-plus fa-1x"></i></button></a>
           <div class="col-sm-12"></div>
           <div class="col p-0 pb-5">
           <div class="input-group input-daterange">
             <div class="input-group-prepend">
+            <div class="input-group input-daterange">
+              <div class="input-group-prepend">
                 <span class="input-group-text">From</span>
               </div>
             <input type="text" id="min-date" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="516.5px">
             <div class="input-group-prepend">
+              <input type="text" id="min-date-dvd" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="531.5px">
+              <div class="input-group-prepend">
                 <span class="input-group-text">To</span>
               </div>
             <input type="text" id="max-date" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="516.5px">
@@ -348,8 +353,232 @@
                 <tbody>
                 </tbody>
               </table>
+              <input type="text" id="max-date-dvd" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="531.5px">
+            </div>
+            <div class="row">
+              <div class="col-sm-12" style="font-size: 7px;"><br></div>
+            </div>
+            <table id="dvdReportSummary" class="table table-hover text-center mt-5">
+              <caption> DVD Report Summary</caption>
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">SKU</th>
+                  <th scope="col">Date Registered</th>
+                  <th scope="col">Genre</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Release Date</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">No. of Items</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for dvd in dvds %}    
+                <tr>
+                  <td>{{dvd.id}}</th>
+                  <td>{{dvd.date_registered}}</td>
+                  <td>{{dvd.genre}}</td>
+                  <td>{{dvd.title}}</td>
+                  <td>{{dvd.release_date}}</td>
+                  <td>{{dvd.price}}</td>
+                  <td>{{dvd.quantity}}</td>
+                  <td class="d-inline-block">
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dvds-modal-{{dvd.id}}"><i class="fas fa-eye fa-1x"></i></button>
+                    <button type="button" class="btn btn-danger" id="btnDelete" data-toggle="modal" data-target="#delete-modal" onclick=""><i class="far fa-trash-alt fa-1x "></i></button>
+                  </td>                      
+                </tr>
+                <!--View and Update Modal: DVDs-->
+                <div class="modal fade" id="dvds-modal-{{dvd.id}}" tabindex="-1" role="dialog" aria-labelledby="dvdmodal"  aria-hidden="true">
+                  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                    <div class="modal-content register">
+                      <div class="modal-header">
+                        <h4 class="modal-title w-100 font-weight-bold text-white">DVD RECORD</h4>
+                        <button type="button" class="btn addBtn" data-dismiss="modal">Close</button>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="row">
+                            <div class="col">
+                              <label for="movieTitle-{{dvd.id}}" class="form-label">Movie Title</label>
+                              <input required type="text" class="form-control  form-input" id="movieTitle-{{dvd.id}}" placeholder="Title" value={{dvd.title}}>
+                            </div>
+                          </div>
+                          <br>
+                          <div class="row">
+                            <div class="col">
+                              <div class="row">
+                                <div class="col">
+                                  <label for="datepickerRelDateDvdModal-{{dvd.id}}" class="form-label">Release Date</label>
+                                  <input id="datepickerRelDateDvdModal-{{dvd.id}}" class="form-input" width="505" placeholder="yyyy-mm-dd" value={{dvd.release_date|date:"Y-m-d"}}> 
+                                </div>
+                                <script>
+                                  // Release date datepicker
+                                  $('#datepickerRelDateDvdModal-{{dvd.id}}').datepicker({
+                                    uiLibrary: 'bootstrap4',
+                                    format: 'yyyy-mm-dd'
+                                  });
+                                </script>
+                              </div>
+                              <div class="row">
+                                <div class="col form-group">
+                                  <br>
+                                  <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text prepend-txt">₱</span>
+                                    </div>
+                                    <input required type="number" min="0.00" step="0.01"  class="form-control  form-input" id="price-{{dvd.id}}" placeholder="0.00" value={{dvd.price}}>
+                                  </div>
+                                </div>
+                                <div class="col form-group">
+                                  <br>
+                                  <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text prepend-txt">Quantity</span>
+                                    </div>
+                                    <input required type="number" min="0" class="form-control  form-input" id="quantity-{{dvd.id}}" placeholder="0" value={{dvd.quantity}}>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <label for="movieGenre-{{dvd.id}}" class="form-label">Genre</label>
+                              <div class="form-group">
+                                <select multiple class="form-control form-input" id="movieGenre-{{dvd.id}}">
+                                  <option disabled value="">Select</option>
+                                  <option value="action" {% if 'action' in dvd.genre %} selected {% endif %}>Action</option>
+                                  <option value="adventure" {% if 'adventure' in dvd.genre %} selected {% endif %}>Adventure</option>
+                                  <option value="animation" {% if 'animation' in dvd.genre %} selected {% endif %}>Animation</option>
+                                  <option value="biographical" {% if 'biographical' in dvd.genre %} selected {% endif %}>Biographical</option>
+                                  <option value="comedy" {% if 'comedy' in dvd.genre %} selected {% endif %}>Comedy</option>
+                                  <option value="crime" {% if 'crime' in dvd.genre %} selected {% endif %}>Crime</option>
+                                  <option value="documentary" {% if 'documentary' in dvd.genre %} selected {% endif %}>Documentary</option>
+                                  <option value="drama" {% if 'drama' in dvd.genre %} selected {% endif %}>Drama</option>
+                                  <option value="epic" {% if 'epic' in dvd.genre %} selected {% endif %}>Epic</option>
+                                  <option value="fantasy" {% if 'fantasy' in dvd.genre %} selected {% endif %}>Fantasy</option>
+                                  <option value="fiction" {% if 'fiction' in dvd.genre %} selected {% endif %}>Fiction</option>
+                                  <option value="horror" {% if 'horror' in dvd.genre %} selected {% endif %}>Horror</option>
+                                  <option value="historical" {% if 'historical' in dvd.genre %} selected {% endif %}>Historical</option>
+                                  <option value="musical" {% if 'musical' in dvd.genre %} selected {% endif %}>Musical</option>
+                                  <option value="mystery" {% if 'mystery' in dvd.genre %} selected {% endif %}>Mystery</option>
+                                  <option value="noir" {% if 'noir' in dvd.genre %} selected {% endif %}>Noir</option>
+                                  <option value="psychological" {% if 'psychological' in dvd.genre %} selected {% endif %}>Psychological</option>
+                                  <option value="romance" {% if 'romance' in dvd.genre %} selected {% endif %}>Romance</option>
+                                  <option value="satire" {% if 'satire' in dvd.genre %} selected {% endif %}>Satire</option>
+                                  <option value="scifi" {% if 'scifi' in dvd.genre %} selected {% endif %}>Science Fiction</option>
+                                  <option value="thriller" {% if 'thriller' in dvd.genre %} selected {% endif %}>Thriller</option>
+                                  <option value="western" {% if 'western' in dvd.genre %} selected {% endif %}>Western</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <label for="directorFullName-{{dvd.id}}" class="form-label">Director</label>
+                              <div class="form-row name" id="directorFullName-{{dvd.id}}">
+                                <div class="col">
+                                  <input type="text" id="directorFirstName-{{dvd.id}}" class="form-control form-input" placeholder="First name" value={{dvd.director_firstname}}>
+                                </div>
+                                <div class="col">
+                                  <input type="text" id="directorLastName-{{dvd.id}}" class="form-control form-input" placeholder="Last name" value={{dvd.director_lastname}}>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <div class="row">
+                            <div class="col">
+                              <label for="addCast" class="form-label">Add Cast</label>
+                              <div class="input-group" id="addCast">
+                                <input type="text" class="form-control form-input" id="castInput-{{dvd.id}}" placeholder="Cast's Full Name">
+                                <div class="input-group-append">
+                                  <!-- newElement() is for creating and adding cast to the cast list -->
+                                  <button onclick="newElementModal('castInput-{{dvd.id}}','castList-{{dvd.id}}','myUL-{{dvd.id}}')" class="btn btn-default addBtn" type="button">Add</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <div class="row">
+                            <div class="col">
+                              <ul id="myUL-{{dvd.id}}">
+                              </ul>
+                              <input type="text" id="castList-{{dvd.id}}" name="cast" value={{dvd.cast}} hidden>
+                                    
+                            </div>
+                          </div>
+                          <br>
+                          <label for="addImg" class="form-label">Add Images</label>
+                          <div class="row add-img" id="addImg">
+                            <div class="col-1"></div>
+                            <div class="col">
+                              <div class="row">
+                                <div class="col">
+                                  <img id="imgPreviewDvdModal1-{{dvd.id}}" class="img-prev" {% if dvd.dvd_cover1.url != '' %} src={{dvd.dvd_cover1.url}} {% endif %}/>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="custom-file">
+                                  <label class="btn btn-default up-img"> Upload Image
+                                    <!-- loadImgPreviewDVDModal1() is for loading 1st image preview upon uploading -->
+                                    <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal1-{{dvd.id}}" accept="image/*" onchange="loadImgPreviewDvdModal1(event,'imgPreviewDvdModal1-{{dvd.id}}')" hidden>
+                                  </label>
+                                </div>
+                              </div>  
+                            </div>
+                            <div class="col">
+                              <div class="row">
+                                <div class="col">
+                                  <img id="imgPreviewDvdModal2-{{dvd.id}}" class="img-prev" {% if dvd.dvd_cover2.url != '' %} src={{dvd.dvd_cover2.url}} {% endif %}/>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="custom-file">
+                                  <label class="btn btn-default up-img"> Upload Image
+                                    <!-- loadImgPreviewDVDModal2() is for loading 2nd image preview upon uploading -->
+                                    <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal2-{{dvd.id}}" accept="image/*" onchange="loadImgPreviewDvdModal2(event,'imgPreviewDvdModal2-{{dvd.id}}')" hidden>
+                                  </label>
+                                </div>
+                              </div>  
+                            </div>
+                            <div class="col">
+                              <div class="row">
+                                <div class="col">
+                                  <img id="imgPreviewDvdModal3-{{dvd.id}}" class="img-prev" {% if dvd.dvd_cover3.url != '' %} src={{dvd.dvd_cover3.url}} {% endif %}/>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="custom-file">
+                                  <label class="btn btn-default up-img"> Upload Image
+                                    <!-- loadImgPreviewDVDModal3() is for loading 3rd image preview upon uploading -->
+                                    <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal3-{{dvd.id}}" accept="image/*" onchange="loadImgPreviewDvdModal3(event,'imgPreviewDvdModal3-{{dvd.id}}')" hidden>
+                                  </label>
+                                </div>
+                              </div>  
+                            </div>
+                          </div>
+                          <br>
+                          <br>
+                          <br>
+                          <div class="row">
+                            <div class="col">
+                              <button class="btn btn-primary btn-register" type="submit">UPDATE</button>
+                            </div>
+                          </div>
+                        </form>  
+                      </div>          
+                    </div>
+                  </div>
+                </div>
+                <script>
+                  updateCastListModal('castList-{{dvd.id}}','myUL-{{dvd.id}}');
+                </script>
+                {% endfor %}
+              </tbody>
+            </table>
           </div>  
         </div>
+      </div>
+
       </div>
     </section>
 
@@ -633,6 +862,7 @@
         </div>
     </section>
 
+<<<<<<< HEAD
     <!--View and Update Modal: DVDs-->
     <div class="modal fade" id="dvds-modal" tabindex="-1" role="dialog" aria-labelledby="dvdmodal"  aria-hidden="true">
       <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
@@ -917,6 +1147,8 @@
       </div>
     </div>
 
+=======
+>>>>>>> bbf80f623c0f2a817cbfef00a84bc861b49293c3
     <!--Delete Modal -->
     <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="deletemodal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
