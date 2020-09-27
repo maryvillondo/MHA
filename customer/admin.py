@@ -3,5 +3,5 @@ from .models import Person, Customer
 
 # Register your models here.
 
-# admin.site.register(Person)
-# admin.site.register(Customer)
+admin.site.register(Person)
+admin.site.register(Customer)
