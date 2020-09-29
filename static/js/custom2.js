@@ -332,9 +332,11 @@ $(document).ready(function() {
   });
 
   // Release date datepicker dvd modal
-  $('#datepickerRelDateDvdModal').datepicker({
-    uiLibrary: 'bootstrap4',
-    format: 'yyyy-mm-dd'
+  $('.datepickerRelDateDvdModal').each(function() {
+    $(this).datepicker({
+       uiLibrary: 'bootstrap4',
+       format: 'yyyy-mm-dd'
+    });
   });
 
   
