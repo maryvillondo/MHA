@@ -366,7 +366,7 @@
                         <button type="button" class="btn addBtn" data-dismiss="modal">Close</button>
                       </div>
                       <div class="modal-body">
-                        <form>
+                        <form method="POST" onsubmit="passDate('datepickerRelDateDvdModal-{{dvd.id}}','releaseDate-{{dvd.id}}')">
                           <div class="row">
                             <div class="col">
                               <label for="movieTitle-{{dvd.id}}" class="form-label">Movie Title</label>
