@@ -381,13 +381,6 @@
                                   <label for="datepickerRelDateDvdModal-{{dvd.id}}" class="form-label">Release Date</label>
                                   <input id="datepickerRelDateDvdModal-{{dvd.id}}" class="form-input" width="505" placeholder="yyyy-mm-dd" value={{dvd.release_date|date:"Y-m-d"}}> 
                                 </div>
-                                <script>
-                                  // Release date datepicker
-                                  $('#datepickerRelDateDvdModal-{{dvd.id}}').datepicker({
-                                    uiLibrary: 'bootstrap4',
-                                    format: 'yyyy-mm-dd'
-                                  });
-                                </script>
                               </div>
                               <div class="row">
                                 <div class="col form-group">
