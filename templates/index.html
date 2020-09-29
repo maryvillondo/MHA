@@ -379,7 +379,8 @@
                               <div class="row">
                                 <div class="col">
                                   <label for="datepickerRelDateDvdModal-{{dvd.id}}" class="form-label">Release Date</label>
-                                  <input id="datepickerRelDateDvdModal-{{dvd.id}}" class="form-input" width="505" placeholder="yyyy-mm-dd" value={{dvd.release_date|date:"Y-m-d"}}> 
+                                  <input id="datepickerRelDateDvdModal-{{dvd.id}}" class="form-input datepickerRelDateDvdModal" width="505" placeholder="yyyy-mm-dd" value={{dvd.release_date|date:"Y-m-d"}}> 
+                                  <input name="release_date" id="releaseDate-{{dvd.id}}" hidden> 
                                 </div>
                               </div>
                               <div class="row">
