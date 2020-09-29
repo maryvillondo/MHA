@@ -325,11 +325,6 @@ $(document).ready(function() {
     
   } );
 
-  // Birthday datepicker customer modal
-  $('#datepickerBdayCustModal').datepicker({
-    uiLibrary: 'bootstrap4',
-    format: 'yyyy-mm-dd'
-  });
 
   // Release date datepicker dvd modal
   $('.datepickerRelDateDvdModal').each(function() {
@@ -340,7 +335,13 @@ $(document).ready(function() {
   });
 
   
-
+    // Birthday datepicker customer modal
+  $('.datepickerBdayCustModal').each(function() {
+    $(this).datepicker({
+       uiLibrary: 'bootstrap4',
+       format: 'yyyy-mm-dd'
+    });
+  });
 
 
   //DVD REGISTRATION

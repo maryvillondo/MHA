@@ -18,7 +18,7 @@ class CustomerIndexView(View):
 
     def post(self, request):
         if request.method == 'POST':
-            if 'btnUpdate' in request.POST:
+            if 'btnCUpdate' in request.POST:
                 print ('Update button button clicked')
                 cid = request.POST.get("customer-id")
                 fname = request.POST.get("customer-fname")
@@ -38,11 +38,11 @@ class CustomerIndexView(View):
                 spouse_lname = request.POST.get("s-lname")
                 spouse_occupation = request.POST.get("s-occupation")
                 no_children = request.POST.get("num-children")
-                c_picture = request.FILES.get("customer-picture")
-                update_customer = Customer.objects.filter(person_ptr_id = cid).update(firstname = fname, middlename = mname, lastname = lname, street = street, barangay = barangay, city = city, province = province, zip_code = zip_code, country = country, birthdate = birthdate, status = status, gender = gender, spouse_fname = spouse_fname, spouse_mname = spouse_mname, spouse_lname = spouse_lname, spouse_occupation = spouse_occupation, no_children = no_children, customer_picture = c_picture)
+                # c_picture = request.FILES.get("customer-picture")# , customer_picture = c_picture                
+                update_customer = Customer.objects.filter(person_ptr_id = cid).update(firstname = fname, middlename = mname, lastname = lname, street = street, barangay = barangay, city = city, province = province, zip_code = zip_code, country = country, birthdate = birthdate, status = status, gender = gender,spouse_fname = spouse_fname, spouse_mname = spouse_mname, spouse_lname = spouse_lname, spouse_occupation = spouse_occupation, no_children = no_children)
                 print(update_customer)
                 print('Update Successful')
-            elif 'btnDelete' in request.POST:
+            elif 'btnCDelete' in request.POST:
                 print('Delete button clicked')
                 cid = request.POST.get("dcustomer-id")
                 customer = Customer.objects.filter(person_ptr_id=cid).delete()
@@ -78,7 +78,24 @@ class CustomerRegView(View):
             spouse_occupation = request.POST.get("s_occupation")
             no_children = request.POST.get("numchildren")
             c_picture = request.FILES.get("customer_picture")
-            form = Customer(firstname = fname, middlename = mname, lastname = lname, street = street, barangay = barangay, city = city, province = province, zip_code = zip_code, country = country, birthdate = birthdate, status = status, gender = gender, spouse_fname = spouse_fname, spouse_mname = spouse_mname, spouse_lname = spouse_lname, spouse_occupation = spouse_occupation, no_children = no_children, customer_picture = c_picture)
+            form = Customer(firstname = fname, 
+                            middlename = mname, 
+                            lastname = lname, 
+                            street = street, 
+                            barangay = barangay, 
+                            city = city, 
+                            province = province, 
+                            zip_code = zip_code, 
+                            country = country, 
+                            birthdate = birthdate, 
+                            status = status, 
+                            gender = gender, 
+                            spouse_fname = spouse_fname, 
+                            spouse_mname = spouse_mname, 
+                            spouse_lname = spouse_lname, 
+                            spouse_occupation = spouse_occupation, 
+                            no_children = no_children, 
+                            customer_picture = c_picture)
             form.save()
             return HttpResponseRedirect("http://127.0.0.1:8000/customer/confirmation")
         else:
