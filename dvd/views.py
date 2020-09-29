@@ -13,7 +13,7 @@ class DVDIndexView(View):
 		context = {
 			'dvds' : qs_dvds
 		}
-		return render(request, 'dashboard.html', context)
+		return render(request, 'index.html', context)
 	def post(self, request):
 		if request.method == 'POST':	
 			if 'btnUpdate' in request.POST:	
