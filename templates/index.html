@@ -370,7 +370,7 @@
                           <div class="row">
                             <div class="col">
                               <label for="movieTitle-{{dvd.id}}" class="form-label">Movie Title</label>
-                              <input required type="text" class="form-control  form-input" id="movieTitle-{{dvd.id}}" placeholder="Title" value={{dvd.title}}>
+                              <input required type="text" class="form-control  form-input" id="movieTitle-{{dvd.id}}" placeholder="Title" value={{dvd.title}}  name="title">
                             </div>
                           </div>
                           <br>
@@ -390,7 +390,7 @@
                                     <div class="input-group-prepend">
                                       <span class="input-group-text prepend-txt">₱</span>
                                     </div>
-                                    <input required type="number" min="0.00" step="0.01"  class="form-control  form-input" id="price-{{dvd.id}}" placeholder="0.00" value={{dvd.price}}>
+                                    <input required type="number" min="0.00" step="0.01"  class="form-control  form-input" id="price-{{dvd.id}}" placeholder="0.00" value={{dvd.price}} name="price">
                                   </div>
                                 </div>
                                 <div class="col form-group">
@@ -399,7 +399,7 @@
                                     <div class="input-group-prepend">
                                       <span class="input-group-text prepend-txt">Quantity</span>
                                     </div>
-                                    <input required type="number" min="0" class="form-control  form-input" id="quantity-{{dvd.id}}" placeholder="0" value={{dvd.quantity}}>
+                                    <input required type="number" min="0" class="form-control  form-input" id="quantity-{{dvd.id}}" placeholder="0" value={{dvd.quantity}}  name="quantity">
                                   </div>
                                 </div>
                               </div>
@@ -407,7 +407,7 @@
                             <div class="col">
                               <label for="movieGenre-{{dvd.id}}" class="form-label">Genre</label>
                               <div class="form-group">
-                                <select multiple class="form-control form-input" id="movieGenre-{{dvd.id}}">
+                                <select multiple class="form-control form-input" id="movieGenre-{{dvd.id}}"  name="genre">
                                   <option disabled value="">Select</option>
                                   <option value="action" {% if 'action' in dvd.genre %} selected {% endif %}>Action</option>
                                   <option value="adventure" {% if 'adventure' in dvd.genre %} selected {% endif %}>Adventure</option>
@@ -440,10 +440,10 @@
                               <label for="directorFullName-{{dvd.id}}" class="form-label">Director</label>
                               <div class="form-row name" id="directorFullName-{{dvd.id}}">
                                 <div class="col">
-                                  <input type="text" id="directorFirstName-{{dvd.id}}" class="form-control form-input" placeholder="First name" value={{dvd.director_firstname}}>
+                                  <input type="text" id="directorFirstName-{{dvd.id}}" class="form-control form-input" placeholder="First name" value={{dvd.director_firstname}} name="director_firstname">
                                 </div>
                                 <div class="col">
-                                  <input type="text" id="directorLastName-{{dvd.id}}" class="form-control form-input" placeholder="Last name" value={{dvd.director_lastname}}>
+                                  <input type="text" id="directorLastName-{{dvd.id}}" class="form-control form-input" placeholder="Last name" value={{dvd.director_lastname}} name="director_lastname">
                                 </div>
                               </div>
                             </div>
@@ -484,7 +484,7 @@
                                 <div class="custom-file">
                                   <label class="btn btn-default up-img"> Upload Image
                                     <!-- loadImgPreviewDVDModal1() is for loading 1st image preview upon uploading -->
-                                    <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal1-{{dvd.id}}" accept="image/*" onchange="loadImgPreviewDvdModal1(event,'imgPreviewDvdModal1-{{dvd.id}}')" hidden>
+                                    <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal1-{{dvd.id}}" accept="image/*" onchange="loadImgPreviewDvdModal1(event,'imgPreviewDvdModal1-{{dvd.id}}')" hidden name="dvd_cover1">
                                   </label>
                                 </div>
                               </div>  
@@ -499,7 +499,7 @@
                                 <div class="custom-file">
                                   <label class="btn btn-default up-img"> Upload Image
                                     <!-- loadImgPreviewDVDModal2() is for loading 2nd image preview upon uploading -->
-                                    <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal2-{{dvd.id}}" accept="image/*" onchange="loadImgPreviewDvdModal2(event,'imgPreviewDvdModal2-{{dvd.id}}')" hidden>
+                                    <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal2-{{dvd.id}}" accept="image/*" onchange="loadImgPreviewDvdModal2(event,'imgPreviewDvdModal2-{{dvd.id}}')" hidden name="dvd_cover2">
                                   </label>
                                 </div>
                               </div>  
@@ -514,7 +514,7 @@
                                 <div class="custom-file">
                                   <label class="btn btn-default up-img"> Upload Image
                                     <!-- loadImgPreviewDVDModal3() is for loading 3rd image preview upon uploading -->
-                                    <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal3-{{dvd.id}}" accept="image/*" onchange="loadImgPreviewDvdModal3(event,'imgPreviewDvdModal3-{{dvd.id}}')" hidden>
+                                    <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal3-{{dvd.id}}" accept="image/*" onchange="loadImgPreviewDvdModal3(event,'imgPreviewDvdModal3-{{dvd.id}}')" hidden name="dvd_cover3">
                                   </label>
                                 </div>
                               </div>  
@@ -525,7 +525,7 @@
                           <br>
                           <div class="row">
                             <div class="col">
-                              <button class="btn btn-primary btn-register" type="submit">UPDATE</button>
+                              <button class="btn btn-primary btn-register" type="submit" name="btnUpdate">UPDATE</button>
                             </div>
                           </div>
                         </form>  
