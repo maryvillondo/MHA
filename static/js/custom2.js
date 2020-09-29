@@ -154,6 +154,9 @@ var loadImgPreviewDvdModal3 = function(event,id) {
 };
 
 
+function passDate(date1,date2) {
+  document.getElementById(date2).value = document.getElementById(date1).value;
+}
 
 
 
