@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime, date
+import os
 
 # Create your models here.
 class Person(models.Model):
@@ -24,9 +25,14 @@ class Person(models.Model):
     class Meta:
         db_table = "Person"
 
+def content_file_name(instance,filename):
+    ext = filename.split('.')[-1]        
+    filename = "%s.%s" % (instance.person_ptr_id, ext)
+    return os.path.join('customer/',filename)
+
 class Customer(Person):
     date_registered = models.DateField(auto_now_add=True)
-    customer_picture = models.ImageField(upload_to = 'customer/', null = True)
+    customer_picture = models.ImageField(upload_to = content_file_name, null = True, blank = True)
 
     class Meta:
         db_table = "Customer"

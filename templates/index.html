@@ -147,6 +147,7 @@
                 <td class="d-inline-block">
                   <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newModal-{{customer.id}}"><i class="fas fa-eye fa-1x"></i></button>
                   <button type="button" class="btn btn-danger" id="btnDelete" data-toggle="modal" data-target="#delete-modal" onclick=""><i class="far fa-trash-alt fa-1x "></i></button>
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{customer.id}}"><i class="far fa-trash-alt fa-1x "></i></button>
                 </td>
               </tr>
               <!--View and Update Modal: Customer-->
@@ -170,6 +171,17 @@
                                 }
                                 {% endif %}
                               </div>
+                    <form id="updateForm" method="post">
+                    {% csrf_token %}
+                    <div class="modal-body" style="background-color:#32425b">   
+                      <input type="text" name="customer-id" value={{customer.id}} hidden>                        
+                      <div class="row">
+                        <div class="col-3">
+                          <div class="row">
+                            <div class="col">
+                              {% if customer.customer_picture %}
+                              <img src="{{customer.customer_picture.url}}" id="imgPreviewCustReg" class="img-prev"/>                        
+                              {% endif %} 
                             </div>
                             <div class="row">
                               <div class="custom-file"> 
@@ -178,6 +190,13 @@
                                   <input type="file" class="custom-file-input  form-input" id="imgUploadCustReg" name="customer_picture" accept="image/*" onchange="loadImgPreviewCustReg(event)" hidden required>
                                 </label>                           
                               </div>
+                          </div>
+                          <div class="row">
+                            <div class="custom-file"> 
+                              <label class="btn btn-default up-img"> Upload Image
+                                <!-- loadImgPreviewCustReg() is for loading image preview upon uploading -->
+                                <input type="file" class="custom-file-input  form-input" id="imgUploadCustReg" name="customer-picture" value="{{customer.customer_picture}}" accept="image/*" onchange="loadImgPreviewCustReg(event)" >
+                              </label>                           
                             </div>
                           </div>
                           <div class="col">
@@ -194,6 +213,20 @@
                                   <div class="col">
                                     <input type="text" class="form-control form-input" placeholder="Last Name" value="{{customer.lastname}}">
                                   </div>
+                        </div>
+                        <div class="col">
+                          <div class="row">
+                            <div class="col">
+                              <label for="fullName" class="form-label">Full Name</label>
+                              <div class="form-row name" id="fullName">
+                                <div class="col">
+                                  <input type="text" class="form-control form-input" placeholder="First Name" name="customer-fname" value="{{customer.firstname}}"> 
+                                </div>
+                                <div class="col">
+                                  <input type="text" class="form-control form-input" placeholder="Middle Name" name="customer-mname" value="{{customer.middlename}}">
+                                </div>
+                                <div class="col">
+                                  <input type="text" class="form-control form-input" placeholder="Last Name" name="customer-lname" value="{{customer.lastname}}">
                                 </div>
                               </div>
                             </div>
@@ -220,6 +253,29 @@
                                   <div class="col">
                                     <input type="text" class="form-control form-input" placeholder="Country" value="{{customer.country}}">
                                   </div>
+                          </div>
+                          <br>
+                          <div class="row">
+                            <div class="col">
+                              <label for="address" class="form-label">Address</label>
+                              <div class="form-row" id="address">
+                                <div class="col">
+                                  <input type="text" class="form-control form-input" placeholder="Street" name="customer-street" value="{{customer.street}}">
+                                </div>
+                                <div class="col">
+                                  <input type="text" class="form-control form-input" placeholder="Barangay" name="customer-barangay" value="{{customer.barangay}}">
+                                </div>
+                                <div class="col">
+                                  <input type="text" class="form-control form-input" placeholder="City" name="customer-city" value="{{customer.city}}">
+                                </div>
+                                <div class="col">
+                                  <input type="text" class="form-control form-input" placeholder="Province" name="customer-province" value="{{customer.province}}">
+                                </div>
+                                <div class="col">
+                                  <input type="text" class="form-control form-input" placeholder="Zip" name="customer-zip" value="{{customer.zip_code}}">
+                                </div>
+                                <div class="col">
+                                  <input type="text" class="form-control form-input" placeholder="Country" name="customer-country" value="{{customer.country}}">
                                 </div>
                               </div>
                             </div>
@@ -245,6 +301,28 @@
                                     <option value="divorced" {% if 'divorced' == customer.status %}selected{% endif %}>Divorced</option>
                                   </select>
                                 </div>
+                          </div>
+                          <br>
+                          <div class="row">
+                            <div class="col">
+                              <label for="datepickerBdayCustomerModal-{{customer.id}}" class="form-label">Birthday</label>
+                              <input id="datepickerBdayCustomerModal-{{customer.id}}" class="form-input" width="225" placeholder="yyyy/mm/dd" name="customer-bdate" value="{{customer.birthdate}}"/>
+                              <script>
+                                $('#datepickerBdayCustomerModal-{{customer.id}}').datepicker({
+                                  uiLibrary: 'bootstrap4'
+                                });
+                              </script>
+                            </div>   
+                            <div class="col">
+                              <label for="status" class="form-label">Status</label>
+                              <div class="form-group">
+                                <select class="form-control  form-input" id="status" name="customer-status">
+                                  <option disabled selected value="">Select</option>
+                                  <option value="single" {% if 'single' == customer.status %}selected{% endif %}>Single</option>
+                                  <option value="married" {% if 'married' == customer.status %}selected{% endif %}>Married</option>
+                                  <option value="widow/er" {% if 'widow/er' == customer.status %}selected{% endif %}>Widow/er</option>
+                                  <option value="divorced" {% if 'divorced' == customer.status %}selected{% endif %}>Divorced</option>
+                                </select>
                               </div>
                               <div class="col">
                                 <label for="gender" class="form-label">Gender</label>
@@ -257,6 +335,17 @@
                                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Female" {% if 'Female' == customer.gender %}checked{% endif %} >
                                     <label class="form-check-label form-label" for="inlineRadio2">Female</label>
                                   </div>
+                            </div>
+                            <div class="col">
+                              <label for="gender" class="form-label">Gender</label>
+                              <div class="form-group" id="gender">
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="customer-gender" id="inlineRadio1" value="Male" {% if 'Male' == customer.gender %}checked{% endif %}>
+                                  <label class="form-check-label form-label" for="inlineRadio1">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="customer-gender" id="inlineRadio2" value="Female" {% if 'Female' == customer.gender %}checked{% endif %} >
+                                  <label class="form-check-label form-label" for="inlineRadio2">Female</label>
                                 </div>
                               </div>
                             </div>
@@ -274,6 +363,20 @@
                                   <div class="col">
                                     <input type="text" class="form-control form-input" placeholder="Last Name" value="{{customer.spouse_lname}}">
                                   </div>
+                          </div>
+                          <br>
+                          <div class="row">
+                            <div class="col">
+                              <label for="spouseFullName" class="form-label">Spouse's Full Name</label>
+                              <div class="form-row name" id="spouseFullName">
+                                <div class="col">
+                                  <input type="text" class="form-control form-input" placeholder="First Name" name="s-fname"value="{{customer.spouse_fname}}">
+                                </div>
+                                <div class="col">
+                                  <input type="text" class="form-control form-input" placeholder="Middle Name" name="s-mname" value="{{customer.spouse_mname}}">
+                                </div>
+                                <div class="col">
+                                  <input type="text" class="form-control form-input" placeholder="Last Name" name="s-lname" value="{{customer.spouse_lname}}">
                                 </div>
                               </div>
                             </div>
@@ -282,6 +385,11 @@
                               <div class="col">
                                 <input type="text" class="form-control  form-input" placeholder="Spouse's Occupation" value="{{customer.spouse_occupation}}">
                               </div>
+                          </div>
+                          <br>
+                          <div class="row">
+                            <div class="col">
+                              <input type="text" class="form-control  form-input" placeholder="Spouse's Occupation" name="s-occupation" value="{{customer.spouse_occupation}}">
                             </div>
                             <br>
                             
@@ -290,20 +398,60 @@
                                 <label for="numberOfChildren" class="form-label">Number of Children</label>
                                 <input type="number" min="0" class="form-control  form-input" id="numberOfChildren" placeholder="0" value="{{customer.no_children}}">
                               </div>
+                          </div>
+                          <br>
+                          
+                          <div class="row">
+                            <div class="col form-group">
+                              <label for="numberOfChildren" class="form-label">Number of Children</label>
+                              <input type="number" min="0" class="form-control  form-input" placeholder="0" name="num-children" value="{{customer.no_children}}">
                             </div>
                             <br>
                             <div class="row">
                               <div class="col">
                                 <button class="btn btn-primary btn-register" type="submit">UPDATE</button>
                               </div>
+                          </div>
+                          <br>
+                          <div class="row">
+                            <div class="col">
+                              <button class="btn btn-primary btn-register" type="submit" id="btnUpdate" name="btnUpdate">UPDATE</button>
                             </div>
                           </div>
                         </div>
                       </form>
                     </div>          
+                      </div>
+                    </div>
+                    </form>        
                   </div>
                 </div>
               </div>
+
+              <!--Delete Modal -->
+              <div class="modal fade" id="deleteModal-{{customer.id}}" tabindex="-1" role="dialog" aria-labelledby="deletemodal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalCenterTitle">Confrim Deletion</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form id="deleteForm" method="post">
+                      {% csrf_token %}
+                      <div class="modal-body">
+                        <input type="text" name="dcustomer-id" value="{{customer.id}}" hidden>
+                        Are you sure you want to delete record?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger" id="btnDelete" name="btnDelete">CONFIRM</button>
+                        <button type="button" class="btn btn-info " data-dismiss="modal">CANCEL</button>
+                      </div> 
+                    </form>
+                  </div>
+                </div>
+              </div>  
               {% endfor %}
             </tbody>
           </table>
@@ -568,6 +716,7 @@
 
     <!--Customer Summary-->
     <section id="customerSummary" style="display:none">
+    <!-- <section id="customerSummary" style="display:none">
       <div class="row mt-4 d-flex justify-content-between"> 
         <h4 class="font-weight-bold mb-2">Customer Records</h4>
         <a class="btn btn-primary mb-2" type="button" href="/customer/registration"><i class="fas fa-plus fa-1x"></i></a>
@@ -615,6 +764,7 @@
             </tr>
             <!--View and Update Modal: Customer-->
             <div class="modal fade" id="newModal-{{customer.id}}" tabindex="-1" role="dialog" aria-labelledby="customermodal"  aria-hidden="true">
+            <!-- <div class="modal fade" id="newModal-{{customer.id}}" tabindex="-1" role="dialog" aria-labelledby="customermodal"  aria-hidden="true">
               <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header text-center" style="background-color:#32425b">
@@ -640,6 +790,7 @@
                               <label class="btn btn-default up-img"> Upload Image
                                 <!-- loadImgPreviewCustReg() is for loading image preview upon uploading -->
                                 <input type="file" class="custom-file-input  form-input" id="imgUploadCustReg" name="customer_picture" accept="image/*" onchange="loadImgPreviewCustReg(event)" hidden required>
+                                <!--<input type="file" class="custom-file-input  form-input" id="imgUploadCustReg" name="customer_picture" accept="image/*" onchange="loadImgPreviewCustReg(event)" hidden required>
                               </label>                           
                             </div>
                           </div>
@@ -773,9 +924,11 @@
         </table>
       </div>
     </section>
+    </section> -->
 
     <!--DVDs Summary-->
     <section id="dvdSummary" style="display:none">
+    <!-- <section id="dvdSummary" style="display:none">
         <div class="container">
           <div class="row mt-5 d-flex justify-content-between"> 
             <h4 class="font-weight-bold mb-2">DVD Records</h4>
@@ -844,5 +997,11 @@
             </div>  
           </div>
         </div>
+<<<<<<< Updated upstream
     </section>  
+=======
+    </section> -->
+
+    
+>>>>>>> Stashed changes
   I{% endblock content %}
