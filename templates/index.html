@@ -354,7 +354,7 @@
                   <td>{{dvd.quantity}}</td>
                   <td class="d-inline-block">
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dvds-modal-{{dvd.id}}"><i class="fas fa-eye fa-1x"></i></button>
-                    <button type="button" class="btn btn-danger" id="btnDelete" data-toggle="modal" data-target="#delete-modal" onclick=""><i class="far fa-trash-alt fa-1x "></i></button>
+                    <button type="button" class="btn btn-danger" id="btnDelete" data-toggle="modal" data-target="#dvd-delete-modal-{{dvd.id}}" onclick=""><i class="far fa-trash-alt fa-1x "></i></button>
                   </td>                      
                 </tr>
                 <!--View and Update Modal: DVDs-->
@@ -536,6 +536,27 @@
                 <script>
                   updateCastListModal('castList-{{dvd.id}}','myUL-{{dvd.id}}');
                 </script>
+                <!--Delete Modal -->
+                <div class="modal fade" id="dvd-delete-modal-{{dvd.id}}" tabindex="-1" role="dialog" aria-labelledby="deletemodal" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Confrim Deletion</h5>
+                      </div>
+                      <form method="POST">
+                        {% csrf_token %} 
+                        <div class="modal-body">
+                          <input type="text" name="sku" value = {{dvd.id}} hidden>
+                          Do you want to delete record?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-info" data-dismiss="modal">NO</button>
+                          <button type="submit" class="btn btn-danger" name="btnDelete">YES</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
                 {% endfor %}
               </tbody>
               </table>
@@ -823,23 +844,5 @@
             </div>  
           </div>
         </div>
-    </section>
-
-    <!--Delete Modal -->
-    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="deletemodal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">Confrim Deletion</h5>
-          </div>
-          <div class="modal-body">
-            Do you want to delete record?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-danger">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>  
+    </section>  
   I{% endblock content %}
