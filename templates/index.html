@@ -398,7 +398,7 @@
                         <div class="row">
                           <div class="col">
                             <label for="movieTitle-{{dvd.id}}" class="form-label">Movie Title</label>
-                            <input required type="text" class="form-control  form-input" id="movieTitle-{{dvd.id}}" placeholder="Title" value={{dvd.title}}  name="title">
+                            <input required type="text" class="form-control  form-input" id="movieTitle-{{dvd.id}}" placeholder="Title" value={{dvd.title}}  name="title" minlength="1" maxlength="150">
                           </div>
                         </div>
                         <br>
@@ -468,10 +468,10 @@
                             <label for="directorFullName-{{dvd.id}}" class="form-label">Director</label>
                             <div class="form-row name" id="directorFullName-{{dvd.id}}">
                               <div class="col">
-                                <input type="text" id="directorFirstName-{{dvd.id}}" class="form-control form-input" placeholder="First name" value={{dvd.director_firstname}} name="director_firstname">
+                                <input type="text" id="directorFirstName-{{dvd.id}}" class="form-control form-input" placeholder="First name" value={{dvd.director_firstname}} name="director_firstname" minlength="1" maxlength="150">
                               </div>
                               <div class="col">
-                                <input type="text" id="directorLastName-{{dvd.id}}" class="form-control form-input" placeholder="Last name" value={{dvd.director_lastname}} name="director_lastname">
+                                <input type="text" id="directorLastName-{{dvd.id}}" class="form-control form-input" placeholder="Last name" value={{dvd.director_lastname}} name="director_lastname" minlength="1" maxlength="150">
                               </div>
                             </div>
                           </div>
