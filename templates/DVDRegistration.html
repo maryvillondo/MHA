@@ -66,7 +66,7 @@
 				<div class="row">
 					<div class="col">
 						<label for="movieTitle" class="form-label">Movie Title</label>
-						<input required type="text" class="form-control  form-input" id="movieTitle" placeholder="Title" name="title">
+						<input required type="text" class="form-control  form-input" id="movieTitle" placeholder="Title" name="title" minlength="1" maxlength="150">
 					</div>
 				</div>
 				<br>
@@ -102,7 +102,7 @@
 					<div class="col">
 						<label for="movieGenre" class="form-label">Genre</label>
 						<div class="form-group">
-							<select required multiple class="form-control form-input" id="movieGenre" name="genre">
+							<select multiple class="form-control form-input" id="movieGenre" name="genre">
 								<option disabled value="">Select</option>
 								<option value="action">Action</option>
 								<option value="adventure">Adventure</option>
@@ -135,10 +135,10 @@
 						<label for="directorFullName" class="form-label">Director</label>
 						<div class="form-row name" id="directorFullName">
 							<div class="col">
-								<input type="text" class="form-control form-input" placeholder="First name" name="director_firstname">
+								<input type="text" class="form-control form-input" placeholder="First name" name="director_firstname" minlength="1" maxlength="150">
 							</div>
 							<div class="col">
-								<input type="text" class="form-control form-input" placeholder="Last name" name="director_lastname">
+								<input type="text" class="form-control form-input" placeholder="Last name" name="director_lastname" minlength="1" maxlength="150">
 							</div>
 						</div>
 					</div>
