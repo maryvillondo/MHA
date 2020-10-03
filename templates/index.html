@@ -70,7 +70,7 @@
         <div class="collapse navbar-collapse justify-content-end mr-n5" id="navbarNav">
           <div class="navbar-nav">
             <div class="nav-item active mr-n2">
-                <a class="nav-link" href="/customer/landing">Home</a>
+                <a class="nav-link" href="{% url 'customer:landing_view' %}">Home</a>
             </div>
             <div class="nav-item dropdown mr-n5 ">
               <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -187,13 +187,13 @@
                             <label for="fullName" class="form-label">Full Name</label>
                             <div class="form-row name" id="fullName">
                               <div class="col">
-                                <input type="text" class="form-control form-input" placeholder="First Name" name="customer-fname" value={{customer.firstname}}> 
+                                <input type="text" class="form-control form-input" placeholder="First Name" name="customer-fname" value="{{customer.firstname}}"> 
                               </div>
                               <div class="col">
-                                <input type="text" class="form-control form-input" placeholder="Middle Name" name="customer-mname" value={{customer.middlename}}>
+                                <input type="text" class="form-control form-input" placeholder="Middle Name" name="customer-mname" value="{{customer.middlename}}">
                               </div>
                               <div class="col">
-                                <input type="text" class="form-control form-input" placeholder="Last Name" name="customer-lname" value={{customer.lastname}}>
+                                <input type="text" class="form-control form-input" placeholder="Last Name" name="customer-lname" value="{{customer.lastname}}">
                               </div>
                             </div>
                           </div>
@@ -204,22 +204,22 @@
                             <label for="address" class="form-label">Address</label>
                             <div class="form-row" id="address">
                               <div class="col">
-                                <input type="text" class="form-control form-input" placeholder="Street" name="customer-street" value={{customer.street}}>
+                                <input type="text" class="form-control form-input" placeholder="Street" name="customer-street" value="{{customer.street}}">
                               </div>
                               <div class="col">
-                                <input type="text" class="form-control form-input" placeholder="Barangay" name="customer-barangay" value={{customer.barangay}}>
+                                <input type="text" class="form-control form-input" placeholder="Barangay" name="customer-barangay" value="{{customer.barangay}}">
                               </div>
                               <div class="col">
-                                <input type="text" class="form-control form-input" placeholder="City" name="customer-city" value={{customer.city}}>
+                                <input type="text" class="form-control form-input" placeholder="City" name="customer-city" value="{{customer.city}}">
                               </div>
                               <div class="col">
-                                <input type="text" class="form-control form-input" placeholder="Province" name="customer-province" value={{customer.province}}>
+                                <input type="text" class="form-control form-input" placeholder="Province" name="customer-province" value="{{customer.province}}">
                               </div>
                               <div class="col">
-                                <input type="text" class="form-control form-input" placeholder="Zip" name="customer-zip" value={{customer.zip_code}}>
+                                <input type="text" class="form-control form-input" placeholder="Zip" name="customer-zip" value="{{customer.zip_code}}">
                               </div>
                               <div class="col">
-                                <input type="text" class="form-control form-input" placeholder="Country" name="customer-country" value={{customer.country}}>
+                                <input type="text" class="form-control form-input" placeholder="Country" name="customer-country" value="{{customer.country}}">
                               </div>
                             </div>
                           </div>
@@ -269,13 +269,13 @@
                             <label for="spouseFullName" class="form-label">Spouse's Full Name</label>
                             <div class="form-row name" id="spouseFullName">
                               <div class="col">
-                                <input type="text" class="form-control form-input" placeholder="First Name" name="s-fname"value={{customer.spouse_fname}}>
+                                <input type="text" class="form-control form-input" placeholder="First Name" name="s-fname" value="{{customer.spouse_fname}}">
                               </div>
                               <div class="col">
-                                <input type="text" class="form-control form-input" placeholder="Middle Name" name="s-mname" value={{customer.spouse_mname}}>
+                                <input type="text" class="form-control form-input" placeholder="Middle Name" name="s-mname" value="{{customer.spouse_mname}}">
                               </div>
                               <div class="col">
-                                <input type="text" class="form-control form-input" placeholder="Last Name" name="s-lname" value={{customer.spouse_lname}}>
+                                <input type="text" class="form-control form-input" placeholder="Last Name" name="s-lname" value="{{customer.spouse_lname}}">
                               </div>
                             </div>
                           </div>
@@ -283,7 +283,7 @@
                         <br>
                         <div class="row">
                           <div class="col">
-                            <input type="text" class="form-control  form-input" placeholder="Spouse's Occupation" name="s-occupation" value={{customer.spouse_occupation}}>
+                            <input type="text" class="form-control  form-input" placeholder="Spouse's Occupation" name="s-occupation" value="{{customer.spouse_occupation}}">
                           </div>
                         </div>
                         <br>

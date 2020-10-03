@@ -20,7 +20,7 @@ class Person(models.Model):
     spouse_mname = models.CharField(max_length = 100)
     spouse_lname = models.CharField(max_length = 100)
     spouse_occupation = models.CharField(max_length =100)
-    no_children = models.IntegerField()
+    no_children = models.IntegerField(default=0)
 
     class Meta:
         db_table = "Person"

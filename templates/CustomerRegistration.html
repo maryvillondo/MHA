@@ -82,21 +82,21 @@
 					<div class="col">
 						<div class="row">
 							<div class="col">
-								<label for="fullName" class="form-label">Full Name (Required)</label>
+								<label for="fullName" class="form-label">Full Name*</label>
 								<div class="form-row name" id="fullName">
 									<div class="col">
-										<input type="text" class="form-control form-input" name="firstname" placeholder="First name" required minlength="1" maxlength="60">
+										<input type="text" class="form-control form-input is-valid" name="firstname" placeholder="First name" required minlength="1" maxlength="100">
 										<div class="invalid-feedback">
-								          Please input your first name
+								          Please input correct format for first name 
 								        </div>
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="middlename" placeholder="Middle name" minlength="1" maxlength="50">
+										<input type="text" class="form-control form-input" name="middlename" placeholder="Middle name" minlength="1" maxlength="100">
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="lastname" placeholder="Last name" required minlength="1" maxlength="50">
+										<input type="text" class="form-control form-input is-valid" name="lastname" placeholder="Last name" required minlength="1" maxlength="100">
 										<div class="invalid-feedback">
-								          Please input your last name
+								          Please input correct format for last name 
 								        </div>
 									</div>
 								</div>
@@ -105,42 +105,42 @@
 						<br>
 						<div class="row">
 							<div class="col">
-								<label for="address" class="form-label">Address (Required)</label>
+								<label for="address" class="form-label">Address*</label>
 								<div class="form-row" id="address">
 									<div class="col">
-										<input type="text" class="form-control form-input" name="astreet" placeholder="Street" required minlength="1" maxlength="45">
+										<input type="text" class="form-control form-input is-valid" name="astreet" placeholder="Street" required minlength="1" maxlength="45">
 										<div class="invalid-feedback">
-								          Please input the Street name
+								          Please input correct format for Street
 								        </div>
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="abarangay" placeholder="Barangay or Town" required minlength="1" maxlength="45">
+										<input type="text" class="form-control form-input is-valid" name="abarangay" placeholder="Barangay or Town" required minlength="1" maxlength="45">
 										<div class="invalid-feedback">
-								          Please input the Barangay or Town name
+								          Please input correct format for Barangay
 								        </div>
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="acity" placeholder="City" required minlength="1" maxlength="45">
+										<input type="text" class="form-control form-input is-valid" name="acity" placeholder="City" required minlength="1" maxlength="45">
 										<div class="invalid-feedback">
-								          Please input the City name
+								          Please input correct format for City
 								        </div>
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="aprovince" placeholder="Province" required  minlength="1" maxlength="45">
+										<input type="text" class="form-control form-input is-valid" name="aprovince" placeholder="Province" required  minlength="1" maxlength="45">
 										<div class="invalid-feedback">
-								          Please input the Province name
+								          Please input correct format for Province
 								        </div>
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="azip_code" placeholder="Zip" required minlength="5" maxlength="10">
+										<input type="text" class="form-control form-input is-valid" name="azip_code" placeholder="Zip" required minlength="4" maxlength="10">
 										<div class="invalid-feedback">
-								          Please input the Zip Code
+								          Please input correct format for Zip Code
 								        </div>
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input" name="acountry" placeholder="Country" required minlength="4" maxlength="40">
+										<input type="text" class="form-control form-input is-valid" name="acountry" placeholder="Country" required minlength="4" maxlength="40">
 										<div class="invalid-feedback">
-								          Please input the Country name
+								          Please input correct format for Country
 								        </div>
 									</div>
 								</div>
@@ -149,14 +149,11 @@
 						<br>
 						<div class="row">
 							<div class="col">
-								<label for="datepickerBdayCustReg" class="form-label">Birthday (Required)</label>
+								<label for="datepickerBdayCustReg" class="form-label">Birthday*</label>
 								<input id="datepickerBdayCustReg" class="form-input" width="225" name="bdate" placeholder="yyyy/mm/dd" required />
-								<div class="invalid-feedback">
-						          Please input your Birthdate
-						        </div>
 							</div>
 							<div class="col">
-								<label for="status" class="form-label">Status (Required)</label>
+								<label for="status" class="form-label">Status*</label>
 								<div class="form-group">
 									<select required class="form-control  form-input" name="cstatus" id="status">
 										<option disabled selected value="">Select</option>
@@ -165,13 +162,10 @@
 										<option value="widow/er">Widow/er</option>
 										<option value="divorced">Divorced</option>
 									</select>
-									<div class="invalid-feedback">
-							          Please choose your status
-							        </div>
 								</div>
 							</div>
 							<div class="col">
-								<label for="gender" class="form-label">Gender (Required)</label>
+								<label for="gender" class="form-label">Gender*</label>
 								<div class="form-group" id="gender">
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio" name="cgender" id="inlineRadio1" value="Male" required>
@@ -181,9 +175,6 @@
 										<input class="form-check-input" type="radio" name="cgender" id="inlineRadio2" value="Female" required>
 										<label class="form-check-label form-label" for="inlineRadio2">Female</label>
 									</div>
-									<div class="invalid-feedback">
-							          Please choose your gender
-							        </div>
 								</div>
 							</div>
 						</div>
@@ -214,14 +205,14 @@
 						<div class="row">
 							<div class="col form-group">
 								<label for="numberOfChildren" class="form-label">Number of Children</label>
-								<input type="number" min="0" class="form-control  form-input" id="numberOfChildren" name="numchildren" placeholder="0" min="0" max="20">
+								<input type="number" min="0" class="form-control  form-input" id="numberOfChildren" name="numchildren" placeholder="0" min="0" max="20" value="0">
 							</div>
 						</div>
 						<br>
 						<div class="row">
 							<div class="col">
 								<button type="submit" class="btn btn-primary btn-register">REGISTER</button>
-								<button type="button" class="btn mt-2" id="btn-cancel">CANCEL</button>
+								<button type="button" class="btn mt-2 text-white shadow-none" id="btn-cancel" onclick="location.href='{% url 'customer:index_view' %}'">CANCEL</button>
 						</div>
 					</div>
 				</div>

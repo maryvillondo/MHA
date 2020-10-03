@@ -80,7 +80,7 @@
                             <h3 class="mt-1 mb-n1">Sign In</h3>
                         </div>
                         <div class="card-body mx-auto justify-content-center ">
-                            <img class="mx-auto mt-2 d-block" src="images/logoW.png" alt="icon">
+                            <img class="mx-auto mt-2 d-block" src="{% static 'images/logoW.png' %}" alt="icon">
                             <div class="username mx-auto mt-4">
                                 <input type="text" class="form-control" placeholder="USERNAME" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
@@ -107,8 +107,8 @@
                                 Welcome <em>admin</em>, the Movie House Automate is now avaible for you.
                             </div>
                             <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
-                            <button type="button" class="btn btn-success" onclick="location.href='dashboard.html'" >Continue</button>
+                            <button type="button" class="btn btn-success" onclick="location.href='{% url 'customer:index_view' %}'" >Continue</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>                            
                             </div>
                         </div>
                         </div>
@@ -153,7 +153,7 @@
             
             <div class="container">
 
-                <div class="row justify-content-center">
+                <div class="row section-title justify-content-center">
                     <h2 id="sth2">summary</h2>
                 </div>
 

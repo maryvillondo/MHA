@@ -159,8 +159,6 @@ function passDate(date1,date2) {
 }
 
 
-
-
 //DVD REGISTRATION
 // Add Cast:
 // Create a new list item (cast) when clicking on the "Add" button
@@ -249,10 +247,6 @@ var loadImgPreviewDvdReg3 = function(event) {
 };
 
 
-
-
-
-
 //CUSTOMER REGISTRATION
 // Image Preview:
 // Image preview customer registration
@@ -264,15 +258,6 @@ var loadImgPreviewCustReg = function(event) {
   };
   readerImgPreviewCustReg.readAsDataURL(event.target.files[0]);
 };
-
-
-
-
-
-
-
-
-
 
 $(document).ready(function() {
   //DASHBOARD
@@ -350,9 +335,6 @@ $(document).ready(function() {
     uiLibrary: 'bootstrap4',
     format: 'yyyy-mm-dd'
   });
-
-
-
 
 
   //CUSTOMER REGISTRATION
