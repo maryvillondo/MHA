@@ -74,7 +74,7 @@
 							<div class="custom-file">
 								<label class="btn btn-default up-img"> Upload Image
 									<!-- loadImgPreviewCustReg() is for loading image preview upon uploading -->
-									<input type="file" class="custom-file-input  form-input" id="imgUploadCustReg" name="customer_picture" accept="image/*" onchange="loadImgPreviewCustReg(event)" required>
+									<input type="file" class="custom-file-input form-input" id="imgUploadCustReg" name="customer_picture" accept="image/*" onchange="loadImgPreviewCustReg(event)" required>
 								</label>
 							</div>
 						</div>
@@ -85,7 +85,7 @@
 								<label for="fullName" class="form-label">Full Name*</label>
 								<div class="form-row name" id="fullName">
 									<div class="col">
-										<input type="text" class="form-control form-input is-valid" name="firstname" placeholder="First name" required minlength="1" maxlength="100">
+										<input type="text" class="form-control form-input" name="firstname" placeholder="First name" required minlength="1" maxlength="100">
 										<div class="invalid-feedback">
 								          Please input correct format for first name 
 								        </div>
@@ -94,7 +94,7 @@
 										<input type="text" class="form-control form-input" name="middlename" placeholder="Middle name" minlength="1" maxlength="100">
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input is-valid" name="lastname" placeholder="Last name" required minlength="1" maxlength="100">
+										<input type="text" class="form-control form-input" name="lastname" placeholder="Last name" required minlength="1" maxlength="100">
 										<div class="invalid-feedback">
 								          Please input correct format for last name 
 								        </div>
@@ -108,37 +108,37 @@
 								<label for="address" class="form-label">Address*</label>
 								<div class="form-row" id="address">
 									<div class="col">
-										<input type="text" class="form-control form-input is-valid" name="astreet" placeholder="Street" required minlength="1" maxlength="45">
+										<input type="text" class="form-control form-input" name="astreet" placeholder="Street" required minlength="1" maxlength="45">
 										<div class="invalid-feedback">
 								          Please input correct format for Street
 								        </div>
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input is-valid" name="abarangay" placeholder="Barangay or Town" required minlength="1" maxlength="45">
+										<input type="text" class="form-control form-input" name="abarangay" placeholder="Barangay or Town" required minlength="1" maxlength="45">
 										<div class="invalid-feedback">
 								          Please input correct format for Barangay
 								        </div>
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input is-valid" name="acity" placeholder="City" required minlength="1" maxlength="45">
+										<input type="text" class="form-control form-input" name="acity" placeholder="City" required minlength="1" maxlength="45">
 										<div class="invalid-feedback">
 								          Please input correct format for City
 								        </div>
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input is-valid" name="aprovince" placeholder="Province" required  minlength="1" maxlength="45">
+										<input type="text" class="form-control form-input" name="aprovince" placeholder="Province" required  minlength="1" maxlength="45">
 										<div class="invalid-feedback">
 								          Please input correct format for Province
 								        </div>
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input is-valid" name="azip_code" placeholder="Zip" required minlength="4" maxlength="10">
+										<input type="text" class="form-control form-input " name="azip_code" placeholder="Zip" required minlength="4" maxlength="10">
 										<div class="invalid-feedback">
 								          Please input correct format for Zip Code
 								        </div>
 									</div>
 									<div class="col">
-										<input type="text" class="form-control form-input is-valid" name="acountry" placeholder="Country" required minlength="4" maxlength="40">
+										<input type="text" class="form-control form-input" name="acountry" placeholder="Country" required minlength="4" maxlength="40">
 										<div class="invalid-feedback">
 								          Please input correct format for Country
 								        </div>
@@ -212,7 +212,7 @@
 						<div class="row">
 							<div class="col">
 								<button type="submit" class="btn btn-primary btn-register">REGISTER</button>
-								<button type="button" class="btn mt-2 text-white shadow-none" id="btn-cancel" onclick="location.href='{% url 'customer:index_view' %}'">CANCEL</button>
+								<button type="button" class="btn mt-2 text-white shadow-none" id="btn-cancel" onclick="location.href='{% url 'dashboard:index_view' %}'">CANCEL</button>
 						</div>
 					</div>
 				</div>

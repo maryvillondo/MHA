@@ -9,7 +9,7 @@ from .models import *
 # Create your views here.Arrange in alphabetical order
 class CustomerIndexView(View):
     def get(self, request):
-        qs_customer = Customer.objects.all();
+        qs_customer = Customer.objects.all()
         print(qs_customer)
         context = {
             'customers' : qs_customer
@@ -102,11 +102,6 @@ class CustomerRegView(View):
             print(form.errors)
             return HttpResponse('not valid')
 
-
-class CustomerLandingView(View):
-    def get(self, request):
-        print('get')
-        return render(request, 'LandingPage.html')
 
 class CustomerConfirmationView(View):
     def get(self,request):
