@@ -356,7 +356,7 @@
           <input type="text" id="max-date-dvd" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="508.5px">
         </div>
         <div class="row">
-          <div class="col-sm-12" style="font-size: 7px;"><br></div>
+          <div class="col-xl-12" style="font-size: 7px;"><br></div>
         </div>
           <table id="dvdReportSummary" class="table table-hover text-center mt-5">
             <caption> DVD Report Summary</caption>
@@ -369,7 +369,7 @@
                 <th scope="col">Release Date</th>
                 <th scope="col">Price</th>
                 <th scope="col">No. of Items</th>
-                <th scope="col"></th>
+                <th scope="col" style="width: 6rem;"></th>
               </tr>
             </thead>
             <tbody>
@@ -382,7 +382,7 @@
                 <td>{{dvd.release_date}}</td>
                 <td>{{dvd.price}}</td>
                 <td>{{dvd.quantity}}</td>
-                <td class="d-inline-block">
+                <td class="d-inline-block" style="width: 6rem;">
                   <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dvds-modal-{{dvd.id}}"><i class="fas fa-eye fa-1x"></i></button>
                   <button type="button" class="btn btn-danger" id="btnDelete" data-toggle="modal" data-target="#dvd-delete-modal-{{dvd.id}}" onclick=""><i class="far fa-trash-alt fa-1x "></i></button>
                 </td>                      
