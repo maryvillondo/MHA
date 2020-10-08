@@ -9,49 +9,35 @@ function sorhSignIn() {
 
 
 function showCustomerSummary() {
-  var x = document.getElementById("customerSummary");
-  var y = document.getElementById("overallSummary");
-  var z = document.getElementById("dvdSummary");
-  if(x.style.display === "none"){
-      y.style.display = "none";
-      z.style.display = "none";
-      x.style.display = "block";
-  } else {
+  var x = document.getElementById("dvdSummary");
+  var y = document.getElementById("customerSummary");
+  if(y.style.display === "block"){
       x.style.display = "none";
-      z.style.display = "none";
       y.style.display = "block";
-  }
+  } 
 }
 
 
 function showDVDSummary() {
   var x = document.getElementById("dvdSummary");
-  var y = document.getElementById("overallSummary");
-  var z = document.getElementById("customerSummary");
-  if(x.style.display === "none"){
+  var y = document.getElementById("customerSummary");
+  if(x.style.display === "block"){
     x.style.display = "block";
     y.style.display = "none";
-    z.style.display = "none";
-  } else {
-     x.style.display = "none";
-     y.style.display = "block";
-     z.style.display = "none";
+  }else{
+    x.style.display = "block";
+    y.style.display = "none";
   }
 }
 
 function showOverallSummary() {
   var x = document.getElementById("dvdSummary");
-  var y = document.getElementById("overallSummary");
-  var z = document.getElementById("customerSummary");
-  if(x.style.display === "none"){
-    x.style.display = "none";
+  var y = document.getElementById("customerSummary");
+ 
+  if(x.style.display === "none" || y.style.display === "none"){
+    x.style.display = "block";
     y.style.display = "block";
-    z.style.display = "none";
-  } else {
-     x.style.display = "none";
-     y.style.display = "block";
-     z.style.display = "none";
-  }
+  } 
 }
 
 $(document).ready(function() {

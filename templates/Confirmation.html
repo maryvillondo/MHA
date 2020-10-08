@@ -37,7 +37,7 @@
             <br>
             <a type="button" class="btn btn-primary btn-register my-2" href="/customer/registration">Add Another</a>
             <br>
-            <a type="button" class="btn btn-primary btn-register" href="/dashboard/index">Continue</a>
+            <a type="button" class="btn btn-primary btn-register" onclick="location.href='{% url 'dashboard:index_view' %}'">Continue</a>
         </div>
     </body>
 {% endblock content %}

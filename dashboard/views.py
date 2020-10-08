@@ -70,7 +70,7 @@ class DashboardIndexView(View):
 				customer = Customer.objects.filter(person_ptr_id=cid).delete()
 				person = Person.objects.filter(id=cid).delete()
 				print('Delete Successful')
-		return HttpResponseRedirect("http://127.0.0.1:8000/customer/index")
+		return HttpResponseRedirect("http://127.0.0.1:8000/dashboard/index")
 
 class LandingView(View):
     def get(self, request):

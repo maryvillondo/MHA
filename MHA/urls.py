@@ -20,10 +20,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', include('dashboard.urls')),
+    path('', include('dashboard.urls', namespace='dashboard')),
     path('admin/', admin.site.urls),
     path('customer/', include('customer.urls', namespace='customer')),
     path('dvd/', include('dvd.urls', namespace='dvd')), 
-    path('dashboard/', include('dashboard.urls', namespace='dashboard')), 
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
