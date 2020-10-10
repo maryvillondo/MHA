@@ -7,50 +7,6 @@ from .models import *
 
 
 # Create your views here.Arrange in alphabetical order
-class CustomerIndexView(View):
-    def get(self, request):
-        qs_customer = Customer.objects.all()
-        print(qs_customer)
-        context = {
-            'customers' : qs_customer
-        }
-        return render(request,'index.html',context)
-
-    def post(self, request):
-        if request.method == 'POST':
-            if 'btnCUpdate' in request.POST:
-                print ('Update button button clicked')
-                cid = request.POST.get("customer-id")
-                fname = request.POST.get("customer-fname")
-                mname = request.POST.get("customer-mname")
-                lname = request.POST.get("customer-lname")
-                street = request.POST.get("customer-street")
-                barangay = request.POST.get("customer-barangay")
-                city = request.POST.get("customer-city")
-                province = request.POST.get("customer-province")
-                zip_code = request.POST.get("customer-zip")
-                country = request.POST.get("customer-country")
-                birthdate = request.POST.get("customer-bdate")
-                status = request.POST.get("customer-status")
-                gender = request.POST.get("customer-gender")
-                spouse_fname = request.POST.get("s-fname")
-                spouse_mname = request.POST.get("s-mname")
-                spouse_lname = request.POST.get("s-lname")
-                spouse_occupation = request.POST.get("s-occupation")
-                no_children = request.POST.get("num-children")
-                # c_picture = request.FILES.get("customer-picture")# , customer_picture = c_picture                
-                update_customer = Customer.objects.filter(person_ptr_id = cid).update(firstname = fname, middlename = mname, lastname = lname, street = street, barangay = barangay, city = city, province = province, zip_code = zip_code, country = country, birthdate = birthdate, status = status, gender = gender,spouse_fname = spouse_fname, spouse_mname = spouse_mname, spouse_lname = spouse_lname, spouse_occupation = spouse_occupation, no_children = no_children)
-                print(update_customer)
-                print('Update Successful')
-            elif 'btnCDelete' in request.POST:
-                print('Delete button clicked')
-                cid = request.POST.get("dcustomer-id")
-                customer = Customer.objects.filter(person_ptr_id=cid).delete()
-                person = Person.objects.filter(id=cid).delete()
-                print('Delete Successful')
-        return HttpResponseRedirect("http://127.0.0.1:8000/customer/index")
- 
-
 class CustomerRegView(View):
     def get(self, request):
         # print('get')

@@ -72,7 +72,7 @@
             <div class="nav-item active mr-n2">
                 <a class="nav-link" href="{% url 'dashboard:landing_view' %}">Home</a>
             </div>
-            <div class="nav-item dropdown mr-n5 ">
+            <div class="ml-2 nav-item active dropdown mr-n5 ">
               <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Summary Report
               </a>
@@ -82,8 +82,11 @@
                 <a class="dropdown-item" href="javascript:void(0);" onclick="showDVDSummary()"><i class="fas fa-film fa-1x mb-2 mr-2"></i>DVDs Summary</a>
               </div>
             </div>
-            <div class="ml-5 align-self-center mr-n5">
-                <button class="btn btn-sm btn-outline-secondary" id="btnSignOut">Welcome <em>Admin</em>!</button>
+            <div class="nav-item active mr-n4 ml-5 ">
+              <a class="nav-link" href="{% url 'orders:orders_view' %}">Orders</a>
+            </div>
+            <div class="ml-4 align-self-center mr-n5">
+                <button class="btn btn-sm btn-outline-secondary" id="btnSignOut" style="margin-left: 5px;">Welcome <em>Admin</em>!</button>
             </div>
           </div>
         </div>
@@ -95,506 +98,506 @@
   <section id="siteOptions">            
     <div class="container">
       <div class="row section-title justify-content-center mt-1">
-          <h2 class="section-title-heading ">Dashboard</h2>
+          <h2 class="section-title-heading">Dashboard</h2>
       </div>
     </div>
   </section>
 
   <!--All Summary-->
-    <!--All Summary: Customers-->
-    <div class="container">
-      <section id="customerSummary" style="display: block">
-        <div class="row mt-4 d-flex justify-content-between"> 
-          <h4 class="font-weight-bold mb-2">Customer Records</h4>
-          <a class="btn btn-primary mb-2" type="button" href="{% url 'customer:reg_view' %}"><i class="fas fa-plus fa-1x"></i></a>
-          <div class="col-sm-12"></div>
-          <div class="col p-0 pb-5">
-          <div class="input-group input-daterange">
-            <div class="input-group-prepend">
-                <span class="input-group-text">From</span>
-              </div>
-            <input type="text" id="min-date" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="508.5px">
-            <div class="input-group-prepend">
-                <span class="input-group-text">To</span>
-              </div>
-            <input type="text" id="max-date" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="508.5px">
-          </div>
-          <div class="row">
-            <div class="col-sm-12" style="font-size: 7px;"><br></div>
-          </div>
-          <table id="tableCustomer" class="table table-hover text-center mt-2" >
-            <caption> Customer Report Summary</caption>
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col" data-sortable="true">CID</th>
-                <th scope="col" data-sortable="true">Date Registered</th>
-                <th scope="col" data-sortable="true">First Name</th>
-                <th scope="col" data-sortable="true">Last Name</th>
-                <th scope="col" data-sortable="true">Date of Birth</th>
-                <th scope="col" data-sortable="true">Address City</th>
-                <th scope="col" data-sortable="false"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {% for customer in customers %} 
-                <th scope="row">{{customer.id}}</th>
-                <td>{{customer.date_registered}}</td>
-                <td>{{customer.firstname}}</td>
-                <td>{{customer.lastname}}</td>
-                <td>{{customer.birthdate}}</td>
-                <td>{{customer.city}}</td>
-                <td class="d-inline-block">
-                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newModal-{{customer.id}}"><i class="fas fa-eye fa-1x"></i></button>
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{customer.id}}"><i class="far fa-trash-alt fa-1x "></i></button>
-                </td>
-              </tr>
-              <!--View and Update Modal: Customer-->
-              <div class="modal fade" id="newModal-{{customer.id}}" tabindex="-1" role="dialog" aria-labelledby="customermodal"  aria-hidden="true">
-                <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header text-center" style="background-color:#32425b">
-                      <h4 class="modal-title w-100 font-weight-bold text-white">Customer Record</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <form id="updateForm" method="post" onsubmit="passDate('datepickerBdayCustModal-{{customer.id}}','customerBdate-{{customer.id}}')">
-                    {% csrf_token %}
-                    <div class="modal-body" style="background-color:#32425b">   
-                      <input type="text" name="customer-id" value={{customer.id}} hidden>                        
-                      <div class="row">
-                        <div class="col-3">
-                          <div class="row">
-                            <div class="col">
-                              {% if customer.customer_picture %}
-                              <img src={{customer.customer_picture.url}} id="imgPreviewCustReg" class="img-prev"/>                        
-                              {% endif %} 
-                            </div>
+  <!--All Summary: Customers-->
+  <div class="container">
+    <section id="customerSummary" style="display: block">
+      <div class="row mt-4 d-flex justify-content-between"> 
+        <h4 class="font-weight-bold mb-2">Customer Records</h4>
+        <a class="btn btn-primary mb-2" type="button" href="{% url 'customer:reg_view' %}"><i class="fas fa-plus fa-1x"></i></a>
+        <div class="col-sm-12"></div>
+        <div class="col p-0 pb-5">
+        <div class="input-group input-daterange">
+          <div class="input-group-prepend">
+              <span class="input-group-text">From</span>
+            </div>
+          <input type="text" id="min-date" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="508.5px">
+          <div class="input-group-prepend">
+              <span class="input-group-text">To</span>
+            </div>
+          <input type="text" id="max-date" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="508.5px">
+        </div>
+        <div class="row">
+          <div class="col-xl-12" style="font-size: 7px;"><br></div>
+        </div>
+        <table id="tableCustomer" class="table table-hover text-center mt-2" >
+          <caption> Customer Report Summary</caption>
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" data-sortable="true">CID</th>
+              <th scope="col" data-sortable="true">Date Registered</th>
+              <th scope="col" data-sortable="true">First Name</th>
+              <th scope="col" data-sortable="true">Last Name</th>
+              <th scope="col" data-sortable="true">Date of Birth</th>
+              <th scope="col" data-sortable="true">Address City</th>
+              <th scope="col" data-sortable="false"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {% for customer in customers %} 
+              <th scope="row">{{customer.id}}</th>
+              <td>{{customer.date_registered}}</td>
+              <td>{{customer.firstname}}</td>
+              <td>{{customer.lastname}}</td>
+              <td>{{customer.birthdate}}</td>
+              <td>{{customer.city}}</td>
+              <td class="d-inline-block">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newModal-{{customer.id}}"><i class="fas fa-eye fa-1x"></i></button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{customer.id}}"><i class="far fa-trash-alt fa-1x "></i></button>
+              </td>
+            </tr>
+            <!--View and Update Modal: Customer-->
+            <div class="modal fade" id="newModal-{{customer.id}}" tabindex="-1" role="dialog" aria-labelledby="customermodal"  aria-hidden="true">
+              <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header text-center" style="background-color:#32425b">
+                    <h4 class="modal-title w-100 font-weight-bold text-white">Customer Record</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form id="updateForm" method="post" onsubmit="passDate('datepickerBdayCustModal-{{customer.id}}','customerBdate-{{customer.id}}')">
+                  {% csrf_token %}
+                  <div class="modal-body" style="background-color:#32425b">   
+                    <input type="text" name="customer-id" value={{customer.id}} hidden>                        
+                    <div class="row">
+                      <div class="col-3">
+                        <div class="row">
+                          <div class="col">
+                            {% if customer.customer_picture %}
+                            <img src={{customer.customer_picture.url}} id="imgPreviewCustReg" class="img-prev"/>                        
+                            {% endif %} 
                           </div>
-                          <div class="row">
-                            <div class="custom-file"> 
-                              <label class="btn btn-default up-img"> Upload Image
-                                <!-- loadImgPreviewCustReg() is for loading image preview upon uploading -->
-                                <input type="file" class="custom-file-input  form-input" id="imgUploadCustReg" name="customer-picture" value="{{customer.customer_picture}}" accept="image/*" onchange="loadImgPreviewCustReg(event)" >
-                              </label>                           
+                        </div>
+                        <div class="row">
+                          <div class="custom-file"> 
+                            <label class="btn btn-default up-img"> Upload Image
+                              <!-- loadImgPreviewCustReg() is for loading image preview upon uploading -->
+                              <input type="file" class="custom-file-input  form-input" id="imgUploadCustReg" name="customer-picture" value="{{customer.customer_picture}}" accept="image/*" onchange="loadImgPreviewCustReg(event)" >
+                            </label>                           
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="row">
+                          <div class="col">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <div class="form-row name" id="fullName">
+                              <div class="col">
+                                <input type="text" class="form-control form-input" placeholder="First Name" name="customer-fname" value="{{customer.firstname}}"> 
+                              </div>
+                              <div class="col">
+                                <input type="text" class="form-control form-input" placeholder="Middle Name" name="customer-mname" value="{{customer.middlename}}">
+                              </div>
+                              <div class="col">
+                                <input type="text" class="form-control form-input" placeholder="Last Name" name="customer-lname" value="{{customer.lastname}}">
+                              </div>
                             </div>
                           </div>
                         </div>
-                        <div class="col">
-                          <div class="row">
-                            <div class="col">
-                              <label for="fullName" class="form-label">Full Name</label>
-                              <div class="form-row name" id="fullName">
-                                <div class="col">
-                                  <input type="text" class="form-control form-input" placeholder="First Name" name="customer-fname" value="{{customer.firstname}}"> 
-                                </div>
-                                <div class="col">
-                                  <input type="text" class="form-control form-input" placeholder="Middle Name" name="customer-mname" value="{{customer.middlename}}">
-                                </div>
-                                <div class="col">
-                                  <input type="text" class="form-control form-input" placeholder="Last Name" name="customer-lname" value="{{customer.lastname}}">
-                                </div>
+                        <br>
+                        <div class="row">
+                          <div class="col">
+                            <label for="address" class="form-label">Address</label>
+                            <div class="form-row" id="address">
+                              <div class="col">
+                                <input type="text" class="form-control form-input" placeholder="Street" name="customer-street" value="{{customer.street}}">
+                              </div>
+                              <div class="col">
+                                <input type="text" class="form-control form-input" placeholder="Barangay" name="customer-barangay" value="{{customer.barangay}}">
+                              </div>
+                              <div class="col">
+                                <input type="text" class="form-control form-input" placeholder="City" name="customer-city" value="{{customer.city}}">
+                              </div>
+                              <div class="col">
+                                <input type="text" class="form-control form-input" placeholder="Province" name="customer-province" value="{{customer.province}}">
+                              </div>
+                              <div class="col">
+                                <input type="text" class="form-control form-input" placeholder="Zip" name="customer-zip" value="{{customer.zip_code}}">
+                              </div>
+                              <div class="col">
+                                <input type="text" class="form-control form-input" placeholder="Country" name="customer-country" value="{{customer.country}}">
                               </div>
                             </div>
                           </div>
-                          <br>
-                          <div class="row">
-                            <div class="col">
-                              <label for="address" class="form-label">Address</label>
-                              <div class="form-row" id="address">
-                                <div class="col">
-                                  <input type="text" class="form-control form-input" placeholder="Street" name="customer-street" value="{{customer.street}}">
-                                </div>
-                                <div class="col">
-                                  <input type="text" class="form-control form-input" placeholder="Barangay" name="customer-barangay" value="{{customer.barangay}}">
-                                </div>
-                                <div class="col">
-                                  <input type="text" class="form-control form-input" placeholder="City" name="customer-city" value="{{customer.city}}">
-                                </div>
-                                <div class="col">
-                                  <input type="text" class="form-control form-input" placeholder="Province" name="customer-province" value="{{customer.province}}">
-                                </div>
-                                <div class="col">
-                                  <input type="text" class="form-control form-input" placeholder="Zip" name="customer-zip" value="{{customer.zip_code}}">
-                                </div>
-                                <div class="col">
-                                  <input type="text" class="form-control form-input" placeholder="Country" name="customer-country" value="{{customer.country}}">
-                                </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col">
+                            <label for="datepickerBdayCustModal-{{customer.id}}" class="form-label">Birthdate</label>
+                            <input type="date" name="customer-bdate" class="form-input" width="225" placeholder="yyyy/mm/dd" value={{customer.birthdate|date:"Y-m-d"}}>
+                            <!-- id="datepickerBdayCustModal-{{customer.id}}"<input name="customer-bdate" id="customerBdate-{{customer.id}}" hidden> 
+                            <script>
+                                $('#datepickerBdayCustModal-{{customer.id}}').datepicker({
+                                  uiLibrary: 'bootstrap4'
+                                  // format: 'yyyy-mm-dd'
+                                });
+                            </script>  -->                           
+                          </div>   
+                          <div class="col">
+                            <label for="status" class="form-label">Status</label>
+                            <div class="form-group">
+                              <select class="form-control  form-input" id="status" name="customer-status">
+                                <option disabled selected value="">Select</option>
+                                <option value="single" {% if 'single' == customer.status %}selected{% endif %}>Single</option>
+                                <option value="married" {% if 'married' == customer.status %}selected{% endif %}>Married</option>
+                                <option value="widow/er" {% if 'widow/er' == customer.status %}selected{% endif %}>Widow/er</option>
+                                <option value="divorced" {% if 'divorced' == customer.status %}selected{% endif %}>Divorced</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <label for="gender" class="form-label">Gender</label>
+                            <div class="form-group" id="gender">
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="customer-gender" id="inlineRadio1" value="Male" {% if 'Male' == customer.gender %}checked{% endif %}>
+                                <label class="form-check-label form-label" for="inlineRadio1">Male</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="customer-gender" id="inlineRadio2" value="Female" {% if 'Female' == customer.gender %}checked{% endif %} >
+                                <label class="form-check-label form-label" for="inlineRadio2">Female</label>
                               </div>
                             </div>
                           </div>
-                          <br>
-                          <div class="row">
-                            <div class="col">
-                              <label for="datepickerBdayCustModal-{{customer.id}}" class="form-label">Birthdate</label>
-                              <input type="date" name="customer-bdate" class="form-input" width="225" placeholder="yyyy/mm/dd" value={{customer.birthdate|date:"Y-m-d"}}>
-                              <!-- id="datepickerBdayCustModal-{{customer.id}}"<input name="customer-bdate" id="customerBdate-{{customer.id}}" hidden> 
-                              <script>
-                                  $('#datepickerBdayCustModal-{{customer.id}}').datepicker({
-                                    uiLibrary: 'bootstrap4'
-                                    // format: 'yyyy-mm-dd'
-                                  });
-                              </script>  -->                           
-                            </div>   
-                            <div class="col">
-                              <label for="status" class="form-label">Status</label>
-                              <div class="form-group">
-                                <select class="form-control  form-input" id="status" name="customer-status">
-                                  <option disabled selected value="">Select</option>
-                                  <option value="single" {% if 'single' == customer.status %}selected{% endif %}>Single</option>
-                                  <option value="married" {% if 'married' == customer.status %}selected{% endif %}>Married</option>
-                                  <option value="widow/er" {% if 'widow/er' == customer.status %}selected{% endif %}>Widow/er</option>
-                                  <option value="divorced" {% if 'divorced' == customer.status %}selected{% endif %}>Divorced</option>
-                                </select>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col">
+                            <label for="spouseFullName" class="form-label">Spouse's Full Name</label>
+                            <div class="form-row name" id="spouseFullName">
+                              <div class="col">
+                                <input type="text" class="form-control form-input" placeholder="First Name" name="s-fname" value="{{customer.spouse_fname}}">
                               </div>
-                            </div>
-                            <div class="col">
-                              <label for="gender" class="form-label">Gender</label>
-                              <div class="form-group" id="gender">
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="customer-gender" id="inlineRadio1" value="Male" {% if 'Male' == customer.gender %}checked{% endif %}>
-                                  <label class="form-check-label form-label" for="inlineRadio1">Male</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="customer-gender" id="inlineRadio2" value="Female" {% if 'Female' == customer.gender %}checked{% endif %} >
-                                  <label class="form-check-label form-label" for="inlineRadio2">Female</label>
-                                </div>
+                              <div class="col">
+                                <input type="text" class="form-control form-input" placeholder="Middle Name" name="s-mname" value="{{customer.spouse_mname}}">
+                              </div>
+                              <div class="col">
+                                <input type="text" class="form-control form-input" placeholder="Last Name" name="s-lname" value="{{customer.spouse_lname}}">
                               </div>
                             </div>
                           </div>
-                          <br>
-                          <div class="row">
-                            <div class="col">
-                              <label for="spouseFullName" class="form-label">Spouse's Full Name</label>
-                              <div class="form-row name" id="spouseFullName">
-                                <div class="col">
-                                  <input type="text" class="form-control form-input" placeholder="First Name" name="s-fname" value="{{customer.spouse_fname}}">
-                                </div>
-                                <div class="col">
-                                  <input type="text" class="form-control form-input" placeholder="Middle Name" name="s-mname" value="{{customer.spouse_mname}}">
-                                </div>
-                                <div class="col">
-                                  <input type="text" class="form-control form-input" placeholder="Last Name" name="s-lname" value="{{customer.spouse_lname}}">
-                                </div>
-                              </div>
-                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col">
+                            <input type="text" class="form-control  form-input" placeholder="Spouse's Occupation" name="s-occupation" value="{{customer.spouse_occupation}}">
                           </div>
-                          <br>
-                          <div class="row">
-                            <div class="col">
-                              <input type="text" class="form-control  form-input" placeholder="Spouse's Occupation" name="s-occupation" value="{{customer.spouse_occupation}}">
-                            </div>
+                        </div>
+                        <br>
+                        
+                        <div class="row">
+                          <div class="col form-group">
+                            <label for="numberOfChildren" class="form-label">Number of Children</label>
+                            <input type="number" min="0" class="form-control  form-input" placeholder="0" name="num-children" value={{customer.no_children}}>
                           </div>
-                          <br>
-                          
-                          <div class="row">
-                            <div class="col form-group">
-                              <label for="numberOfChildren" class="form-label">Number of Children</label>
-                              <input type="number" min="0" class="form-control  form-input" placeholder="0" name="num-children" value={{customer.no_children}}>
-                            </div>
-                          </div>
-                          <br>
-                          <div class="row">
-                            <div class="col">
-                              <button class="btn btn-primary btn-register" type="submit" id="btnUpdate" name="btnCUpdate">UPDATE</button>
-                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col">
+                            <button class="btn btn-primary btn-register" type="submit" id="btnUpdate" name="btnCUpdate">UPDATE</button>
                           </div>
                         </div>
                       </div>
                     </div>
-                    </form>        
+                  </div>
+                  </form>        
+                </div>
+              </div>
+            </div>
+
+            <!--Delete Modal -->
+            <div class="modal fade" id="deleteModal-{{customer.id}}" tabindex="-1" role="dialog" aria-labelledby="deletemodal" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Confrim Deletion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form id="deleteForm" method="post">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                      <input type="text" name="dcustomer-id" value="{{customer.id}}" hidden>
+                      Are you sure you want to delete record?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-danger" id="btnCDelete" name="btnCDelete">CONFIRM</button>
+                      <button type="button" class="btn btn-info " data-dismiss="modal">CANCEL</button>
+                    </div> 
+                  </form>
+                </div>
+              </div>
+            </div>  
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+  <!--All Summary: DVDs-->
+  <div class="container">
+    <section id="dvdSummary" style="display: block">
+      <div class="row mt-5 d-flex justify-content-between"> 
+        <h4 class="font-weight-bold mb-2">DVD Records</h4>
+        <a href="{% url 'dvd:dvd_registration_view' %}"><button class="btn btn-primary mb-2 mt-n2"><i class="fas fa-plus fa-1x"></i></button></a>
+        <div class="col-sm-12"></div>
+        <div class="col p-0 pb-5">
+        <div class="input-group input-daterange">
+          <div class="input-group-prepend">
+            <span class="input-group-text">From</span>
+            </div>
+          <input type="text" id="min-date-dvd" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="508.5px">
+          <div class="input-group-prepend">
+            <span class="input-group-text">To</span>
+          </div>
+          <input type="text" id="max-date-dvd" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="508.5px">
+        </div>
+        <div class="row">
+          <div class="col-xl-12" style="font-size: 7px;"><br></div>
+        </div>
+          <table id="dvdReportSummary" class="table table-hover text-center mt-5">
+            <caption> DVD Report Summary</caption>
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">SKU</th>
+                <th scope="col">Date Registered</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Title</th>
+                <th scope="col">Release Date</th>
+                <th scope="col">Price</th>
+                <th scope="col">No. of Items</th>
+                <th scope="col" style="width: 6rem;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for dvd in dvds %}    
+              <tr>
+                <td>{{dvd.id}}</th>
+                <td>{{dvd.date_registered}}</td>
+                <td>{{dvd.genre}}</td>
+                <td>{{dvd.title}}</td>
+                <td>{{dvd.release_date}}</td>
+                <td>{{dvd.price}}</td>
+                <td>{{dvd.quantity}}</td>
+                <td class="d-inline-block" style="width: 6rem;">
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dvds-modal-{{dvd.id}}"><i class="fas fa-eye fa-1x"></i></button>
+                  <button type="button" class="btn btn-danger" id="btnDelete" data-toggle="modal" data-target="#dvd-delete-modal-{{dvd.id}}" onclick=""><i class="far fa-trash-alt fa-1x "></i></button>
+                </td>                      
+              </tr>
+              <!--View and Update Modal: DVDs-->
+              <div class="modal fade" id="dvds-modal-{{dvd.id}}" tabindex="-1" role="dialog" aria-labelledby="dvdmodal"  aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                  <div class="modal-content register">
+                    <div class="modal-header">
+                      <h4 class="modal-title w-100 font-weight-bold text-white">DVD RECORD</h4>
+                      <button type="button" class="btn addBtn" data-dismiss="modal">Close</button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="POST" onsubmit="passDate('datepickerRelDateDvdModal-{{dvd.id}}','releaseDate-{{dvd.id}}')">
+                        <div class="row">
+                          <div class="col">
+                            <label for="movieTitle-{{dvd.id}}" class="form-label">Movie Title</label>
+                            <input required type="text" class="form-control  form-input" id="movieTitle-{{dvd.id}}" placeholder="Title" value="{{dvd.title}}"  name="title" minlength="1" maxlength="150">
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col">
+                            <div class="row">
+                              <div class="col">
+                                <label for="datepickerRelDateDvdModal-{{dvd.id}}" class="form-label">Release Date</label>
+                                <input id="datepickerRelDateDvdModal-{{dvd.id}}" class="form-input datepickerRelDateDvdModal" width="505" placeholder="yyyy-mm-dd" value={{dvd.release_date|date:"Y-m-d"}}> 
+                                <input name="release_date" id="releaseDate-{{dvd.id}}" hidden> 
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col form-group">
+                                <br>
+                                <div class="input-group">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text prepend-txt">₱</span>
+                                  </div>
+                                  <input required type="number" min="0.00" step="0.01"  class="form-control  form-input" id="price-{{dvd.id}}" placeholder="0.00" value={{dvd.price}} name="price">
+                                </div>
+                              </div>
+                              <div class="col form-group">
+                                <br>
+                                <div class="input-group">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text prepend-txt">Quantity</span>
+                                  </div>
+                                  <input required type="number" min="0" class="form-control  form-input" id="quantity-{{dvd.id}}" placeholder="0" value={{dvd.quantity}}  name="quantity">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <label for="movieGenre-{{dvd.id}}" class="form-label">Genre</label>
+                            <div class="form-group">
+                              <select multiple class="form-control form-input" id="movieGenre-{{dvd.id}}"  name="genre">
+                                <option disabled value="">Select</option>
+                                <option value="action" {% if 'action' in dvd.genre %} selected {% endif %}>Action</option>
+                                <option value="adventure" {% if 'adventure' in dvd.genre %} selected {% endif %}>Adventure</option>
+                                <option value="animation" {% if 'animation' in dvd.genre %} selected {% endif %}>Animation</option>
+                                <option value="biographical" {% if 'biographical' in dvd.genre %} selected {% endif %}>Biographical</option>
+                                <option value="comedy" {% if 'comedy' in dvd.genre %} selected {% endif %}>Comedy</option>
+                                <option value="crime" {% if 'crime' in dvd.genre %} selected {% endif %}>Crime</option>
+                                <option value="documentary" {% if 'documentary' in dvd.genre %} selected {% endif %}>Documentary</option>
+                                <option value="drama" {% if 'drama' in dvd.genre %} selected {% endif %}>Drama</option>
+                                <option value="epic" {% if 'epic' in dvd.genre %} selected {% endif %}>Epic</option>
+                                <option value="fantasy" {% if 'fantasy' in dvd.genre %} selected {% endif %}>Fantasy</option>
+                                <option value="fiction" {% if 'fiction' in dvd.genre %} selected {% endif %}>Fiction</option>
+                                <option value="horror" {% if 'horror' in dvd.genre %} selected {% endif %}>Horror</option>
+                                <option value="historical" {% if 'historical' in dvd.genre %} selected {% endif %}>Historical</option>
+                                <option value="musical" {% if 'musical' in dvd.genre %} selected {% endif %}>Musical</option>
+                                <option value="mystery" {% if 'mystery' in dvd.genre %} selected {% endif %}>Mystery</option>
+                                <option value="noir" {% if 'noir' in dvd.genre %} selected {% endif %}>Noir</option>
+                                <option value="psychological" {% if 'psychological' in dvd.genre %} selected {% endif %}>Psychological</option>
+                                <option value="romance" {% if 'romance' in dvd.genre %} selected {% endif %}>Romance</option>
+                                <option value="satire" {% if 'satire' in dvd.genre %} selected {% endif %}>Satire</option>
+                                <option value="scifi" {% if 'scifi' in dvd.genre %} selected {% endif %}>Science Fiction</option>
+                                <option value="thriller" {% if 'thriller' in dvd.genre %} selected {% endif %}>Thriller</option>
+                                <option value="western" {% if 'western' in dvd.genre %} selected {% endif %}>Western</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <label for="directorFullName-{{dvd.id}}" class="form-label">Director</label>
+                            <div class="form-row name" id="directorFullName-{{dvd.id}}">
+                              <div class="col">
+                                <input type="text" id="directorFirstName-{{dvd.id}}" class="form-control form-input" placeholder="First name" value="{{dvd.director_firstname}}" name="director_firstname" minlength="1" maxlength="150">
+                              </div>
+                              <div class="col">
+                                <input type="text" id="directorLastName-{{dvd.id}}" class="form-control form-input" placeholder="Last name" value="{{dvd.director_lastname}}" name="director_lastname" minlength="1" maxlength="150">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col">
+                            <label for="addCast" class="form-label">Add Cast</label>
+                            <div class="input-group" id="addCast">
+                              <input type="text" class="form-control form-input" id="castInput-{{dvd.id}}" placeholder="Cast's Full Name">
+                              <div class="input-group-append">
+                                <!-- newElement() is for creating and adding cast to the cast list -->
+                                <button onclick="newElementModal('castInput-{{dvd.id}}','castList-{{dvd.id}}','myUL-{{dvd.id}}')" class="btn btn-default addBtn" type="button">Add</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col">
+                            <ul id="myUL-{{dvd.id}}">
+                            </ul>
+                            <input type="text" id="castList-{{dvd.id}}" name="cast" value="{{dvd.cast}}"hidden>
+                                  0
+                          </div>
+                        </div>
+                        <br>
+                        <label for="addImg" class="form-label">Add Images</label>
+                        <div class="row add-img" id="addImg">
+                          <div class="col-1"></div>
+                          <div class="col">
+                            <div class="row">
+                              <div class="col">
+                                <img id="imgPreviewDvdModal1-{{dvd.id}}" class="img-prev" {% if dvd.dvd_cover1.url != '' %} src={{dvd.dvd_cover1.url}} {% endif %}/>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="custom-file">
+                                <label class="btn btn-default up-img"> Upload Image
+                                  <!-- loadImgPreviewDVDModal1() is for loading 1st image preview upon uploading -->
+                                  <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal1-{{dvd.id}}" accept="image/*" onchange="loadImgPreviewDvdModal1(event,'imgPreviewDvdModal1-{{dvd.id}}')" hidden name="dvd_cover1">
+                                </label>
+                              </div>
+                            </div>  
+                          </div>
+                          <div class="col">
+                            <div class="row">
+                              <div class="col">
+                                <img id="imgPreviewDvdModal2-{{dvd.id}}" class="img-prev" {% if dvd.dvd_cover2.url != '' %} src={{dvd.dvd_cover2.url}} {% endif %}/>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="custom-file">
+                                <label class="btn btn-default up-img"> Upload Image
+                                  <!-- loadImgPreviewDVDModal2() is for loading 2nd image preview upon uploading -->
+                                  <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal2-{{dvd.id}}" accept="image/*" onchange="loadImgPreviewDvdModal2(event,'imgPreviewDvdModal2-{{dvd.id}}')" hidden name="dvd_cover2">
+                                </label>
+                              </div>
+                            </div>  
+                          </div>
+                          <div class="col">
+                            <div class="row">
+                              <div class="col">
+                                <img id="imgPreviewDvdModal3-{{dvd.id}}" class="img-prev" {% if dvd.dvd_cover3.url != '' %} src={{dvd.dvd_cover3.url}} {% endif %}/>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="custom-file">
+                                <label class="btn btn-default up-img"> Upload Image
+                                  <!-- loadImgPreviewDVDModal3() is for loading 3rd image preview upon uploading -->
+                                  <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal3-{{dvd.id}}" accept="image/*" onchange="loadImgPreviewDvdModal3(event,'imgPreviewDvdModal3-{{dvd.id}}')" hidden name="dvd_cover3">
+                                </label>
+                              </div>
+                            </div>  
+                          </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="row">
+                          <div class="col">
+                            <button class="btn btn-primary btn-register" type="submit" name="btnUpdate">UPDATE</button>
+                          </div>
+                        </div>
+                      </form>  
+                    </div>          
                   </div>
                 </div>
               </div>
-
+              <script>
+                updateCastListModal('castList-{{dvd.id}}','myUL-{{dvd.id}}');
+              </script>
               <!--Delete Modal -->
-              <div class="modal fade" id="deleteModal-{{customer.id}}" tabindex="-1" role="dialog" aria-labelledby="deletemodal" aria-hidden="true">
+              <div class="modal fade" id="dvd-delete-modal-{{dvd.id}}" tabindex="-1" role="dialog" aria-labelledby="deletemodal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalCenterTitle">Confrim Deletion</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
                     </div>
-                    <form id="deleteForm" method="post">
-                      {% csrf_token %}
+                    <form method="POST">
+                      {% csrf_token %} 
                       <div class="modal-body">
-                        <input type="text" name="dcustomer-id" value="{{customer.id}}" hidden>
-                        Are you sure you want to delete record?
+                        <input type="text" name="sku" value = {{dvd.id}} hidden>
+                        Do you want to delete record?
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger" id="btnCDelete" name="btnCDelete">CONFIRM</button>
-                        <button type="button" class="btn btn-info " data-dismiss="modal">CANCEL</button>
-                      </div> 
+                        <button type="button" class="btn btn-info" data-dismiss="modal">NO</button>
+                        <button type="submit" class="btn btn-danger" name="btnDelete">YES</button>
+                      </div>
                     </form>
                   </div>
                 </div>
-              </div>  
+              </div>
               {% endfor %}
             </tbody>
-          </table>
+            </table>
+          </div>  
         </div>
-      </section>
-    </div>
-    <!--All Summary: DVDs-->
-    <div class="container">
-      <section id="dvdSummary" style="display: block">
-        <div class="row mt-5 d-flex justify-content-between"> 
-          <h4 class="font-weight-bold mb-2">DVD Records</h4>
-          <a href="{% url 'dvd:dvd_registration_view' %}"><button class="btn btn-primary mb-2 mt-n2"><i class="fas fa-plus fa-1x"></i></button></a>
-          <div class="col-sm-12"></div>
-          <div class="col p-0 pb-5">
-          <div class="input-group input-daterange">
-            <div class="input-group-prepend">
-              <span class="input-group-text">From</span>
-              </div>
-            <input type="text" id="min-date-dvd" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="508.5px">
-            <div class="input-group-prepend">
-              <span class="input-group-text">To</span>
-            </div>
-            <input type="text" id="max-date-dvd" class="form-control date-range-filter" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" width="508.5px">
-          </div>
-          <div class="row">
-            <div class="col-xl-12" style="font-size: 7px;"><br></div>
-          </div>
-            <table id="dvdReportSummary" class="table table-hover text-center mt-5">
-              <caption> DVD Report Summary</caption>
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col">SKU</th>
-                  <th scope="col">Date Registered</th>
-                  <th scope="col">Genre</th>
-                  <th scope="col">Title</th>
-                  <th scope="col">Release Date</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">No. of Items</th>
-                  <th scope="col" style="width: 6rem;"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for dvd in dvds %}    
-                <tr>
-                  <td>{{dvd.id}}</th>
-                  <td>{{dvd.date_registered}}</td>
-                  <td>{{dvd.genre}}</td>
-                  <td>{{dvd.title}}</td>
-                  <td>{{dvd.release_date}}</td>
-                  <td>{{dvd.price}}</td>
-                  <td>{{dvd.quantity}}</td>
-                  <td class="d-inline-block" style="width: 6rem;">
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dvds-modal-{{dvd.id}}"><i class="fas fa-eye fa-1x"></i></button>
-                    <button type="button" class="btn btn-danger" id="btnDelete" data-toggle="modal" data-target="#dvd-delete-modal-{{dvd.id}}" onclick=""><i class="far fa-trash-alt fa-1x "></i></button>
-                  </td>                      
-                </tr>
-                <!--View and Update Modal: DVDs-->
-                <div class="modal fade" id="dvds-modal-{{dvd.id}}" tabindex="-1" role="dialog" aria-labelledby="dvdmodal"  aria-hidden="true">
-                  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-                    <div class="modal-content register">
-                      <div class="modal-header">
-                        <h4 class="modal-title w-100 font-weight-bold text-white">DVD RECORD</h4>
-                        <button type="button" class="btn addBtn" data-dismiss="modal">Close</button>
-                      </div>
-                      <div class="modal-body">
-                        <form method="POST" onsubmit="passDate('datepickerRelDateDvdModal-{{dvd.id}}','releaseDate-{{dvd.id}}')">
-                          <div class="row">
-                            <div class="col">
-                              <label for="movieTitle-{{dvd.id}}" class="form-label">Movie Title</label>
-                              <input required type="text" class="form-control  form-input" id="movieTitle-{{dvd.id}}" placeholder="Title" value={{dvd.title}}  name="title" minlength="1" maxlength="150">
-                            </div>
-                          </div>
-                          <br>
-                          <div class="row">
-                            <div class="col">
-                              <div class="row">
-                                <div class="col">
-                                  <label for="datepickerRelDateDvdModal-{{dvd.id}}" class="form-label">Release Date</label>
-                                  <input id="datepickerRelDateDvdModal-{{dvd.id}}" class="form-input datepickerRelDateDvdModal" width="505" placeholder="yyyy-mm-dd" value={{dvd.release_date|date:"Y-m-d"}}> 
-                                  <input name="release_date" id="releaseDate-{{dvd.id}}" hidden> 
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col form-group">
-                                  <br>
-                                  <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text prepend-txt">₱</span>
-                                    </div>
-                                    <input required type="number" min="0.00" step="0.01"  class="form-control  form-input" id="price-{{dvd.id}}" placeholder="0.00" value={{dvd.price}} name="price">
-                                  </div>
-                                </div>
-                                <div class="col form-group">
-                                  <br>
-                                  <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text prepend-txt">Quantity</span>
-                                    </div>
-                                    <input required type="number" min="0" class="form-control  form-input" id="quantity-{{dvd.id}}" placeholder="0" value={{dvd.quantity}}  name="quantity">
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col">
-                              <label for="movieGenre-{{dvd.id}}" class="form-label">Genre</label>
-                              <div class="form-group">
-                                <select multiple class="form-control form-input" id="movieGenre-{{dvd.id}}"  name="genre">
-                                  <option disabled value="">Select</option>
-                                  <option value="action" {% if 'action' in dvd.genre %} selected {% endif %}>Action</option>
-                                  <option value="adventure" {% if 'adventure' in dvd.genre %} selected {% endif %}>Adventure</option>
-                                  <option value="animation" {% if 'animation' in dvd.genre %} selected {% endif %}>Animation</option>
-                                  <option value="biographical" {% if 'biographical' in dvd.genre %} selected {% endif %}>Biographical</option>
-                                  <option value="comedy" {% if 'comedy' in dvd.genre %} selected {% endif %}>Comedy</option>
-                                  <option value="crime" {% if 'crime' in dvd.genre %} selected {% endif %}>Crime</option>
-                                  <option value="documentary" {% if 'documentary' in dvd.genre %} selected {% endif %}>Documentary</option>
-                                  <option value="drama" {% if 'drama' in dvd.genre %} selected {% endif %}>Drama</option>
-                                  <option value="epic" {% if 'epic' in dvd.genre %} selected {% endif %}>Epic</option>
-                                  <option value="fantasy" {% if 'fantasy' in dvd.genre %} selected {% endif %}>Fantasy</option>
-                                  <option value="fiction" {% if 'fiction' in dvd.genre %} selected {% endif %}>Fiction</option>
-                                  <option value="horror" {% if 'horror' in dvd.genre %} selected {% endif %}>Horror</option>
-                                  <option value="historical" {% if 'historical' in dvd.genre %} selected {% endif %}>Historical</option>
-                                  <option value="musical" {% if 'musical' in dvd.genre %} selected {% endif %}>Musical</option>
-                                  <option value="mystery" {% if 'mystery' in dvd.genre %} selected {% endif %}>Mystery</option>
-                                  <option value="noir" {% if 'noir' in dvd.genre %} selected {% endif %}>Noir</option>
-                                  <option value="psychological" {% if 'psychological' in dvd.genre %} selected {% endif %}>Psychological</option>
-                                  <option value="romance" {% if 'romance' in dvd.genre %} selected {% endif %}>Romance</option>
-                                  <option value="satire" {% if 'satire' in dvd.genre %} selected {% endif %}>Satire</option>
-                                  <option value="scifi" {% if 'scifi' in dvd.genre %} selected {% endif %}>Science Fiction</option>
-                                  <option value="thriller" {% if 'thriller' in dvd.genre %} selected {% endif %}>Thriller</option>
-                                  <option value="western" {% if 'western' in dvd.genre %} selected {% endif %}>Western</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col">
-                              <label for="directorFullName-{{dvd.id}}" class="form-label">Director</label>
-                              <div class="form-row name" id="directorFullName-{{dvd.id}}">
-                                <div class="col">
-                                  <input type="text" id="directorFirstName-{{dvd.id}}" class="form-control form-input" placeholder="First name" value={{dvd.director_firstname}} name="director_firstname" minlength="1" maxlength="150">
-                                </div>
-                                <div class="col">
-                                  <input type="text" id="directorLastName-{{dvd.id}}" class="form-control form-input" placeholder="Last name" value={{dvd.director_lastname}} name="director_lastname" minlength="1" maxlength="150">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <br>
-                          <div class="row">
-                            <div class="col">
-                              <label for="addCast" class="form-label">Add Cast</label>
-                              <div class="input-group" id="addCast">
-                                <input type="text" class="form-control form-input" id="castInput-{{dvd.id}}" placeholder="Cast's Full Name">
-                                <div class="input-group-append">
-                                  <!-- newElement() is for creating and adding cast to the cast list -->
-                                  <button onclick="newElementModal('castInput-{{dvd.id}}','castList-{{dvd.id}}','myUL-{{dvd.id}}')" class="btn btn-default addBtn" type="button">Add</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <br>
-                          <div class="row">
-                            <div class="col">
-                              <ul id="myUL-{{dvd.id}}">
-                              </ul>
-                              <input type="text" id="castList-{{dvd.id}}" name="cast" value={{dvd.cast}} hidden>
-                                    
-                            </div>
-                          </div>
-                          <br>
-                          <label for="addImg" class="form-label">Add Images</label>
-                          <div class="row add-img" id="addImg">
-                            <div class="col-1"></div>
-                            <div class="col">
-                              <div class="row">
-                                <div class="col">
-                                  <img id="imgPreviewDvdModal1-{{dvd.id}}" class="img-prev" {% if dvd.dvd_cover1.url != '' %} src={{dvd.dvd_cover1.url}} {% endif %}/>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="custom-file">
-                                  <label class="btn btn-default up-img"> Upload Image
-                                    <!-- loadImgPreviewDVDModal1() is for loading 1st image preview upon uploading -->
-                                    <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal1-{{dvd.id}}" accept="image/*" onchange="loadImgPreviewDvdModal1(event,'imgPreviewDvdModal1-{{dvd.id}}')" hidden name="dvd_cover1">
-                                  </label>
-                                </div>
-                              </div>  
-                            </div>
-                            <div class="col">
-                              <div class="row">
-                                <div class="col">
-                                  <img id="imgPreviewDvdModal2-{{dvd.id}}" class="img-prev" {% if dvd.dvd_cover2.url != '' %} src={{dvd.dvd_cover2.url}} {% endif %}/>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="custom-file">
-                                  <label class="btn btn-default up-img"> Upload Image
-                                    <!-- loadImgPreviewDVDModal2() is for loading 2nd image preview upon uploading -->
-                                    <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal2-{{dvd.id}}" accept="image/*" onchange="loadImgPreviewDvdModal2(event,'imgPreviewDvdModal2-{{dvd.id}}')" hidden name="dvd_cover2">
-                                  </label>
-                                </div>
-                              </div>  
-                            </div>
-                            <div class="col">
-                              <div class="row">
-                                <div class="col">
-                                  <img id="imgPreviewDvdModal3-{{dvd.id}}" class="img-prev" {% if dvd.dvd_cover3.url != '' %} src={{dvd.dvd_cover3.url}} {% endif %}/>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="custom-file">
-                                  <label class="btn btn-default up-img"> Upload Image
-                                    <!-- loadImgPreviewDVDModal3() is for loading 3rd image preview upon uploading -->
-                                    <input type="file" class="custom-file-input  form-input" id="imgUploadDvdModal3-{{dvd.id}}" accept="image/*" onchange="loadImgPreviewDvdModal3(event,'imgPreviewDvdModal3-{{dvd.id}}')" hidden name="dvd_cover3">
-                                  </label>
-                                </div>
-                              </div>  
-                            </div>
-                          </div>
-                          <br>
-                          <br>
-                          <br>
-                          <div class="row">
-                            <div class="col">
-                              <button class="btn btn-primary btn-register" type="submit" name="btnUpdate">UPDATE</button>
-                            </div>
-                          </div>
-                        </form>  
-                      </div>          
-                    </div>
-                  </div>
-                </div>
-                <script>
-                  updateCastListModal('castList-{{dvd.id}}','myUL-{{dvd.id}}');
-                </script>
-                <!--Delete Modal -->
-                <div class="modal fade" id="dvd-delete-modal-{{dvd.id}}" tabindex="-1" role="dialog" aria-labelledby="deletemodal" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Confrim Deletion</h5>
-                      </div>
-                      <form method="POST">
-                        {% csrf_token %} 
-                        <div class="modal-body">
-                          <input type="text" name="sku" value = {{dvd.id}} hidden>
-                          Do you want to delete record?
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-info" data-dismiss="modal">NO</button>
-                          <button type="submit" class="btn btn-danger" name="btnDelete">YES</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-                {% endfor %}
-              </tbody>
-              </table>
-            </div>  
-          </div>
-        </div> 
-      </section>
-    </div>   
+      </div> 
+    </section>
+  </div>   
 
   {% endblock content %}

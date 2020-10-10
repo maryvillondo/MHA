@@ -41,7 +41,7 @@ $(document).ready(function() {
 
   // Initializing datatable
   var table = $('#tableCustomer').DataTable( {
-    dom:  "<'row'<'col-sm-12 col-md-1'B><'col-sm-12 col-md-4'l><'col-sm-12 col-md-5'f>>" +
+    dom:  "<'row'<'col-sm-12 col-md-1'B><'col-sm-12 col-md-5'l><'col-sm-12 col-md-6'f>>" +
           "<'row'<'col-sm-12'tr>>" +
           "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
     buttons: ['excel'],
@@ -52,6 +52,28 @@ $(document).ready(function() {
       { data: 'lastName' }, // index - 3
       { data: 'date_birth' }, // index - 4
       { data: 'address_city' }, // index - 5
+    ],
+    'columnDefs': [ {
+      'targets': [6], 
+      'orderable': false, // set orderable false for vud
+    }]
+  } );
+
+  // Initializing datatable
+  var table = $('#tableOrders').DataTable( {
+    dom:  "<'row'<'col-sm-12 col-md-1'B><'col-sm-12 col-md-5'l><'col-sm-12 col-md-6'f>>" +
+          "<'row'<'col-sm-12'tr>>" +
+          "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+    buttons: ['excel'],
+    'columns': [
+      { data: 'oid' }, // index - 0
+      { data: 'date_ordered' }, // index - 1
+      { data: 'cid' }, // index - 2
+      { data: 'cust_name' }, // index - 3
+      { data: 'sku' }, // index - 4
+      { data: 'title' }, // index - 5
+      { data: 'num_items' }, // index - 6
+      { data: 'total_price' }, // index - 7
     ],
     'columnDefs': [ {
       'targets': [6], 
