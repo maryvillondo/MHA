@@ -1,43 +1,33 @@
 function sorhSignIn() {
-    var x = document.getElementById("signin-box");
-    if(x.style.display === "block"){
-        x.style.display = "none";
-  } else {
+  var x = document.getElementById("signin-box");
+  if(x.style.display === "block"){
+    x.style.display = "none";
+  } else if (x.style.display === "none"){
     x.style.display = "block";
   }
 }
 
 
 function showCustomerSummary() {
-  var x = document.getElementById("dvdSummary");
-  var y = document.getElementById("customerSummary");
-  if(y.style.display === "block"){
-      x.style.display = "none";
-      y.style.display = "block";
-  } 
+  var dvdSummarySec = document.getElementById("dvdSummary");
+  var customerSummarySec = document.getElementById("customerSummary");
+  dvdSummarySec.style.display = 'none';
+  customerSummarySec.style.display = 'block';
 }
 
 
 function showDVDSummary() {
-  var x = document.getElementById("dvdSummary");
-  var y = document.getElementById("customerSummary");
-  if(x.style.display === "block"){
-    x.style.display = "block";
-    y.style.display = "none";
-  }else{
-    x.style.display = "block";
-    y.style.display = "none";
-  }
+  var dvdSummarySec = document.getElementById("dvdSummary");
+  var customerSummarySec = document.getElementById("customerSummary");
+  dvdSummarySec.style.display = 'block';
+  customerSummarySec.style.display = 'none';
 }
 
 function showOverallSummary() {
-  var x = document.getElementById("dvdSummary");
-  var y = document.getElementById("customerSummary");
- 
-  if(x.style.display === "none" || y.style.display === "none"){
-    x.style.display = "block";
-    y.style.display = "block";
-  } 
+  var dvdSummarySec = document.getElementById("dvdSummary");
+  var customerSummarySec = document.getElementById("customerSummary");
+  dvdSummarySec.style.display = 'block';
+  customerSummarySec.style.display = 'block';
 }
 
 $(document).ready(function() {
