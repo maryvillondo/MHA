@@ -30,6 +30,15 @@ function showOverallSummary() {
   customerSummarySec.style.display = 'block';
 }
 
+function totalPrice() {
+  var price = document.getElementById("dvd_price").value;
+  var quantity = document.getElementById("order_quantity").value;
+  var total = document.getElementById("totalprice");
+  var result = price * quantity;
+  total.value = result;
+}
+
+
 $(document).ready(function() {
   //DASHBOARD
   // Date range filter datepicker

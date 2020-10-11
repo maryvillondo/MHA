@@ -91,13 +91,17 @@
 						{% endfor %}
 					</select>
 				</div>
-				<label for="num_item" class="form-label">Number of Items*</label>
+				<label for="num_item" class="form-label">Movie Price*</label>
 				<div class="form-group">
-					<input type="number" min="0" class="form-control  form-input" id="numItems" name="numItems" placeholder="0" min="0" max="20" value="0">
+					<input type="text" min="0" class="form-control  form-input" id="dvd_price" name="price" oninput="totalPrice()">
+				</div>
+				<label for="num_item" class="form-label">Quantity*</label>
+				<div class="form-group">
+					<input type="text" min="0" class="form-control  form-input" id="order_quantity" name="Quantity" placeholder="0" oninput="totalPrice()">
 				</div>
 				<label for="totalprice" class="form-label">Total Price</label>
 				<div class="form-group">
-					<input type="number" min="0" class="form-control  form-input" id="totalprice	" name="totalprice	" placeholder="P 0.0">
+					<input id="totalprice">
 				</div>
 				<br>
 				<div class="col">
