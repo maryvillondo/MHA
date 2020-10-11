@@ -8,14 +8,14 @@ class DVD(models.Model):
 	title = models.CharField(max_length = 150)
 	director_firstname = models.CharField(max_length = 150)
 	director_lastname = models.CharField(max_length = 150)
-	release_date = models.DateField(default = datetime.now())
+	release_date = models.DateField(auto_now_add = True)
 	cast = models.CharField(max_length = 255)
 	quantity = models.IntegerField()
 	price = models.FloatField()
 	dvd_cover1 = models.ImageField(upload_to = 'dvd', null = True)
 	dvd_cover2 = models.ImageField(upload_to = 'dvd', null = True)
 	dvd_cover3 = models.ImageField(upload_to = 'dvd', null = True)
-	date_registered = models.DateField(default = datetime.now())
+	date_registered = models.DateField(auto_now_add = True)
 
 	class Meta:
 		db_table = "DVD"

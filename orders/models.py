@@ -6,9 +6,9 @@ from customer.models import Customer
 # Create your models here.
 class Order (models.Model):
 	date_ordered = models.DateField(auto_now_add = True)
-	customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, null=False, blank=False)
+	customer_id = models.CharField(max_length = 5)
 	customer_name = models.CharField(max_length = 250)
-	dvd_id = models.ForeignKey(DVD, on_delete=models.CASCADE,  null=False, blank=False)
+	dvd_id = models.CharField(max_length = 5)
 	dvd_title =  models.CharField(max_length = 150)
 	items_ordered = models.IntegerField()
 	total_price = models.FloatField()
