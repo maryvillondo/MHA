@@ -57,7 +57,7 @@
 				{% csrf_token %}
 				<label for="cid" class="form-label">Customer ID*</label>
 				<div class="form-group">
-					<select required class="form-control  form-input" name="cstatus" id="status">
+					<select required class="form-control  form-input" name="custID" id="status">
 						<option disabled selected value="">Select</option>
 						{% for customer in customers %}
 						<option value="{{ customer.id }}">{{ customer.id }}</option>
@@ -66,7 +66,7 @@
 				</div>
 				<label for="cid" class="form-label">Customer Name*</label>
 				<div class="form-group">
-					<select required class="form-control  form-input" name="cstatus" id="status">
+					<select required class="form-control  form-input" name="custName" id="status">
 						<option disabled selected value="">Select</option>
 						{% for customer in customers %}
 						<option value="{{ customer.firstname }} {{ customer.middlename }} {{customer.lastname }}">{{ customer.firstname }} {{ customer.middlename }} {{customer.lastname }}</option>
@@ -75,7 +75,7 @@
 				</div>
 				<label for="cid" class="form-label">Movie ID*</label>
 				<div class="form-group">
-					<select required class="form-control  form-input" name="cstatus" id="status">
+					<select required class="form-control  form-input" name="dvdID" id="status">
 						<option disabled selected value="">Select</option>
 						{% for dvd in dvds %}
 						<option value="{{ dvd.id }}">{{ dvd.id }}</option>
@@ -84,7 +84,7 @@
 				</div>
 				<label for="cid" class="form-label">Movie Title*</label>
 				<div class="form-group">
-					<select required class="form-control  form-input" name="cstatus" id="status">
+					<select required class="form-control  form-input" name="dvdTitle" id="status">
 						<option disabled selected value="">Select</option>
 						{% for dvd in dvds %}
 						<option value="{{ dvd.title	}}">{{ dvd.title }}</option>
@@ -93,15 +93,15 @@
 				</div>
 				<label for="num_item" class="form-label">Movie Price*</label>
 				<div class="form-group">
-					<input type="text" min="0" class="form-control  form-input" id="dvd_price" name="price" oninput="totalPrice()">
+					<input type="text" min="0" class="form-control  form-input" id="dvd_price" name="dvd_price" oninput="totalPrice()">
 				</div>
 				<label for="num_item" class="form-label">Quantity*</label>
 				<div class="form-group">
-					<input type="text" min="0" class="form-control  form-input" id="order_quantity" name="Quantity" placeholder="0" oninput="totalPrice()">
+					<input type="text" min="0" class="form-control  form-input" id="order_quantity" name="order_quantity" placeholder="0" oninput="totalPrice()">
 				</div>
 				<label for="totalprice" class="form-label">Total Price</label>
 				<div class="form-group">
-					<input id="totalprice">
+					<input id="totalprice" name="totalprice">
 				</div>
 				<br>
 				<div class="col">
