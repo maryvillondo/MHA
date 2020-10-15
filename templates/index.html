@@ -401,6 +401,7 @@
                     </div>
                     <div class="modal-body">
                       <form method="POST" onsubmit="passDate('datepickerRelDateDvdModal-{{dvd.id}}','releaseDate-{{dvd.id}}')">
+                        {% csrf_token %}
                         <div class="row">
                           <div class="col">
                             <label for="movieTitle-{{dvd.id}}" class="form-label">Movie Title</label>

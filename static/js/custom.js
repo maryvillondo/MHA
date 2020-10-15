@@ -57,7 +57,7 @@ $(document).ready(function() {
     'columns': [
       { data: 'cit' }, // index - 0
       { data: 'date_registered' }, // index - 1
-      { data: 'firatName' }, // index - 2
+      { data: 'Name' }, // index - 2
       { data: 'lastName' }, // index - 3
       { data: 'date_birth' }, // index - 4
       { data: 'address_city' }, // index - 5

@@ -5,7 +5,7 @@
     	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    	<title>Customer Registration</title> 
+    	<title>Registration</title> 
 
     	<!-- Bootstrap -->
     	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -35,9 +35,9 @@
         <div class="container-md register">
             <h1 class="text-center text-white"> Information Recorded </h1>
             <br>
-            <a type="button" class="btn btn-primary btn-register my-2" href="/customer/registration">Add Another</a>
+            <a type="button" class="btn btn-primary btn-register my-2" href="{% url 'dashboard:index_view' %}">Add Another</a>
             <br>
-            <a type="button" class="btn btn-primary btn-register" href="'{% url 'dashboard:index_view' %}'">Continue</a>
+            <a type="button" class="btn btn-primary btn-register" href="{% url 'dashboard:index_view' %}">Continue</a>
         </div>
     </body>
 {% endblock content %}

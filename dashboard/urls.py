@@ -6,5 +6,6 @@ app_name = 'dashboard'
 urlpatterns = [
     # Test URL
     path('index', views.DashboardIndexView.as_view(), name='index_view'),
-    path('', views.LandingView.as_view(), name='landing_view')
+    path('', views.LandingView.as_view(), name='landing_view'),
+    path('confirmation', views.ConfirmationView.as_view(), name='confirmation_view')
 ]

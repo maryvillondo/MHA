@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect 
 from .forms import DVDForm
 from .models import *
 from datetime import datetime
@@ -85,7 +85,7 @@ class DVDRegistrationView(View):
 						date_registered = date_registered)
 			form.save()
 
-			return HttpResponse('DVD record saved!')			
+			return HttpResponseRedirect("http://127.0.0.1:8000/confirmation")			
 			# return render(request,'successpage.html')
 			# except:
 			# 	raise Http404

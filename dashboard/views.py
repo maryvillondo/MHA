@@ -2,7 +2,7 @@ from django.http import Http404
 from django.views.generic import View
 from django.shortcuts import render,redirect
 from django.http import HttpResponse, HttpResponseRedirect 
-from customer.models import Customer
+from customer.models import Customer,Person
 from customer.forms import CustomerForm
 from dvd.models import DVD
 from dvd.forms import DVDForm
@@ -58,7 +58,7 @@ class DashboardIndexView(View):
 				quantity = request.POST.get("quantity")
 				price = request.POST.get("price")
 				update_dvd = DVD.objects.filter(id = sku).update(genre = genre, title = title, director_firstname = director_firstname, director_lastname = director_lastname, release_date = release_date, cast = cast, quantity = quantity, price = price)
-				print(update_customer)
+				print(update_dvd)
 				print('DVD Update Successful')
 			elif 'btnDelete' in request.POST:	
 				sku = request.POST.get("sku")
@@ -70,9 +70,14 @@ class DashboardIndexView(View):
 				customer = Customer.objects.filter(person_ptr_id=cid).delete()
 				person = Person.objects.filter(id=cid).delete()
 				print('Delete Successful')
-		return HttpResponseRedirect("http://127.0.0.1:8000/dashboard/index")
+		return HttpResponseRedirect("http://127.0.0.1:8000/index")
 
 class LandingView(View):
     def get(self, request):
         print('get')
         return render(request, 'LandingPage.html')
+
+class ConfirmationView(View):
+    def get(self,request):
+        print('get')
+        return render(request, 'Confirmation.html')

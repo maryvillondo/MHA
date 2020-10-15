@@ -8,6 +8,6 @@ urlpatterns = [
 
     # Test URL
     path('registration', views.CustomerRegView.as_view(), name='reg_view'),
-    path('confirmation', views.CustomerConfirmationView.as_view(), name='confirmation_view'),
+   
     
 ]

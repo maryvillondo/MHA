@@ -53,13 +53,10 @@ class CustomerRegView(View):
                             no_children = no_children, 
                             customer_picture = c_picture)
             form.save()
-            return HttpResponseRedirect("http://127.0.0.1:8000/customer/confirmation")
+            return HttpResponseRedirect("http://127.0.0.1:8000/confirmation")
         else:
             print(form.errors)
             return HttpResponse('not valid')
 
 
-class CustomerConfirmationView(View):
-    def get(self,request):
-        print('get')
-        return render(request, 'Confirmation.html')
+
