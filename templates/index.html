@@ -404,6 +404,7 @@
                       {% csrf_token %}
                       <div class="row">
                         <div class="col">
+                          <input type="text" name="sku" value = {{dvd.id}} hidden>
                           <label for="movieTitle-{{dvd.id}}" class="form-label">Movie Title</label>
                           <input required type="text" class="form-control  form-input" id="movieTitle-{{dvd.id}}" placeholder="Title" value="{{dvd.title}}"  name="title" minlength="1" maxlength="150">
                         </div>
